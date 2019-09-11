@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3f51b5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#a9ca42</color>
+    <color name="blueVeolus">#062238</color>
+    <color name="whiteText">#fff</color>
+    <color name="colorGris">#5d6d7e</color>
+    <color name="dialogButtonText">#008577</color>
+    <color name="colorTrkLight">#0264d6</color>
+    <color name="colorTrkDark">#1c2b5a</color>
+</resources>
+

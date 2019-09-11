@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.github.gcacace.signaturepads.informe_tecnico">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="20dp"
+        android:focusable="true" android:focusableInTouchMode="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Informe Técnico"
+            android:gravity="center"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/whiteText"
+            android:textSize="20sp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:id="@+id/fechain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:textSize="15dp"
+                android:maxLines="1"
+                android:maxLength="10"
+                android:singleLine="true"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/grabrar"
+                android:layout_width="159dp"
+                android:layout_height="wrap_content"
+                android:onClick="grabar"
+                android:text="Grabar" />
+
+            <Button
+                android:layout_width="159dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/recuperar"
+                android:text="Recuperar"
+                android:onClick="recuperar"
+                />
+
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <EditText
+                android:id="@+id/direccionSitio"
+                android:layout_width="match_parent"
+                android:hint="Sitio"
+                android:layout_height="100dp"
+                android:maxLines="1"
+                android:layout_gravity="center"
+                android:singleLine="true"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <EditText
+                android:id="@+id/reparacion"
+                android:layout_width="match_parent"
+                android:hint="Tipo de Reparación"
+                android:layout_height="100dp"
+                android:maxLines="5"
+                android:layout_gravity="center"
+                android:singleLine="true"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <EditText
+                android:id="@+id/antecedentes"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:hint="Antecedentes"
+                android:maxLength="100"
+                android:maxLines="5"
+                android:singleLine="true"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <EditText
+                android:id="@+id/desarrollo"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:hint="Desarrollo"
+                android:maxLength="100"
+                android:maxLines="5"
+                android:singleLine="true"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <EditText
+                android:id="@+id/recomendaciones"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:hint="Recomendaciones"
+                android:maxLength="100"
+                android:maxLines="5"
+                android:singleLine="true"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <EditText
+                android:id="@+id/conclusiones"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:hint="Conclusiones"
+                android:maxLines="5"
+                android:maxLength="100"
+                android:singleLine="true"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/radioGroupEquipo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*Equipo" />
+            <!--Cambiar la etiqueta de estos radio buttons implica cambiar el case en la funcion getRadios()-->
+            <RadioButton android:id="@+id/escalera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Escalera" />
+
+            <RadioButton android:id="@+id/elevador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Elevador" />
+
+            <RadioButton android:id="@+id/rampa_acera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rampa/Acera"/>
+
+            <RadioButton android:id="@+id/salvaescalera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Salvaescalera"/>
+
+        </RadioGroup>
+
+
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/radioGroupActividades"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#D44E51"
+                android:text="*Imagenes"/>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10px"
+                android:focusable="true"
+                android:gravity="center"
+                android:focusableInTouchMode="true">
+
+                <Button
+                    android:text="Imagen1"
+                    android:id="@+id/btnopencamara"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:textSize="11sp"
+                    android:drawableLeft="@drawable/ic_camera_black_24dp"
+                    />
+
+                <Button
+                    android:text="Imagen2"
+                    android:id="@+id/btnopencamara2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:textSize="11sp"
+                    android:drawableLeft="@drawable/ic_camera_black_24dp"
+                    />
+
+                <Button
+                    android:text="Imagen3"
+                    android:id="@+id/btnopencamara3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:textSize="11sp"
+                    android:drawableLeft="@drawable/ic_camera_black_24dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10px"
+                android:focusable="true"
+                android:gravity="center"
+                android:focusableInTouchMode="true">
+
+                <Button
+                    android:text="Imagen4"
+                    android:id="@+id/btnopencamara4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:textSize="11sp"
+                    android:drawableLeft="@drawable/ic_camera_black_24dp"
+                    />
+
+                <Button
+                    android:text="Imagen5"
+                    android:id="@+id/btnopencamara5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:textSize="11sp"
+                    android:drawableLeft="@drawable/ic_camera_black_24dp"
+                    />
+
+                <Button
+                    android:text="Imagen6"
+                    android:id="@+id/btnopencamara6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:textSize="11sp"
+                    android:drawableLeft="@drawable/ic_camera_black_24dp"
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/btnFirmaTec"
+                    android:textSize="12sp"
+                    android:layout_width="0dp"
+                    android:layout_weight=".50"
+                    android:layout_height="40dp"
+                    android:text="Firma Técnico"/>
+
+                <Button
+                    android:id="@+id/btnFirmaResp"
+                    android:textSize="12sp"
+                    android:layout_width="0dp"
+                    android:layout_weight=".50"
+                    android:layout_height="40dp"
+                    android:text="Firma Responsable"/>
+
+            </LinearLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnEnviar"
+                android:text="Enviar"/>
+
+        </RadioGroup>
+    </LinearLayout>
+
+
+</ScrollView>

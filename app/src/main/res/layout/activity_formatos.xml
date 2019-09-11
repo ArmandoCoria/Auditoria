@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    tools:context="com.veolus.auditoria.Formatos">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="547dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="332dp"
+            android:layout_height="177dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="15dp"
+            android:src="@drawable/audito" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:gravity="center"
+            android:text="Reportes"
+            android:textColor="@color/whiteText"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            />
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            >
+
+        </ScrollView>
+
+
+        <LinearLayout
+            android:id="@+id/formetm"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:onClick="onEstatusClicked"
+            android:gravity="clip_horizontal"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="left"
+                android:text="     Auditoría"
+                android:textColor="@color/whiteText"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+
+            <ImageButton
+                android:id="@+id/btnStart"
+                android:layout_width="46dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:background="@android:color/transparent"
+                android:scaleType="matrix"
+                android:src="@drawable/lista2" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/infotec"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:onClick="onEstatusClicked"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="320dp"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:gravity="left"
+                android:text="     Informe Técnico "
+                android:textColor="@color/whiteText"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/btnShowtec"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/firma3" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/infobci"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:onClick="onEstatusClicked"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="320dp"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:gravity="left"
+                android:text="     Servicio Anual BCI "
+                android:textColor="@color/whiteText"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/btnShowBCI"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/firma3" />
+
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:id="@+id/infopem"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:onClick="onEstatusClicked"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="320dp"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:gravity="left"
+                android:text="     Servicio Anual PEM "
+                android:textColor="@color/whiteText"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/btnShowpem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/firma3" />
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center">
+
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/cerrar"
+            android:layout_width="276dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:onClick="onEstatusClicked"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="255dp"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:gravity="right"
+                android:text="     Cerrar Sesión "
+                android:textColor="@color/whiteText"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/cancelar" />
+        </LinearLayout>
+</LinearLayout>
+</LinearLayout>
+
+
+

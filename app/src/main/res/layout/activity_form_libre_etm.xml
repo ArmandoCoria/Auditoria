@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.github.gcacace.signaturepads.Form_libreETM">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="20dp"
+        android:focusable="true" android:focusableInTouchMode="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ETM"
+            android:gravity="center"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/whiteText"
+            android:textSize="20sp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:id="@+id/fechas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:textSize="15dp"
+                android:maxLines="1"
+                android:maxLength="10"
+                android:singleLine="true"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <EditText
+                android:id="@+id/direccionSitio"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:hint="Dirección del sitio"
+                android:maxLines="5"
+                android:layout_gravity="center"
+                android:singleLine="true" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <EditText
+                android:id="@+id/responsableSitio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Responsable del sitio"
+                android:maxLength="30"
+                android:maxLines="1"
+                android:singleLine="true"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+            <EditText
+                android:id="@+id/modelo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Modelo"
+                android:maxLines="1"
+                android:maxLength="20"
+                android:singleLine="true"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+            <EditText
+                android:id="@+id/marca"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Marca"
+                android:maxLength="20"
+                android:maxLines="1"
+                android:singleLine="true"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/radioGroupEquipo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*Equipo" />
+            <!--Cambiar la etiqueta de estos radio buttons implica cambiar el case en la funcion getRadios()-->
+            <RadioButton android:id="@+id/escalera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Escalera" />
+
+            <RadioButton android:id="@+id/elevador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Elevador" />
+
+            <RadioButton android:id="@+id/rampa_acera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rampa/Acera"/>
+
+            <RadioButton android:id="@+id/salvaescalera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Salvaescalera"/>
+
+        </RadioGroup>
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/radioGroupFalla"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="*Tipo de Falla"
+                android:textAlignment="center" />
+
+            <RadioButton android:id="@+id/falla_electrica"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Falla eléctrica" />
+
+            <RadioButton android:id="@+id/falla_mecanica"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Falla mecánica" />
+
+            <RadioButton android:id="@+id/falla_electronica"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Falla electrónica"/>
+
+            <RadioButton android:id="@+id/falla_otra"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Otros"/>
+
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*Estatus"
+                android:textAlignment="center" />
+            <ImageView
+                android:layout_height="match_parent"
+                android:onClick="onEstatusClicked"
+                android:src="@android:drawable/ic_menu_info_details"
+                android:layout_width="wrap_content" />
+        </LinearLayout>
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/radioGroupEstatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton android:id="@+id/ds"
+                android:layout_width="0dp"
+                android:layout_weight=".25"
+                android:layout_height="wrap_content"
+                android:text="Funcionando"/>
+            <RadioButton android:id="@+id/dr"
+                android:layout_width="0dp"
+                android:layout_weight=".25"
+                android:layout_height="wrap_content"
+                android:text="No funcionando"/>
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*Denominación"/>
+            <ImageView
+                android:layout_height="match_parent"
+                android:onClick="onDenominacionClicked"
+                android:src="@android:drawable/ic_menu_info_details"
+                android:layout_width="wrap_content"/>
+        </LinearLayout>
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/radioGroupDenom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton android:id="@+id/in_al_equipo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Inherente al equipo"/>
+
+            <RadioButton android:id="@+id/vandalismo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Vandalismo"/>
+            <RadioButton android:id="@+id/Mal_uso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mal uso"/>
+            <RadioButton android:id="@+id/influencia_externa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Influencia Externa"/>
+            <RadioButton android:id="@+id/falsaAlarma"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Falsa alarma"/>
+            <RadioButton android:id="@+id/otros"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Otros"/>
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*Imagenes"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10px"
+            android:focusable="true"
+            android:gravity="center"
+            android:focusableInTouchMode="true">
+
+
+            <Button
+                android:text="Imagen 1"
+                android:id="@+id/btnopencamara"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:textSize="11sp"
+                android:drawableLeft="@drawable/ic_camera_black_24dp"
+                />
+
+            <Button
+                android:text="Imagen 2"
+                android:id="@+id/btnopencamara2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:textSize="11sp"
+                android:drawableLeft="@drawable/ic_camera_black_24dp"
+                />
+
+            <Button
+                android:text="Imagen 3"
+                android:id="@+id/btnopencamara3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:textSize="11sp"
+                android:drawableLeft="@drawable/ic_camera_black_24dp"
+                />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Acciones realizadas"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="4"
+            android:maxLength="300"
+            android:id="@+id/acciones"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Causas de falla/avería"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="4"
+            android:maxLength="300"
+            android:id="@+id/causa"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/btnFirmaTec"
+                android:textSize="12sp"
+                android:layout_width="0dp"
+                android:layout_weight=".50"
+                android:layout_height="40dp"
+                android:text="*Firma Técnico"/>
+            <Button
+                android:id="@+id/btnFirmaResp"
+                android:textSize="12sp"
+                android:layout_width="0dp"
+                android:layout_weight=".50"
+                android:layout_height="40dp"
+                android:text="*Firma Responsable"/>
+        </LinearLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnEnviar"
+            android:text="Enviar"/>
+    </LinearLayout>
+</ScrollView>

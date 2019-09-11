@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Auditoría</string>
+    <string name="agreement">Firmar sobre la línea</string>
+    <string name="clear_pad">Borrar</string>
+    <string name="save_signature">Listo</string>
+    <string name="descripcio_app">Veolus - Tracking</string>
+    <string name="btnStart">Reiniciar registro</string>
+    <string name="btnStop">Detener registro</string>
+    <string name="btnDefault">Iniciar registro</string>
+
+
+    <string name="info">Info</string>
+    <string name="instruccion1"> Presiona iniciar registro al comenzar tu jornada\n</string>
+    <string name="instruccion2"> Presiona detener registro al terminar tu jornada</string>
+    <string name="sinordener">Tus ordenes de servicio apareceran aqui proximamente</string>
+    <string name="sinmodelo">Tus ordenes de trabajo apareceran aqui proximamente</string>
+
+    <string name="prompt_email">Usuario</string>
+    <string name="prompt_password">Contraseña</string>
+    <string name="action_sign_in">Ingresar</string>
+    <string name="action_sign_in_short">Iniciar sesión</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">La contraseña es muy pequqeña</string>
+    <string name="error_incorrect_password">Usuario o contraseña incorrectos</string>
+    <string name="error_field_required">Este campo es requerido</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="title_activity_form__libre">Form_Libre</string>
+    <string name="title_activity_form_libre_ot2">Form_libreOT2</string>
+    <string name="title_activity_informe_tecnico">Informe_tecnico</string>
+</resources>
