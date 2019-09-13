@@ -774,6 +774,22 @@ public class Form_auditoria extends Activity {
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(zlvxx.getVisibility() == View.VISIBLE) {
+                    zlvxx.setVisibility(View.GONE);
+                    texto.setTextColor(Color.GRAY);
+                }
+                else{
+                    zlvxx.setVisibility(View.VISIBLE);
+                    texto = (TextView) findViewById(R.id.check);
+                    texto.setTextColor(Color.GREEN);
+                }
+            }
+        });
+
+        Direccion = (CheckBox) findViewById(R.id.button18);
+        Direccion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 if(zlvn.getVisibility() == View.VISIBLE) {
                     zlvn.setVisibility(View.GONE);
                     texto.setTextColor(Color.GRAY);
@@ -786,8 +802,8 @@ public class Form_auditoria extends Activity {
             }
         });
 
-        Direccion = (CheckBox) findViewById(R.id.button18);
-        Direccion.setOnClickListener(new View.OnClickListener() {
+        Jefe = (CheckBox) findViewById(R.id.button19);
+        Jefe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(zlvs.getVisibility() == View.VISIBLE) {
@@ -797,22 +813,6 @@ public class Form_auditoria extends Activity {
                 else{
                     zlvs.setVisibility(View.VISIBLE);
                     texto = (TextView) findViewById(R.id.jefe);
-                    texto.setTextColor(Color.GREEN);
-                }
-            }
-        });
-
-        Jefe = (CheckBox) findViewById(R.id.button19);
-        Jefe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(zlvxx.getVisibility() == View.VISIBLE) {
-                    zlvxx.setVisibility(View.GONE);
-                    texto.setTextColor(Color.GRAY);
-                }
-                else{
-                    zlvxx.setVisibility(View.VISIBLE);
-                    texto = (TextView) findViewById(R.id.check);
                     texto.setTextColor(Color.GREEN);
                 }
             }
@@ -934,7 +934,7 @@ public class Form_auditoria extends Activity {
             public void onClick(View v) {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 1);
-                in.putExtra("numFoto", "Imagen7");
+                in.putExtra("numFoto", "Imagen07");
                 in.putExtra("flgZona", 2);
                 btncamara7.setEnabled(false);
                 startActivityForResult(in, 1);
@@ -1973,15 +1973,19 @@ public class Form_auditoria extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK) {
+
             if ("vacio".equals(data.getStringExtra("FirmaRESP"))) {
                 firmaTec = data.getStringExtra("FirmaTEC");
                 firmanteTec = data.getStringExtra("NombreTec");
-                btnFirmaTec.setEnabled(false);
-
+                if (firmaTec != "" && firmanteTec !="" ){
+                    btnFirmaTec.setEnabled(false);
+                }
             } else if ("vacio".equals(data.getStringExtra("FirmaTEC"))) {
                 firmaResp = data.getStringExtra("FirmaRESP");
                 firmanteResp = data.getStringExtra("NombreResp");
-                btnFirmaResp.setEnabled(false);
+                if (firmaResp != "" && firmanteResp !=""){
+                    btnFirmaResp.setEnabled(false);
+                }
             }
             if ("vacio".equals(data.getStringExtra("FotoDos")) && "vacio".equals(data.getStringExtra("FotoTres"))
                     && "vacio".equals(data.getStringExtra("FotoCuatro")) && "vacio".equals(data.getStringExtra("FotoCnco")))
@@ -3151,7 +3155,7 @@ public class Form_auditoria extends Activity {
         cv. put("Detalles17", detalles17.getText().toString());
 
         cv. put("Peticiones18", peticiones16.getText().toString());
-        cv. put("Detalle18", detalles16.getText().toString());
+        cv. put("Detalles18", detalles16.getText().toString());
         cv.put("Promesas", etPromesas.getText().toString());
 
         cv. put("Peticiones19", peticiones16.getText().toString());
@@ -3207,17 +3211,17 @@ public class Form_auditoria extends Activity {
             db.insert("AUSQL", null, cv);
             Toast.makeText(this, "Los datos fueron grabados", Toast.LENGTH_SHORT).show();
         } else {
-
-            int id = c.getColumnIndex("_id");
+            c.moveToFirst();
+            int id = c.getInt(c.getColumnIndex("_id"));
             db.update("AUSQL",  cv, "_id="+id, null);
             Toast.makeText(this, "Los datos se han actualizados", Toast.LENGTH_SHORT).show();
         }
-    }
+        }
 
     public void recuperarau(View v) {
 
       //  Log.d("path", fotosg.get(0).substring(10));
-        int i = 0;
+       // int i = 0;
 
         try {
             MyOpenHelper dbHelper = new MyOpenHelper(this);
@@ -3240,7 +3244,7 @@ public class Form_auditoria extends Activity {
                     "Detalles14, Peticiones14," +
                     "Detalles15, Peticiones15," +
                     "Detalles16, Peticiones16," +
-                    "ChecList, Detalles17, Peticiones17," +
+                    "CheckList, Detalles17, Peticiones17," +
                     "Detalles18, Peticiones18, Promesas," +
                     "Detalles19, Peticiones19, Promesas1," +
                     "Imagenes , Coordinador, Jefe, FirmaTec, Firmante, FirmaRes, " +
@@ -3248,6 +3252,7 @@ public class Form_auditoria extends Activity {
             if (c.getCount() != 0 ) {
                 c.moveToFirst();
                 do {
+
                     String Director = c.getString(c.getColumnIndex("Director"));
                     String Motivo = c.getString(c.getColumnIndex("Motivo"));
                     String Sitio = c.getString(c.getColumnIndex("Sitio"));
@@ -3262,7 +3267,7 @@ public class Form_auditoria extends Activity {
 
                     String Elevadores = c.getString(c.getColumnIndex("Elevadores"));
                     String Detalles1 = c.getString(c.getColumnIndex("Detalles1"));
-                    String Peticiones1 = c.getString(c.getColumnIndex("Peticiones2"));
+                    String Peticiones1 = c.getString(c.getColumnIndex("Peticiones1"));
 
                     String Montacargas = c.getString(c.getColumnIndex("Montacargas"));
                     String Detalles2 = c.getString(c.getColumnIndex("Detalles2"));
@@ -3612,6 +3617,7 @@ public class Form_auditoria extends Activity {
 
                     String Coordinador = c.getString(c.getColumnIndex("Coordinador"));
                     String Jefe = c.getString(c.getColumnIndex("Jefe"));
+
                     String FirmaTec = c.getString(c.getColumnIndex("FirmaTec"));
                     String Firmante = c.getString(c.getColumnIndex("Firmante"));
                     String FirmaRes = c.getString(c.getColumnIndex("FirmaRes"));
@@ -3773,20 +3779,19 @@ public class Form_auditoria extends Activity {
                     Ischeckbombas();
                     Ischecktorres();
 
-
-                    if (firmaTec.equals("")) {
+                    if (!firmaTec.equals("")) {
                         btnFirmaTec.setEnabled(false);
                     }
 
-                    if (firmanteTec != "") {
+                    if (!firmanteTec.equals("")) {
 
                     }
 
-                    if (firmaTec.equals("")) {
+                    if (!firmaTec.equals("")) {
                         btnFirmaResp.setEnabled(false);
                     }
 
-                    if (firmanteResp != "") {
+                    if (!firmanteResp.equals("")) {
 
                     }
 

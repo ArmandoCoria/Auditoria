@@ -36,8 +36,27 @@ public class MyOpenHelper extends SQLiteOpenHelper {
             "Detalles19 TEXT, Peticiones19 TEXT, Promesas1 TEXT," +
             "Imagenes TEXT, Coordinador TEXT, Jefe TEXT, FirmaTec TEXT, Firmante TEXT, FirmaRes TEXT, Firmanres TEXT) ";
 
-    private static final String DB_INFO = "IFSQL.sqlite, AUSQL.sqlite";
-    private static final int DB_version = 14;
+    private static final String BCI = "CREATE TABLE BCISQL( _id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "Fechainicio TEXT, Horainicio TEXT, Fechafinal TEXT, Horafinal TEXT, Sitio TEXT, Sector TEXT, Proyecto TEXT, OT TEXT," +
+            "Antecedentes TEXT, Aprieta STRING, Tanquedia TEXT, Tanqueprin TEXT, Refri TEXT, Aceite TEXT, Electrolito TEXT, Arrancar TEXT, Carga TEXT," +
+            "Revisar1 STRING, Verificacion STRING, Horometro TEXT, Prueba STRING," +
+            "Arranquepru TEXT, Observacionespru TEXT, " +
+            "Conclusiones TEXT, Recomendaciones TEXT, " +
+            "Comentarios TEXT, Correo TEXT, Numnav TEXT," +
+            "Imagenes TEXT,FirmaTec TEXT, Firmante TEXT, FirmaRes TEXT, Firmanres TEXT) ";
+
+    private static final String PEM = "CREATE TABLE PEMSQL( _id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "Fechainicio TEXT, Horainicio TEXT, Fechafinal TEXT, Horafinal TEXT, Sitio TEXT, Sector TEXT, Proyecto TEXT, OT TEXT," +
+            "Antecedentes TEXT, Aprieta STRING, Tanqueprin TEXT, Nivelcombus TEXT, Tanquedia TEXT, Aceite TEXT, Presionace TEXT, Nivelagua TEXT," +
+            "Electrolito TEXT, Temperatura TEXT, Carga TEXT, Bateria TEXT, Voltaje TEXT, Standby TEXT, Alternadorarra TEXT, Alternadorby TEXT," +
+            " Generacion TEXt, Enfriamento TEXT, Transferencia TEXT, Tiempo TEXT, Revisar STRING, Verificar STRING, Limpieza STRING, Medicion STRING, " +
+            "Horometro TEXT, Corriente TEXT, Tiempocon TEXT, Observacionescon TEXT, Tiemposin TEXT, Observacionessin TEXT, Tiempovacio TEXT," +
+            "Conclusionesservi TEXT, Recomendacionesservi TEXT, Comentariosjefe TEXT, Correo TEXT, Numnav TEXT," +
+            "Imagenes TEXT,FirmaTec TEXT, Firmante TEXT, FirmaRes TEXT, Firmanres TEXT) ";
+
+
+    private static final String DB_INFO = "IFSQL.sqlite, AUSQL.sqlite, BCISQL.sqlite, PEMSQL.sqlite ";
+    private static final int DB_version = 18;
 
     public MyOpenHelper(Context context) {
         super(context, DB_INFO, null, DB_version);
@@ -47,15 +66,19 @@ public class MyOpenHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(INFORME_TECNICO_SQLITE);
         db.execSQL(AUDITORIA);
+        db.execSQL(BCI);
+        db.execSQL(PEM);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         Log.d("x", "#"+oldVersion);
        Log.d("x", "#"+newVersion);
-        if (newVersion == 14) {
+        if (newVersion == 18) {
             db.execSQL("DROP TABLE IF EXISTS IFSQL");
             db.execSQL("DROP TABLE IF EXISTS AUSQL");
+            db.execSQL("DROP TABLE IF EXISTS BCISQL");
+            db.execSQL("DROP TABLE IF EXISTS PEMSQL");
             onCreate(db);
         }
     }
@@ -65,6 +88,8 @@ public class MyOpenHelper extends SQLiteOpenHelper {
         if (db!=null){
             db.execSQL("DELETE FROM IFSQL");
             db.execSQL("DELETE FROM AUSQL");
+            db.execSQL("DELETE FROM BCISQL");
+            db.execSQL("DELETE FROM PEMSQL");
             db.close();
         }
     }
