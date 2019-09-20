@@ -5,14 +5,20 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.icu.text.SimpleDateFormat;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +37,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -96,12 +103,14 @@ public class Form_Serv_Pem extends Activity {
     CheckBox cbOperacionPrecalentadores;
     CheckBox cbRuidos;
     CheckBox cbFugas;
+    CheckBox cbDensidad;
     CheckBox cbOperacionAlter;
     CheckBox cbVerTerminales;
     CheckBox cbLimpiezaEquipo;
     CheckBox cbLimpiezaRadiador;
     CheckBox cbPruebaArranqueCarga;
     CheckBox cbPruebaArranqueCS;
+    CheckBox cbPruebaArranqueVacio;
     CheckBox cbSimularFallas;
     EditText etObserv;
     EditText etObserv1;
@@ -110,6 +119,9 @@ public class Form_Serv_Pem extends Activity {
     EditText etCommentJFMtto;
     EditText etCorreo;
     EditText etNumEqNav;
+    Button grabar;
+    Button recuperar;
+    Button borrar;
     Button btnOpenCamara;
     Button btnOpenCamara1;
     Button btnOpenCamara2;
@@ -159,17 +171,10 @@ public class Form_Serv_Pem extends Activity {
     private String TiempoArranque = "";
     private String TiempoArranqueCSCarga = "";
     private String TiempoArranqueVacioCarga = "";
+    // lista de fotos base64
     private List<String> fotos = new ArrayList<String>();
-   /* private Boolean DejarFueraEquipo = false;
-    private Boolean Lotto = false;
-    private Boolean Aceite = false;
-    private Boolean FiltrosAceite = false;
-    private Boolean Baterias = false;
-    private Boolean TerminalesBaterias = false;
-    private Boolean Refrigerante = false;
-    private Boolean FiltrosRefrigerante = false;
-    private Boolean FiltrosAire = false;
-    private Boolean ManguerasPrecalentador = false;*/
+    // auxiliar de lista de fotos para sqlite, en el cual se guarda el path de la foto
+    private List<String> fotosg = new ArrayList<String>();
     private Boolean AprieteTerminalesControl = false;
     private Boolean DesulfatarTerminalesBaterias = false;
     private Boolean CalibracionSensorVolt = false;
@@ -207,10 +212,17 @@ public class Form_Serv_Pem extends Activity {
     //Variables para obtener la hora hora
     final int hora = c.get(Calendar.HOUR_OF_DAY);
     final int minuto = c.get(Calendar.MINUTE);
-
+    // sqlite
+    MyOpenHelper dbHelper;
+    SQLiteDatabase db;
     //Widgets
     EditText etHora;
     EditText etHora2;
+    // gestión de fotos
+    Bitmap bitmap;
+    byte[] byteArray;
+    String imagenString;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -354,13 +366,18 @@ public class Form_Serv_Pem extends Activity {
         cbOperacionPrecalentadores = findViewById(R.id.operacionPrecalentadores);
         cbRuidos = findViewById(R.id.ruidosAnormales);
         cbFugas = findViewById(R.id.fugas);
+        cbDensidad = findViewById(R.id.densidadElectrolito);
         cbOperacionAlter = findViewById(R.id.operacionAlternador);
         cbVerTerminales = findViewById(R.id.verTerminalesBaterias);
         cbLimpiezaEquipo = findViewById(R.id.limpiezaEquipo);
         cbLimpiezaRadiador = findViewById(R.id.limpiezaRadiador);
         cbPruebaArranqueCarga = findViewById(R.id.pruebaArranqueCarga);
         cbPruebaArranqueCS  = findViewById(R.id.pruebaArranqueCSCarga);
+        cbPruebaArranqueVacio  = findViewById(R.id.pruebaArranqueVacio);
         cbSimularFallas = findViewById(R.id.simularFallasVelocidad);
+        grabar = findViewById(R.id.grabrar);
+        recuperar = findViewById(R.id.recuperar);
+        borrar = findViewById(R.id.borrar);
         btnOpenCamara = findViewById(R.id.opencamara);
         btnOpenCamara.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -368,7 +385,6 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 0);
                 in.putExtra("numFoto", "Foto01");
-                btnOpenCamara.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -379,7 +395,6 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 1);
                 in.putExtra("numFoto", "Foto02");
-                btnOpenCamara1.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -390,7 +405,7 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 2);
                 in.putExtra("numFoto", "Foto03");
-                btnOpenCamara2.setEnabled(false);
+
                 startActivityForResult(in, 1);
             }
         });
@@ -401,7 +416,7 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 3);
                 in.putExtra("numFoto", "Foto04");
-                btnOpenCamara3.setEnabled(false);
+
                 startActivityForResult(in, 1);
             }
         });
@@ -412,7 +427,7 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 4);
                 in.putExtra("numFoto", "Foto05");
-                btnOpenCamara4.setEnabled(false);
+
                 startActivityForResult(in, 1);
             }
         });
@@ -423,7 +438,7 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 0);
                 in.putExtra("numFoto", "Foto06");
-                btnOpenCamara5.setEnabled(false);
+
                 startActivityForResult(in, 1);
             }
         });
@@ -434,7 +449,7 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 1);
                 in.putExtra("numFoto", "Foto07");
-                btnOpenCamara6.setEnabled(false);
+
                 startActivityForResult(in, 1);
             }
         });
@@ -445,7 +460,7 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 2);
                 in.putExtra("numFoto", "Foto08");
-                btnOpenCamara7.setEnabled(false);
+
                 startActivityForResult(in, 1);
             }
         });
@@ -456,7 +471,7 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 3);
                 in.putExtra("numFoto", "Foto09");
-                btnOpenCamara8.setEnabled(false);
+
                 startActivityForResult(in, 1);
             }
         });
@@ -467,7 +482,7 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 4);
                 in.putExtra("numFoto", "Foto10");
-                btnOpenCamara9.setEnabled(false);
+
                 startActivityForResult(in, 1);
             }
         });
@@ -478,7 +493,7 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 0);
                 in.putExtra("numFoto", "Foto11");
-                btnOpenCamara10.setEnabled(false);
+
                 startActivityForResult(in, 1);
             }
         });
@@ -489,7 +504,7 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 1);
                 in.putExtra("numFoto", "Foto12");
-                btnOpenCamara11.setEnabled(false);
+
                 startActivityForResult(in, 1);
             }
         });
@@ -500,7 +515,7 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 2);
                 in.putExtra("numFoto", "Foto13");
-                btnOpenCamara12.setEnabled(false);
+
                 startActivityForResult(in, 1);
             }
         });
@@ -511,7 +526,7 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 3);
                 in.putExtra("numFoto", "Foto14");
-                btnOpenCamara13.setEnabled(false);
+
                 startActivityForResult(in, 1);
             }
         });
@@ -522,7 +537,7 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 4);
                 in.putExtra("numFoto", "Foto15");
-                btnOpenCamara14.setEnabled(false);
+
                 startActivityForResult(in, 1);
             }
         });
@@ -533,7 +548,7 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 0);
                 in.putExtra("numFoto", "Foto16");
-                btnOpenCamara15.setEnabled(false);
+
                 startActivityForResult(in, 1);
             }
         });
@@ -544,7 +559,7 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 1);
                 in.putExtra("numFoto", "Foto17");
-                btnOpenCamara16.setEnabled(false);
+
                 startActivityForResult(in, 1);
             }
         });
@@ -555,7 +570,7 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 2);
                 in.putExtra("numFoto", "Foto18");
-                btnOpenCamara17.setEnabled(false);
+
                 startActivityForResult(in, 1);
             }
         });
@@ -566,7 +581,7 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 3);
                 in.putExtra("numFoto", "Foto19");
-                btnOpenCamara18.setEnabled(false);
+
                 startActivityForResult(in, 1);
             }
         });
@@ -577,7 +592,7 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 4);
                 in.putExtra("numFoto", "Foto20");
-                btnOpenCamara19.setEnabled(false);
+
                 startActivityForResult(in, 1);
             }
         });
@@ -612,8 +627,6 @@ public class Form_Serv_Pem extends Activity {
             }
         });
     }
-
-
 
     private void showDatePickerDialogInicio() {
         DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
@@ -687,27 +700,105 @@ public class Form_Serv_Pem extends Activity {
         if (requestCode == 1 && resultCode == RESULT_OK) {
             if ("vacio".equals(data.getStringExtra("FirmaRESP"))) {
                 firmaJFSitio = data.getStringExtra("FirmaTEC");
-                btnFirmaJFSitio.setEnabled(false);
+                if (firmaJFSitio != "" && firmaJFSitio !=""){
+                    btnFirmaJFSitio.setEnabled(false);
+                }
             } else if ("vacio".equals(data.getStringExtra("FirmaTEC"))) {
                 firmaJFMtto = data.getStringExtra("FirmaRESP");
-                btnFirmaJFMtto.setEnabled(false);
+                if (firmaJFMtto != "" && firmaJFMtto !=""){
+                    btnFirmaJFMtto.setEnabled(false);
+                }
             }
             if ("vacio".equals(data.getStringExtra("FotoDos")) && "vacio".equals(data.getStringExtra("FotoTres")) && "vacio".equals(data.getStringExtra("FotoCuatro")) && "vacio".equals(data.getStringExtra("FotoCnco"))) {
-                fotos.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoUno"));
-
+                imagenString = convertirimagen(data.getStringExtra("FotoUno"));
+                fotosg.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoUno"));
+                fotos.add(data.getStringExtra("numFoto") + ":" + imagenString);
+                DisabledButtonCam(data.getStringExtra("numFoto"));
             } else if ("vacio".equals(data.getStringExtra("FotoUno")) && "vacio".equals(data.getStringExtra("FotoTres")) && "vacio".equals(data.getStringExtra("FotoCuatro")) && "vacio".equals(data.getStringExtra("FotoCnco"))) {
-                fotos.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoDos"));
-
+                imagenString = convertirimagen(data.getStringExtra("FotoDos"));
+                fotosg.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoDos"));
+                fotos.add(data.getStringExtra("numFoto") + ":" + imagenString);
+                DisabledButtonCam(data.getStringExtra("numFoto"));
             } else if ("vacio".equals(data.getStringExtra("FotoUno")) && "vacio".equals(data.getStringExtra("FotoDos")) && "vacio".equals(data.getStringExtra("FotoCuatro")) && "vacio".equals(data.getStringExtra("FotoCnco"))) {
-                fotos.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoTres"));
-
+                imagenString = convertirimagen(data.getStringExtra("FotoTres"));
+                fotosg.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoTres"));
+                fotos.add(data.getStringExtra("numFoto") + ":" + imagenString);
+                DisabledButtonCam(data.getStringExtra("numFoto"));
             } else if ("vacio".equals(data.getStringExtra("FotoUno")) && "vacio".equals(data.getStringExtra("FotoDos")) && "vacio".equals(data.getStringExtra("FotoTres")) && "vacio".equals(data.getStringExtra("FotoCnco"))) {
-                fotos.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoCuatro"));
-
+                imagenString = convertirimagen(data.getStringExtra("FotoCuatro"));
+                fotosg.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoCuatro"));
+                fotos.add(data.getStringExtra("numFoto") + ":" + imagenString);
+                DisabledButtonCam(data.getStringExtra("numFoto"));
             } else if ("vacio".equals(data.getStringExtra("FotoUno")) && "vacio".equals(data.getStringExtra("FotoDos")) && "vacio".equals(data.getStringExtra("FotoTres")) && "vacio".equals(data.getStringExtra("FotoCuatro"))) {
-                fotos.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoCnco"));
-
+                imagenString = convertirimagen(data.getStringExtra("FotoCnco"));
+                fotosg.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoCnco"));
+                fotos.add(data.getStringExtra("numFoto") + ":" + imagenString);
+                DisabledButtonCam(data.getStringExtra("numFoto"));
             }
+
+        }
+    }
+
+    private  void DisabledButtonCam(String numFoto){
+        if(numFoto.equals("Foto01")){
+            btnOpenCamara.setEnabled(false);
+        }
+        else if(numFoto.equals("Foto02")){
+            btnOpenCamara1.setEnabled(false);
+        }
+        else if(numFoto.equals("Foto03")){
+            btnOpenCamara2.setEnabled(false);
+        }
+        else if(numFoto.equals("Foto04")){
+            btnOpenCamara3.setEnabled(false);
+        }
+        else if(numFoto.equals("Foto05")){
+            btnOpenCamara4.setEnabled(false);
+        }
+        else if(numFoto.equals("Foto06")){
+            btnOpenCamara5.setEnabled(false);
+        }
+        else if(numFoto.equals("Foto07")){
+            btnOpenCamara6.setEnabled(false);
+        }
+        else if(numFoto.equals("Foto08")){
+            btnOpenCamara7.setEnabled(false);
+        }
+        else if(numFoto.equals("Foto09")){
+            btnOpenCamara8.setEnabled(false);
+        }
+        else if(numFoto.equals("Foto10")){
+            btnOpenCamara9.setEnabled(false);
+        }
+        else if(numFoto.equals("Foto11")){
+            btnOpenCamara10.setEnabled(false);
+        }
+        else if(numFoto.equals("Foto12")){
+            btnOpenCamara11.setEnabled(false);
+        }
+        else if(numFoto.equals("Foto13")){
+            btnOpenCamara12.setEnabled(false);
+        }
+        else if(numFoto.equals("Foto14")){
+            btnOpenCamara13.setEnabled(false);
+        }
+        else if(numFoto.equals("Foto15")){
+            btnOpenCamara14.setEnabled(false);
+        }
+        else if(numFoto.equals("Foto16")){
+            btnOpenCamara15.setEnabled(false);
+        }
+        else if(numFoto.equals("Foto17")){
+            btnOpenCamara16.setEnabled(false);
+        }
+        else if(numFoto.equals("Foto18")){
+            btnOpenCamara17.setEnabled(false);
+        }
+        else if(numFoto.equals("Foto19")){
+            btnOpenCamara18.setEnabled(false);
+        }
+        else if(numFoto.equals("Foto20")){
+            btnOpenCamara19.setEnabled(false);
         }
     }
 
@@ -790,6 +881,9 @@ public class Form_Serv_Pem extends Activity {
         if(cbFugas.isChecked()){
             Fugas = true;
         }
+        if(cbDensidad.isChecked()){
+            DensidadElectrolito = true;
+        }
         if(cbOperacionAlter.isChecked()){
             OperacionAlternador = true;
         }
@@ -808,10 +902,14 @@ public class Form_Serv_Pem extends Activity {
         if(cbPruebaArranqueCS.isChecked()){
             PruebaArranqueCSCarga = true;
         }
+        if(cbPruebaArranqueVacio.isChecked()){
+            PruebaArranqueVacioCarga = true;
+        }
         if(cbSimularFallas.isChecked()){
             SimularFallasVelocidad = true;
         }
     }
+
     private Boolean ContainsAny(String haystack, Iterable<String> needles)
     {
         Boolean condition = false;
@@ -956,9 +1054,294 @@ public class Form_Serv_Pem extends Activity {
         }
     }
 
+    public void borrar(View view) {
+        db.execSQL("DELETE FROM PEM");
+        Toast.makeText(this, "Los datos se han borrado", Toast.LENGTH_SHORT).show();
+    }
+
+    public void grabarau(View view) {
+        dbHelper = new MyOpenHelper(this);
+        db = dbHelper.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM PEMSQL", null);
+        ContentValues cv = insertsql();
+        if (c.getCount() ==0){
+            db.insert("PEMSQL", null, cv);
+            Toast.makeText(this, "Los datos han sigo grabados", Toast.LENGTH_SHORT).show();
+        } else {
+            c.moveToFirst();
+            int id = c.getInt(c.getColumnIndex("_id"));
+            db.update("PEMSQL",  cv, "_id="+id, null);
+            Toast.makeText(this, "Los datos se han actualizado", Toast.LENGTH_SHORT).show();
+        }
+        c.close();
+        db.close();
+    }
+
+    public void recuperarau(View view) {
+        dbHelper = new MyOpenHelper(this);
+        db = dbHelper.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM PEMSQL", null);
+        if (c.getCount() != 0 ) {
+            c.moveToFirst();
+            do{
+                etStartDate.setText(c.getString(c.getColumnIndex("Fechainicio")));
+                etHora.setText(c.getString(c.getColumnIndex("Horainicio")));
+                etFinishDate.setText(c.getString(c.getColumnIndex("Fechafinal")));
+                etHora2.setText(c.getString(c.getColumnIndex("Horafinal")));
+                etSitio.setText(c.getString(c.getColumnIndex("Sitio")));
+                etSector.setText(c.getString(c.getColumnIndex("Sector")));
+                etProyecto.setText(c.getString(c.getColumnIndex("Proyecto")));
+                etNumOt.setText(c.getString(c.getColumnIndex("OT")));
+                etAntecedentes.setText(c.getString(c.getColumnIndex("Antecedentes")));
+                etNivelCombTanqDia.setText(c.getString(c.getColumnIndex("Tanquedia")));
+                etNivelCombTanqMain.setText(c.getString(c.getColumnIndex("Tanqueprin")));
+                etNivelComb.setText(c.getString(c.getColumnIndex("Nivelcombus")));
+                etNivelAceite.setText(c.getString(c.getColumnIndex("Aceite")));
+                etPresionAceite.setText(c.getString(c.getColumnIndex("Presionace")));
+                etNivelAgua.setText(c.getString(c.getColumnIndex("Nivelagua")));
+                etElectrolito.setText(c.getString(c.getColumnIndex("Electrolito")));
+                etTempOperacion.setText(c.getString(c.getColumnIndex("Temperatura")));
+                etPorcentCargaAntesArr.setText(c.getString(c.getColumnIndex("Carga")));
+                etPorcentCargaBateria.setText(c.getString(c.getColumnIndex("Bateria")));
+                etVoltBatArr.setText(c.getString(c.getColumnIndex("Voltaje")));
+                etVoltBatStandBy.setText(c.getString(c.getColumnIndex("Standby")));
+                etVoltAltArr.setText(c.getString(c.getColumnIndex("Alternadorarra")));
+                etVoltAltStandBy.setText(c.getString(c.getColumnIndex("Alternadorby")));
+                etVoltGeneracion.setText(c.getString(c.getColumnIndex("Generacion")));
+                etTimeEnf.setText(c.getString(c.getColumnIndex("Enfriamento")));
+                etTimeTrans.setText(c.getString(c.getColumnIndex("Transferencia")));
+                etTimeRTrans.setText(c.getString(c.getColumnIndex("Tiempo")));
+                etLectura.setText(c.getString(c.getColumnIndex("Horometro")));
+                etMedicionCorrienteGen.setText(c.getString(c.getColumnIndex("Corriente")));
+                etTimeArr.setText(c.getString(c.getColumnIndex("Tiempocon")));
+                etObserv.setText(c.getString(c.getColumnIndex("Observacionescon")));
+                etTimeArrCS.setText(c.getString(c.getColumnIndex("Tiemposin")));
+                etObserv1.setText(c.getString(c.getColumnIndex("Observacionessin")));
+                etTimeArrVacio.setText(c.getString(c.getColumnIndex("Tiempovacio")));
+                etConclusiones.setText(c.getString(c.getColumnIndex("Conclusionesservi")));
+                etRecomendaciones.setText(c.getString(c.getColumnIndex("Recomendacionesservi")));
+                etCommentJFMtto.setText(c.getString(c.getColumnIndex("Comentariosjefe")));
+                etCorreo.setText(c.getString(c.getColumnIndex("Correo")));
+                etNumEqNav.setText(c.getString(c.getColumnIndex("Numnav")));
+
+                String Imau = c.getString(c.getColumnIndex("Imagenes"));
+                String Apriete = c.getString(c.getColumnIndex("Aprieta"));
+                String Revisar = c.getString(c.getColumnIndex("Revisar"));
+                String Verificar = c.getString(c.getColumnIndex("Verificar"));
+                String Limpieza = c.getString(c.getColumnIndex("Limpieza"));
+                String Medicion = c.getString(c.getColumnIndex("Medicion"));
+                String [] ima = null;
+
+                String[] Checks1 = Apriete.split(", ");
+                String[] Checks2 = Revisar.split(", ");
+                String[] Checks3 = Verificar.split(", ");
+                String[] Checks4 = Limpieza.split(", ");
+                String[] Checks5 = Medicion.split(", ");
+
+                cbAprieteTerminalCtrl.setChecked(Boolean.parseBoolean(Checks1[0]));
+                cbDesulfatar.setChecked(Boolean.parseBoolean(Checks1[1]));
+                cbCalibracionSensor.setChecked(Boolean.parseBoolean(Checks2[0]));
+                cbEstadoBaterias.setChecked(Boolean.parseBoolean(Checks2[1]));
+                cbFrecuenciaGen.setChecked(Boolean.parseBoolean(Checks2[2]));
+                cbOperacionCargador.setChecked(Boolean.parseBoolean(Checks2[3]));
+                cbSistemaLlenado.setChecked(Boolean.parseBoolean(Checks2[4]));
+                cbTapon.setChecked(Boolean.parseBoolean(Checks2[5]));
+                cbBandas.setChecked(Boolean.parseBoolean(Checks2[6]));
+                cbMangueras.setChecked(Boolean.parseBoolean(Checks2[7]));
+                cbOperacionTermo.setChecked(Boolean.parseBoolean(Checks2[8]));
+                cbSimulacionFaltas.setChecked(Boolean.parseBoolean(Checks2[9]));
+                cbInspeccionNivel.setChecked(Boolean.parseBoolean(Checks3[0]));
+                cbDemandaCarga.setChecked(Boolean.parseBoolean(Checks3[1]));
+                cbFugasAceiteAnti.setChecked(Boolean.parseBoolean(Checks3[2]));
+                cbOperacionPrecalentadores.setChecked(Boolean.parseBoolean(Checks3[3]));
+                cbRuidos.setChecked(Boolean.parseBoolean(Checks3[4]));
+                cbFugas.setChecked(Boolean.parseBoolean(Checks3[5]));
+                cbDensidad.setChecked(Boolean.parseBoolean(Checks3[6]));
+                cbOperacionAlter.setChecked(Boolean.parseBoolean(Checks3[7]));
+                cbVerTerminales.setChecked(Boolean.parseBoolean(Checks3[8]));
+                cbLimpiezaEquipo.setChecked(Boolean.parseBoolean(Checks4[0]));
+                cbLimpiezaRadiador.setChecked(Boolean.parseBoolean(Checks4[1]));
+                cbPruebaArranqueCarga.setChecked(Boolean.parseBoolean(Checks5[0]));
+                cbPruebaArranqueCS.setChecked(Boolean.parseBoolean(Checks5[1]));
+                cbPruebaArranqueVacio.setChecked(Boolean.parseBoolean(Checks5[2]));
+                cbSimularFallas.setChecked(Boolean.parseBoolean(Checks5[3]));
+                firmaJFMtto = c.getString(c.getColumnIndex("FirmaTec"));
+                firmaJFSitio = c.getString(c.getColumnIndex("FirmaRes"));
+
+                // llenar arreglo auxiliar de fotos y bloquear los botones para no reescribir la foto
+                if(!Imau.equals("")){
+                    ima = Imau.split(", ");
+                    for (int j = 0; j < ima.length; j++){
+                    if(ima[j].contains("Foto01")){
+                        btnOpenCamara.setEnabled(false);
+                    }
+                    else if(ima[j].contains("Foto02")){
+                        btnOpenCamara1.setEnabled(false);
+                    }
+                    else if(ima[j].contains("Foto03")){
+                        btnOpenCamara2.setEnabled(false);
+                    }
+                    else if(ima[j].contains("Foto04")){
+                        btnOpenCamara3.setEnabled(false);
+                    }
+                    else if(ima[j].contains("Foto05")){
+                        btnOpenCamara4.setEnabled(false);
+                    }
+                    else if(ima[j].contains("Foto06")){
+                        btnOpenCamara5.setEnabled(false);
+                    }
+                    else if(ima[j].contains("Foto07")){
+                        btnOpenCamara6.setEnabled(false);
+                    }
+                    else if(ima[j].contains("Foto08")){
+                        btnOpenCamara7.setEnabled(false);
+                    }
+                    else if(ima[j].contains("Foto09")){
+                        btnOpenCamara8.setEnabled(false);
+                    }
+                    else if(ima[j].contains("Foto10")){
+                        btnOpenCamara9.setEnabled(false);
+                    }
+                    else if(ima[j].contains("Foto11")){
+                        btnOpenCamara10.setEnabled(false);
+                    }
+                    else if(ima[j].contains("Foto12")){
+                        btnOpenCamara11.setEnabled(false);
+                    }
+                    else if(ima[j].contains("Foto13")){
+                        btnOpenCamara12.setEnabled(false);
+                    }
+                    else if(ima[j].contains("Foto14")){
+                        btnOpenCamara13.setEnabled(false);
+                    }
+                    else if(ima[j].contains("Foto15")){
+                        btnOpenCamara14.setEnabled(false);
+                    }
+                    else if(ima[j].contains("Foto16")){
+                        btnOpenCamara15.setEnabled(false);
+                    }
+                    else if(ima[j].contains("Foto17")){
+                        btnOpenCamara16.setEnabled(false);
+                    }
+                    else if(ima[j].contains("Foto18")){
+                        btnOpenCamara17.setEnabled(false);
+                    }
+                    else if(ima[j].contains("Foto19")){
+                        btnOpenCamara18.setEnabled(false);
+                    }
+                    else if(ima[j].contains("Foto20")){
+                        btnOpenCamara19.setEnabled(false);
+                    }
+                    fotosg.add(ima[j]);
+                }
+                }
+
+            }while (c.moveToNext());
+            for (int i=0; i< fotosg.size(); i++){
+                String str = fotosg.get(i).substring(7);
+                String idImg = "";
+
+                if(i+1 < 10)
+                    idImg = "Foto0"+(i+1) + ":";
+                else
+                    idImg = "Foto"+(i+1) + ":";
+
+                fotos.add(idImg+convertirimagen(str));
+            }
+
+        }else {
+            Toast.makeText(this, "No hay datos para recuperar", Toast.LENGTH_SHORT).show();
+        }
+
+        c.close();
+        db.close();
+    }
+
+    private ContentValues insertsql(){
+        String cadena = "";
+        ContentValues cv = new ContentValues();
+
+        cv. put("Fechainicio", etStartDate.getText().toString());
+        cv. put("Horainicio", etHora.getText().toString());
+        cv. put("Fechafinal", etFinishDate.getText().toString());
+        cv. put("Horafinal", etHora2.getText().toString());
+        cv. put("Sitio", etSitio.getText().toString());
+        cv. put("Sector", etSector.getText().toString());
+        cv. put("Proyecto", etProyecto.getText().toString());
+        cv. put("OT", etNumOt.getText().toString());
+        cv. put("Antecedentes", etAntecedentes.getText().toString());
+        cv.put("Aprieta", cbAprieteTerminalCtrl.isChecked() + ", " + cbDesulfatar.isChecked());
+        cv.put("Tanqueprin", etNivelCombTanqMain.getText().toString());
+        cv.put("Nivelcombus", etNivelComb.getText().toString());
+        cv.put("Tanquedia", etNivelCombTanqDia.getText().toString());
+        cv.put("Aceite", etNivelAceite.getText().toString());
+        cv.put("Presionace", etPresionAceite.getText().toString());
+        cv.put("Nivelagua", etNivelAgua.getText().toString());
+        cv.put("Electrolito", etElectrolito.getText().toString());
+        cv.put("Temperatura", etTempOperacion.getText().toString());
+        cv.put("Carga", etPorcentCargaAntesArr.getText().toString());
+        cv.put("Bateria", etPorcentCargaBateria.getText().toString());
+        cv.put("Voltaje", etVoltBatArr.getText().toString());
+        cv.put("Standby", etVoltBatStandBy.getText().toString());
+        cv.put("Alternadorarra", etVoltAltArr.getText().toString());
+        cv.put("Alternadorby", etVoltAltStandBy.getText().toString());
+        cv.put("Generacion", etVoltGeneracion.getText().toString());
+        cv.put("Enfriamento", etTimeEnf.getText().toString());
+        cv.put("Transferencia", etTimeTrans.getText().toString());
+        cv.put("Tiempo", etTimeRTrans.getText().toString());
+        cv.put("Revisar", cbCalibracionSensor.isChecked() + ", " + cbEstadoBaterias.isChecked() + ", " + cbFrecuenciaGen.isChecked() +
+                ", " + cbOperacionCargador.isChecked() + ", " + cbSistemaLlenado.isChecked() + ", " + cbTapon.isChecked() + ", " +
+                cbBandas.isChecked() + ", " + cbMangueras.isChecked() + ", " + cbOperacionTermo.isChecked() + ", " + cbSimulacionFaltas.isChecked());
+        cv.put("Verificar", cbInspeccionNivel.isChecked() + ", " + cbDemandaCarga.isChecked() + ", " + cbFugasAceiteAnti.isChecked() + ", " +
+                cbOperacionPrecalentadores.isChecked() + ", " + cbRuidos.isChecked() + ", " + cbFugas.isChecked() + ", " + cbDensidad.isChecked() +
+                ", " + cbOperacionAlter.isChecked() + ", " + cbVerTerminales.isChecked());
+        cv.put("Limpieza", cbLimpiezaEquipo.isChecked() + ", " + cbLimpiezaRadiador.isChecked());
+        cv.put("Medicion", cbPruebaArranqueCarga.isChecked() + ", " + cbPruebaArranqueCS.isChecked() + ", " + cbPruebaArranqueVacio.isChecked() +
+                ", " + cbSimularFallas.isChecked());
+        cv.put("Horometro", etLectura.getText().toString());
+        cv.put("Corriente", etMedicionCorrienteGen.getText().toString());
+        cv.put("Tiempocon", etTimeArr.getText().toString());
+        cv.put("Observacionescon", etObserv.getText().toString());
+        cv.put("Tiemposin", etTimeArrCS.getText().toString());
+        cv.put("Observacionessin", etObserv1.getText().toString());
+        cv.put("Tiempovacio", etTimeArrVacio.getText().toString());
+        cv.put("Conclusionesservi", etConclusiones.getText().toString());
+        cv.put("Recomendacionesservi", etRecomendaciones.getText().toString());
+        cv.put("Comentariosjefe", etCommentJFMtto.getText().toString());
+        cv.put("Correo", etCorreo.getText().toString());
+        cv.put("Numnav", etNumEqNav.getText().toString());
+
+        if (fotosg.size()!=0){
+            cadena = fotosg.toString();
+            cv.put("Imagenes", cadena.substring(1, cadena.length() -1));
+        }else{
+            cv.put("Imagenes", "");
+        }
+
+        cv.put("FirmaTec", firmaJFSitio);
+        cv.put("Firmante", "");
+        cv.put("FirmaRes", firmaJFMtto);
+        cv.put("Firmanres", "");
+
+        return cv;
+
+    }
+
+    private String convertirimagen(String path){
+        String bit;
+        bitmap = BitmapFactory.decodeFile(path);
+        ByteArrayOutputStream array = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,  10, array);
+        byteArray = array.toByteArray();
+        bit = Base64.encodeToString(byteArray, Base64.DEFAULT);
+        return bit;
+    }
+
     public class taskEnviarFormToServiceWeb extends AsyncTask<Void, Void, Boolean> {
         private String formulario;
         private String respuesta = "{'d':''}";
+        MyOpenHelper dbHelper = new MyOpenHelper(mContext);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
         String url = URLGPS + "EnvioFormServPEM.aspx/EnviaCorreo";
         public taskEnviarFormToServiceWeb(String form) {
             this.formulario = form;
@@ -977,8 +1360,8 @@ public class Form_Serv_Pem extends Activity {
                 con.setRequestProperty("Content-Type", "application/json");
                 con.setRequestProperty("Accept", "application/json");
 
-                con.setConnectTimeout(150000);
-                con.setReadTimeout(150000);
+                con.setConnectTimeout(30000);
+                con.setReadTimeout(30000);
 
                 formulario = "{\"Form\":" + formulario + "}";
                 Log.e("Nota", formulario);
@@ -1034,6 +1417,7 @@ public class Form_Serv_Pem extends Activity {
                         public void onClick(DialogInterface dialog, int which) {
                             Intent detail = new Intent(mContext, Formatos.class);
                             startActivity(detail);
+                            db.execSQL("DELETE FROM PEMSQL");
                         }
                     });
                     //Toast.makeText(getApplicationContext(), "Reporte enviado exitósamente..", Toast.LENGTH_SHORT).show();
