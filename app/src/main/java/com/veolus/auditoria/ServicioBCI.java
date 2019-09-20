@@ -5,15 +5,22 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.icu.text.SimpleDateFormat;
 import android.os.AsyncTask;
 import android.os.Build;
 
 
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -32,6 +39,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -44,7 +52,6 @@ import java.util.Calendar;
 import java.util.List;
 
 public class ServicioBCI extends Activity {
-
 
     private EditText etFecha;
     private EditText etFechaInicio;
@@ -72,6 +79,7 @@ public class ServicioBCI extends Activity {
     private EditText porcentBaterias;
     private EditText lecHorometro;
     private EditText tiempoArranque;
+
     private CheckBox aprieta, apretar;
     private CheckBox fugas, cargador, precalentadores, llenado, tension, cargabaterias, estopero, tapon, presion, temperatura, badas, mangueras1, eventos;
     private CheckBox inspeccion, inspeccion1, inspeccion2, ruidos, acoplamiento, fugas3, densidad, operacion, bomba;
@@ -96,6 +104,10 @@ public class ServicioBCI extends Activity {
     private Button btncamara17;
     private Button btncamara18;
     private Button btncamara19;
+
+    String imagenString;
+    Bitmap bitmap;
+    byte[] byteArray;
 
     private Button btnEnviar;
     private Button btnFirmaTec;
@@ -148,7 +160,10 @@ public class ServicioBCI extends Activity {
     private String TiempoArranque = "";
     TextView texto;
     TextView tdate;
+
     private List<String> fotos = new ArrayList<String>();
+    private List<String> fotosg = new ArrayList<String>();
+
     //Calendario para obtener fecha & hora
     public final Calendar c = Calendar.getInstance();
     //Variables para obtener la hora hora
@@ -236,6 +251,7 @@ public class ServicioBCI extends Activity {
                 }
             }
         });
+
         etSitio = findViewById(R.id.sitio);
         etSector = findViewById(R.id.sector);
         etProyecto = findViewById(R.id.proyecto);
@@ -258,6 +274,39 @@ public class ServicioBCI extends Activity {
         porcentBaterias = findViewById(R.id.porcentBaterias);
         lecHorometro = findViewById(R.id.horometro);
         tiempoArranque = findViewById(R.id.tiempoArranque);
+
+
+        //ChecsList Aprieta
+        aprieta = findViewById(R.id.aprieta);
+        apretar= findViewById(R.id.apretar);
+        //ChecList Revisar
+        fugas = findViewById(R.id.fugas);
+        cargador = findViewById(R.id.cargador);
+        precalentadores = findViewById(R.id.precalentadores);
+        llenado = findViewById(R.id.llenado);
+        tension = findViewById(R.id.tension);
+        cargabaterias = findViewById(R.id.cargabaterias);
+        estopero = findViewById(R.id.estopero);
+        tapon = findViewById(R.id.tapon);
+        presion = findViewById(R.id.presion);
+        temperatura = findViewById(R.id.temperatura);
+        badas = findViewById(R.id.badas);
+        mangueras1 = findViewById(R.id.mangueras1);
+        eventos = findViewById(R.id.eventos);
+        //ChecksList Verificación
+        inspeccion = findViewById(R.id.inspeccion);
+        inspeccion1 = findViewById(R.id.inspeccion1);
+        inspeccion2 = findViewById(R.id.inspeccion2);
+        ruidos = findViewById(R.id.ruidos);
+        acoplamiento = findViewById(R.id.acoplamiento);
+        fugas3 = findViewById(R.id.fugas3);
+        densidad = findViewById(R.id.densidad);
+        operacion = findViewById(R.id.operacion);
+        bomba = findViewById(R.id.bomba);
+       /*delequipo = findViewById(R.id.delequipo);
+        delradiador = findViewById(R.id.delradiador);*/
+        //CheckList Prueba
+        arranque = findViewById(R.id.arranque);
 
         // botón que realiza validaciones y envia el formulario
         btnEnviar = findViewById(R.id.btnEnviar);
@@ -370,7 +419,7 @@ public class ServicioBCI extends Activity {
             public void onClick(View v) {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 1);
-                in.putExtra("numFoto", "Imagen7");
+                in.putExtra("numFoto", "Imagen07");
                 btncamara7.setEnabled(false);
                 startActivityForResult(in, 1);
             }
@@ -509,44 +558,74 @@ public class ServicioBCI extends Activity {
         });
     }
 
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if (requestCode == 1 && resultCode == RESULT_OK) {
             if ("vacio".equals(data.getStringExtra("FirmaRESP"))) {
                 firmaTec = data.getStringExtra("FirmaTEC");
                 firmanteTec = data.getStringExtra("NombreTec");
-                btnFirmaTec.setEnabled(false);
+                if (firmaTec != "" && firmanteTec != "" ){
+                    btnFirmaTec.setEnabled(false);
+                }
+
             } else if ("vacio".equals(data.getStringExtra("FirmaTEC"))) {
                 firmaResp = data.getStringExtra("FirmaRESP");
                 firmanteResp = data.getStringExtra("NombreResp");
-                btnFirmaResp.setEnabled(false);
+                if (firmaResp != "" && firmanteResp != ""){
+                    btnFirmaResp.setEnabled(false);
+                }
             }
+
             if ("vacio".equals(data.getStringExtra("FotoDos")) && "vacio".equals(data.getStringExtra("FotoTres"))
                     && "vacio".equals(data.getStringExtra("FotoCuatro")) && "vacio".equals(data.getStringExtra("FotoCnco"))) {
-                fotos.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoUno"));
+
+                imagenString = convertirimagen(data.getStringExtra("FotoUno"));
+                fotosg.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoUno"));
+                fotos.add(data.getStringExtra("numFoto") + ":" + imagenString);
 
             } else if ("vacio".equals(data.getStringExtra("FotoUno")) && "vacio".equals(data.getStringExtra("FotoTres"))
                     && "vacio".equals(data.getStringExtra("FotoCuatro")) && "vacio".equals(data.getStringExtra("FotoCnco"))) {
-                fotos.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoDos"));
+
+                imagenString = convertirimagen(data.getStringExtra("FotoDos"));
+                fotosg.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoDos"));
+                fotos.add( data.getStringExtra("numFoto") + ":" + imagenString);
 
             } else if ("vacio".equals(data.getStringExtra("FotoUno")) && "vacio".equals(data.getStringExtra("FotoDos"))
                     && "vacio".equals(data.getStringExtra("FotoCuatro")) && "vacio".equals(data.getStringExtra("FotoCnco"))) {
-                fotos.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoTres"));
+
+                imagenString = convertirimagen(data.getStringExtra("FotoTres"));
+                fotosg.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoTres"));
+                fotos.add( data.getStringExtra("numFoto") + ":" + imagenString);
 
             } else if ("vacio".equals(data.getStringExtra("FotoUno")) && "vacio".equals(data.getStringExtra("FotoDos"))
                     && "vacio".equals(data.getStringExtra("FotoTres")) && "vacio".equals(data.getStringExtra("FotoCnco"))) {
-                fotos.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoCuatro"));
+
+                imagenString = convertirimagen(data.getStringExtra("FotoCuatro"));
+                fotosg.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoCuatro"));
+                fotos.add( data.getStringExtra("numFoto") + ":" + imagenString);
 
             } else if ("vacio".equals(data.getStringExtra("FotoUno")) && "vacio".equals(data.getStringExtra("FotoDos"))
                     && "vacio".equals(data.getStringExtra("FotoTres")) && "vacio".equals(data.getStringExtra("FotoCuatro"))) {
-                fotos.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoCnco"));
+
+                imagenString = convertirimagen(data.getStringExtra("FotoCnco"));
+                fotosg.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoCnco"));
+                fotos.add( data.getStringExtra("numFoto") + ":" + imagenString);
 
             }
         }
 
+    }
+
+    private String convertirimagen(String path){
+        String bit;
+        bitmap = BitmapFactory.decodeFile(path);
+        ByteArrayOutputStream array = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,  10, array);
+        byteArray = array.toByteArray();
+        bit = Base64.encodeToString(byteArray, Base64.DEFAULT);
+        return bit;
     }
 
     private void showDatePickerDialog(int id) {
@@ -630,9 +709,9 @@ public class ServicioBCI extends Activity {
         else if(!ContainsAny("Imagen05", fotos) && !ContainsAny("Imagen06", fotos)){
             Toast.makeText(this, "Se requieren fotos para el check de 'FILTROS DE ACEITE'", Toast.LENGTH_SHORT).show();
         }
-        /*else if(!ContainsAny("Imagen07", fotos) && !ContainsAny("Imagen08", fotos)){
+        else if(!ContainsAny("Imagen07", fotos) && !ContainsAny("Imagen08", fotos)){
             Toast.makeText(this, "Se requieren fotos para el check de 'BATERIAS'", Toast.LENGTH_SHORT).show();
-        }*/
+        }
         else if(!ContainsAny("Imagen09", fotos) && !ContainsAny("Imagen10", fotos)){
             Toast.makeText(this, "Se requieren fotos para el check de 'TERMINALES DE BATERIAS'", Toast.LENGTH_SHORT).show();
         }
@@ -642,9 +721,9 @@ public class ServicioBCI extends Activity {
         else if(!ContainsAny("Imagen13", fotos) && !ContainsAny("Imagen14", fotos)){
             Toast.makeText(this, "Se requieren fotos para el check de 'FILTROS DE REFRIGERANTE'", Toast.LENGTH_SHORT).show();
         }
-        /*else if(!ContainsAny("Imagen15", fotos) && !ContainsAny("Imagen16", fotos)){
+        else if(!ContainsAny("Imagen15", fotos) && !ContainsAny("Imagen16", fotos)){
             Toast.makeText(this, "Se requieren fotos para el check de 'MANGUERAS DE PRECALENTADOR'", Toast.LENGTH_SHORT).show();
-        }*/
+        }
         else if(!ContainsAny("Imagen17", fotos)){
             Toast.makeText(this, "Se requiere foto para el check de 'LIMPIEZA DEL EQUIPO'", Toast.LENGTH_SHORT).show();
         }
@@ -750,33 +829,6 @@ public class ServicioBCI extends Activity {
         LecturaHorometro = lecHorometro.getText().toString();
         TiempoArranque = tiempoArranque.getText().toString();
         PorcentajeBaterias = porcentBaterias.getText().toString();
-        aprieta = findViewById(R.id.aprieta);
-        apretar= findViewById(R.id.apretar);
-        fugas = findViewById(R.id.fugas);
-        cargador = findViewById(R.id.cargador);
-        precalentadores = findViewById(R.id.precalentadores);
-        llenado = findViewById(R.id.llenado);
-        tension = findViewById(R.id.tension);
-        cargabaterias = findViewById(R.id.cargabaterias);
-        estopero = findViewById(R.id.estopero);
-        tapon = findViewById(R.id.tapon);
-        presion = findViewById(R.id.presion);
-        temperatura = findViewById(R.id.temperatura);
-        badas = findViewById(R.id.badas);
-        mangueras1 = findViewById(R.id.mangueras1);
-        eventos = findViewById(R.id.eventos);
-        inspeccion = findViewById(R.id.inspeccion);
-        inspeccion1 = findViewById(R.id.inspeccion1);
-        inspeccion2 = findViewById(R.id.inspeccion2);
-        ruidos = findViewById(R.id.ruidos);
-        acoplamiento = findViewById(R.id.acoplamiento);
-        fugas3 = findViewById(R.id.fugas3);
-        densidad = findViewById(R.id.densidad);
-        operacion = findViewById(R.id.operacion);
-        bomba = findViewById(R.id.bomba);
-       /*delequipo = findViewById(R.id.delequipo);
-        delradiador = findViewById(R.id.delradiador);*/
-        arranque = findViewById(R.id.arranque);
 
         if (aprieta.isChecked()){
             AprieteTerminalesControl = true;
@@ -861,9 +913,483 @@ public class ServicioBCI extends Activity {
         }
     }
 
+    private ContentValues insertsql(){
+
+        ContentValues cv = new ContentValues();
+        cv. put("Fechainicio", etFechaInicio.getText().toString());
+        cv. put("Horainicio", etHora.getText().toString());
+        cv. put("Fechafinal", etFechafin.getText().toString());
+        cv. put("Horafinal ", etHora2.getText().toString());
+        cv. put("Sitio", etSitio.getText().toString());
+        cv. put("Sector", etSector.getText().toString());
+        cv. put("Proyecto", etProyecto.getText().toString());
+        cv. put("OT", etNot.getText().toString());
+        cv. put("Antecedentes", etAntecedentes.getText().toString());
+
+        cv.put("Aprieta" , aprieta.isChecked() + "," + apretar.isChecked() + "," + fugas.isChecked() + "," + cargador.isChecked() + "," +
+                precalentadores.isChecked() + "," + llenado.isChecked() + "," + tension.isChecked() + "," +  cargabaterias.isChecked() + "," +
+                estopero.isChecked() + "," + tapon.isChecked() + "," + presion.isChecked() + "," + temperatura.isChecked() + "," +
+                badas.isChecked() + "," + mangueras1.isChecked() + "," + eventos.isChecked() + "," + inspeccion.isChecked() + "," +
+                inspeccion1.isChecked() + "," + inspeccion2.isChecked() + "," + ruidos.isChecked() + "," + acoplamiento.isChecked() + "," +
+                fugas3.isChecked() + "," + densidad.isChecked() + "," + operacion.isChecked() + "," + bomba.isChecked() + "," +
+                arranque.isChecked());
+
+        cv. put("Tanquedia", nivelCombTanqDia.getText().toString());
+        cv. put("Tanqueprin", nivelCombMain.getText().toString());
+        cv. put("Refri", nivelRefrigerante.getText().toString());
+        cv. put("Aceite", nivelAceite.getText().toString());
+        cv. put("Electrolito", nivelElectrolito.getText().toString());
+        cv. put("Arrancar", volt3times.getText().toString());
+        cv. put("Carga", porcentBaterias.getText().toString());
+        cv. put("Horometro", lecHorometro.getText().toString());
+        cv. put("Arranquepru", tiempoArranque.getText().toString());
+        cv. put("Observacionespru", etObservaciones.getText().toString());
+        cv. put("Conclusiones ", etConclusiones.getText().toString());
+        cv. put("Recomendaciones", etRecomendaciones.getText().toString());
+        cv. put("Comentarios", etComentarios.getText().toString());
+        cv. put("Correo", etCorreo.getText().toString());
+        cv. put("Numnav", etNumero.getText().toString());
+
+            //fotosg almacena el path
+        if (fotosg.size()!=0){
+            String cadena = fotosg.toString();
+            cv.put("Imagenes", cadena.substring(1, cadena.length() -1));
+        }else{
+            cv.put("Imagenes", "");
+        }
+
+        cv.put("FirmaTec", firmaTec);
+        cv.put("Firmante", firmanteTec);
+        cv.put("FirmaRes", firmaResp);
+        cv.put("Firmanres", firmanteResp);
+
+        return cv;
+
+    }
+
+    public void Ischeckaprieta(){
+
+        if(aprieta.isChecked()) {
+            aprieta.setVisibility(View.VISIBLE);
+            texto = (TextView) findViewById(R.id.aprieta);
+            texto.setTextColor(Color.BLUE);
+        }
+
+        if(apretar.isChecked()) {
+            apretar.setVisibility(View.VISIBLE);
+            texto = (TextView) findViewById(R.id.apretar);
+            texto.setTextColor(Color.BLUE);
+        }
+
+        if(fugas.isChecked()) {
+            fugas.setVisibility(View.VISIBLE);
+            texto = (TextView) findViewById(R.id.fugas);
+            texto.setTextColor(Color.BLUE);
+        }
+
+        if(cargador.isChecked()) {
+            cargador.setVisibility(View.VISIBLE);
+            texto = (TextView) findViewById(R.id.cargador);
+            texto.setTextColor(Color.BLUE);
+        }
+
+        if(precalentadores.isChecked()) {
+            precalentadores.setVisibility(View.VISIBLE);
+            texto = (TextView) findViewById(R.id.precalentadores);
+            texto.setTextColor(Color.BLUE);
+        }
+
+        if(llenado.isChecked()) {
+            llenado.setVisibility(View.VISIBLE);
+            texto = (TextView) findViewById(R.id.llenado);
+            texto.setTextColor(Color.BLUE);
+        }
+
+        if(tension.isChecked()) {
+            tension.setVisibility(View.VISIBLE);
+            texto = (TextView) findViewById(R.id.tension);
+            texto.setTextColor(Color.BLUE);
+        }
+
+        if(cargabaterias.isChecked()) {
+            cargabaterias.setVisibility(View.VISIBLE);
+            texto = (TextView) findViewById(R.id.cargabaterias);
+            texto.setTextColor(Color.BLUE);
+        }
+
+        if(estopero.isChecked()) {
+            estopero.setVisibility(View.VISIBLE);
+            texto = (TextView) findViewById(R.id.estopero);
+            texto.setTextColor(Color.BLUE);
+        }
+
+        if(tapon.isChecked()) {
+            tapon.setVisibility(View.VISIBLE);
+            texto = (TextView) findViewById(R.id.tapon);
+            texto.setTextColor(Color.BLUE);
+        }
+
+        if(presion.isChecked()) {
+            presion.setVisibility(View.VISIBLE);
+            texto = (TextView) findViewById(R.id.presion);
+            texto.setTextColor(Color.BLUE);
+        }
+
+        if(temperatura.isChecked()) {
+            temperatura.setVisibility(View.VISIBLE);
+            texto = (TextView) findViewById(R.id.temperatura);
+            texto.setTextColor(Color.BLUE);
+        }
+
+        if(badas.isChecked()) {
+            badas.setVisibility(View.VISIBLE);
+            texto = (TextView) findViewById(R.id.badas);
+            texto.setTextColor(Color.BLUE);
+        }
+
+        if(mangueras1.isChecked()) {
+            mangueras1.setVisibility(View.VISIBLE);
+            texto = (TextView) findViewById(R.id.mangueras1);
+            texto.setTextColor(Color.BLUE);
+        }
+
+        if(eventos.isChecked()) {
+            eventos.setVisibility(View.VISIBLE);
+            texto = (TextView) findViewById(R.id.eventos);
+            texto.setTextColor(Color.BLUE);
+        }
+
+        if(inspeccion.isChecked()) {
+            inspeccion.setVisibility(View.VISIBLE);
+            texto = (TextView) findViewById(R.id.inspeccion);
+            texto.setTextColor(Color.BLUE);
+        }
+
+        if(inspeccion1.isChecked()) {
+            inspeccion1.setVisibility(View.VISIBLE);
+            texto = (TextView) findViewById(R.id.inspeccion1);
+            texto.setTextColor(Color.BLUE);
+        }
+
+        if(inspeccion2.isChecked()) {
+            inspeccion2.setVisibility(View.VISIBLE);
+            texto = (TextView) findViewById(R.id.inspeccion2);
+            texto.setTextColor(Color.BLUE);
+        }
+
+        if(ruidos.isChecked()) {
+            ruidos.setVisibility(View.VISIBLE);
+            texto = (TextView) findViewById(R.id.ruidos);
+            texto.setTextColor(Color.BLUE);
+        }
+
+        if(acoplamiento.isChecked()) {
+            acoplamiento.setVisibility(View.VISIBLE);
+            texto = (TextView) findViewById(R.id.acoplamiento);
+            texto.setTextColor(Color.BLUE);
+        }
+
+        if(fugas3.isChecked()) {
+            fugas3.setVisibility(View.VISIBLE);
+            texto = (TextView) findViewById(R.id.fugas3);
+            texto.setTextColor(Color.BLUE);
+        }
+
+        if(densidad.isChecked()) {
+            densidad.setVisibility(View.VISIBLE);
+            texto = (TextView) findViewById(R.id.densidad);
+            texto.setTextColor(Color.BLUE);
+        }
+
+        if(operacion.isChecked()) {
+            operacion.setVisibility(View.VISIBLE);
+            texto = (TextView) findViewById(R.id.operacion);
+            texto.setTextColor(Color.BLUE);
+        }
+
+        if(bomba.isChecked()) {
+            bomba.setVisibility(View.VISIBLE);
+            texto = (TextView) findViewById(R.id.bomba);
+            texto.setTextColor(Color.BLUE);
+        }
+
+        if(arranque.isChecked()) {
+            arranque.setVisibility(View.VISIBLE);
+            texto = (TextView) findViewById(R.id.arranque);
+            texto.setTextColor(Color.BLUE);
+        }
+            }
+
+    public void borrarbci(View v) {
+
+        MyOpenHelper dbHelper = new MyOpenHelper(this);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.execSQL("DELETE FROM BCISQL");
+        Toast.makeText(this, "Los datos se han borrado", Toast.LENGTH_SHORT).show();
+    }
+
+    public void grabarbci(View v) {
+
+        verirficarChecks();
+
+        MyOpenHelper dbHelper = new MyOpenHelper(this);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM BCISQL", null);
+        ContentValues cv = insertsql();
+        if (c.getCount() ==0){
+            db.insert("BCISQL", null, cv);
+            Toast.makeText(this, "Los datos fueron grabados", Toast.LENGTH_SHORT).show();
+        } else {
+            c.moveToFirst();
+            int id = c.getInt(c.getColumnIndex("_id"));
+            db.update("BCISQL",  cv, "_id="+id, null);
+            Toast.makeText(this, "Los datos se han actualizados", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void recuperarbci(View v) {
+        int i;
+
+        try {
+            MyOpenHelper dbHelper = new MyOpenHelper(this);
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
+            Cursor c = db.rawQuery("SELECT _id, " +
+                    "Fechainicio, Horainicio, Fechafinal, Horafinal, " +
+                    "Sitio, Sector, Proyecto, OT, Antecedentes, " +
+                    "Aprieta, Tanquedia, Tanqueprin, Refri, " +
+                    "Aceite, Electrolito, Arrancar," +
+                    "Carga, Horometro, Arranquepru," +
+                    "Observacionespru, Conclusiones, Recomendaciones," +
+                    "Comentarios, Correo, Numnav," +
+                    "Imagenes , FirmaTec, Firmante, FirmaRes, " +
+                    "Firmanres FROM BCISQL", null);
+            if (c.getCount() != 0 ) {
+                c.moveToFirst();
+                do {
+
+                    String Fechainicio = c.getString(c.getColumnIndex("Fechainicio"));
+                    String Horainicio = c.getString(c.getColumnIndex("Horainicio"));
+                    String Fechafinal = c.getString(c.getColumnIndex("Fechafinal"));
+                    String Horafinal = c.getString(c.getColumnIndex("Horafinal"));
+                    String Sitio = c.getString(c.getColumnIndex("Sitio"));
+                    String Sector = c.getString(c.getColumnIndex("Sector"));
+                    String Proyecto = c.getString(c.getColumnIndex("Proyecto"));
+                    String OT = c.getString(c.getColumnIndex("OT"));
+                    String Antecedentes = c.getString(c.getColumnIndex("Antecedentes"));
+                    String Tanquedia = c.getString(c.getColumnIndex("Tanquedia"));
+                    String Tanqueprin = c.getString(c.getColumnIndex("Tanqueprin"));
+                    String Refri = c.getString(c.getColumnIndex("Refri"));
+                    String Aceite = c.getString(c.getColumnIndex("Aceite"));
+                    String Electrolito = c.getString(c.getColumnIndex("Electrolito"));
+                    String Arrancar = c.getString(c.getColumnIndex("Arrancar"));
+                    String Carga = c.getString(c.getColumnIndex("Carga"));
+                    String Horometro = c.getString(c.getColumnIndex("Horometro"));
+                    String Arranquepru = c.getString(c.getColumnIndex("Arranquepru"));
+                    String Observacionespru = c.getString(c.getColumnIndex("Observacionespru"));
+                    String Conclusiones = c.getString(c.getColumnIndex("Conclusiones"));
+                    String Recomendaciones = c.getString(c.getColumnIndex("Recomendaciones"));
+                    String Comentarios = c.getString(c.getColumnIndex("Comentarios"));
+                    String Correo = c.getString(c.getColumnIndex("Correo"));
+                    String Numnav = c.getString(c.getColumnIndex("Numnav"));
+
+                    String Aprieta = c.getString(c.getColumnIndex("Aprieta"));
+
+                    String Imau = c.getString(c.getColumnIndex("Imagenes"));
+
+                    String [] ima = Imau.split(", ") ;
+
+                    for (int j = 0; j < ima.length; j++){
+                        if(ima[j].contains("Imagen01")){
+                            btncamara1.setEnabled(false);
+                            fotosg.add(ima[j]);
+
+                        }
+                        if(ima[j].contains("Imagen02")){
+                            btncamara2.setEnabled(false);
+                            fotosg.add(ima[j]);
+                        }
+                        if(ima[j].contains("Imagen03")){
+                            btncamara3.setEnabled(false);
+                            fotosg.add(ima[j]);
+                        }
+                        if(ima[j].contains("Imagen04")){
+                            btncamara4.setEnabled(false);
+                            fotosg.add(ima[j]);
+                        }
+                        if(ima[j].contains("Imagen05")){
+                            btncamara5.setEnabled(false);
+                            fotosg.add(ima[j]);
+                        }
+                        if(ima[j].contains("Imagen06")){
+                            btncamara6.setEnabled(false);
+                            fotosg.add(ima[j]);
+                        }
+                        if(ima[j].contains("Imagen07")){
+                            btncamara7.setEnabled(false);
+                            fotosg.add(ima[j]);
+                        }
+                        if(ima[j].contains("Imagen08")){
+                            btncamara8.setEnabled(false);
+                            fotosg.add(ima[j]);
+                        }
+                        if(ima[j].contains("Imagen09")){
+                            btncamara9.setEnabled(false);
+                            fotosg.add(ima[j]);
+                        }
+                        if(ima[j].contains("Imagen10")){
+                            btncamara10.setEnabled(false);
+                            fotosg.add(ima[j]);
+                        }
+                        if(ima[j].contains("Imagen11")){
+                            btncamara11.setEnabled(false);
+                            fotosg.add(ima[j]);
+                        }
+                        if(ima[j].contains("Imagen12")){
+                            btncamara12.setEnabled(false);
+                            fotosg.add(ima[j]);
+                        }
+                        if(ima[j].contains("Imagen13")){
+                            btncamara13.setEnabled(false);
+                            fotosg.add(ima[j]);
+                        }
+                        if(ima[j].contains("Imagen14")){
+                            btncamara14.setEnabled(false);
+                            fotosg.add(ima[j]);
+                        }
+                        if(ima[j].contains("Imagen15")){
+                            btncamara15.setEnabled(false);
+                            fotosg.add(ima[j]);
+                        }
+                        if(ima[j].contains("Imagen16")){
+                            btncamara16.setEnabled(false);
+                            fotosg.add(ima[j]);
+                        }
+                        if(ima[j].contains("Imagen17")){
+                            btncamara17.setEnabled(false);
+                            fotosg.add(ima[j]);
+                        }
+                        if(ima[j].contains("Imagen18")){
+                            btncamara18.setEnabled(false);
+                            fotosg.add(ima[j]);
+                        }
+                        if(ima[j].contains("Imagen19")){
+                            btncamara19.setEnabled(false);
+                            fotosg.add(ima[j]);
+                        }
+
+                    }
+
+                    String FirmaTec = c.getString(c.getColumnIndex("FirmaTec"));
+                    String Firmante = c.getString(c.getColumnIndex("Firmante"));
+                    String FirmaRes = c.getString(c.getColumnIndex("FirmaRes"));
+                    String Firmanres = c.getString(c.getColumnIndex("Firmanres"));
+
+                    String[] Checks = Aprieta.split(",");
+
+                    aprieta.setChecked(Boolean.parseBoolean(Checks[0]));
+                    apretar.setChecked(Boolean.parseBoolean(Checks[1]));
+                    fugas.setChecked(Boolean.parseBoolean(Checks[2]));
+                    cargador.setChecked(Boolean.parseBoolean(Checks[3]));
+                    precalentadores.setChecked(Boolean.parseBoolean(Checks[4]));
+                    llenado.setChecked(Boolean.parseBoolean(Checks[5]));
+                    tension.setChecked(Boolean.parseBoolean(Checks[6]));
+                    cargabaterias.setChecked(Boolean.parseBoolean(Checks[7]));
+                    estopero.setChecked(Boolean.parseBoolean(Checks[8]));
+                    tapon.setChecked(Boolean.parseBoolean(Checks[9]));
+                    presion.setChecked(Boolean.parseBoolean(Checks[10]));
+                    temperatura.setChecked(Boolean.parseBoolean(Checks[11]));
+                    badas.setChecked(Boolean.parseBoolean(Checks[12]));
+                    mangueras1.setChecked(Boolean.parseBoolean(Checks[13]));
+                    eventos.setChecked(Boolean.parseBoolean(Checks[14]));
+                    inspeccion.setChecked(Boolean.parseBoolean(Checks[15]));
+                    inspeccion1.setChecked(Boolean.parseBoolean(Checks[16]));
+                    inspeccion2.setChecked(Boolean.parseBoolean(Checks[17]));
+                    ruidos.setChecked(Boolean.parseBoolean(Checks[18]));
+                    acoplamiento.setChecked(Boolean.parseBoolean(Checks[19]));
+                    fugas3.setChecked(Boolean.parseBoolean(Checks[20]));
+                    densidad.setChecked(Boolean.parseBoolean(Checks[21]));
+                    operacion.setChecked(Boolean.parseBoolean(Checks[22]));
+                    bomba.setChecked(Boolean.parseBoolean(Checks[23]));
+                    arranque.setChecked(Boolean.parseBoolean(Checks[24]));
+
+                    etFechaInicio.setText(Fechainicio);
+                    etHora.setText(Horainicio);
+                    etFechafin.setText(Fechafinal);
+                    etHora2.setText(Horafinal);
+                    etSitio.setText(Sitio);
+                    etSector.setText(Sector);
+                    etProyecto.setText(Proyecto);
+                    etNot.setText(OT);
+                    etAntecedentes.setText(Antecedentes);
+                    nivelCombTanqDia.setText(Tanquedia);
+                    nivelCombMain.setText(Tanqueprin);
+                    nivelRefrigerante.setText(Refri);
+                    nivelAceite.setText(Aceite);
+                    nivelElectrolito.setText(Electrolito);
+                    volt3times.setText(Arrancar);
+                    porcentBaterias.setText(Carga);
+                    lecHorometro.setText(Horometro);
+                    tiempoArranque.setText(Arranquepru);
+                    etObservaciones.setText(Observacionespru);
+                    etConclusiones.setText(Conclusiones);
+                    etRecomendaciones.setText(Recomendaciones);
+                    etComentarios.setText(Comentarios);
+                    etCorreo.setText(Correo);
+                    etNumero.setText(Numnav);
+
+                    firmaTec = FirmaTec;
+                    firmanteTec = Firmante;
+                    firmaResp = FirmaRes;
+                    firmanteResp = Firmanres;
+
+                    Ischeckaprieta();
+
+                    for (i=0; i< fotosg.size(); i++){
+                        String str = fotosg.get(i).substring(9);
+                        String idImg = "";
+
+                        if(i+1 < 10)
+                            idImg = "Imagen0"+(i+1) + ":";
+                        else
+                            idImg = "Imagen"+(i+1) + ":";
+
+                        fotos.add(idImg+convertirimagen(str));
+                    }
+
+
+                    if (!firmaTec.equals("")) {
+                        btnFirmaTec.setEnabled(false);
+                    }
+
+                    if (!firmanteTec.equals("")) {
+
+                    }
+
+                    if (!firmaTec.equals("")) {
+                        btnFirmaResp.setEnabled(false);
+                    }
+
+                    if (!firmanteResp.equals("")) {
+
+                    }
+
+                } while (c.moveToNext());
+            }else {
+                Toast.makeText(this, "No hay datos para recuperar", Toast.LENGTH_SHORT).show();
+            }
+
+            c.close();
+            db.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public class taskZonaPuntosdeInicioOT extends AsyncTask<Void, Void, Boolean> {
         private String formualrio;
         private String respuesta = "{'d':''}";
+        MyOpenHelper dbHelper = new MyOpenHelper(mContext);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
         String url = URLGPS + "EnvioFormServBCI.aspx/EnviaCorreo";
         public taskZonaPuntosdeInicioOT(String formualrio) {
             this.formualrio = formualrio;
@@ -872,6 +1398,7 @@ public class ServicioBCI extends Activity {
         @Override
         protected Boolean doInBackground(Void... voids) {
             URL destinoURL = null;
+            int i;
             try {
                 destinoURL = new URL(url);
                 HttpURLConnection con = (HttpURLConnection) destinoURL.openConnection();
@@ -887,6 +1414,11 @@ public class ServicioBCI extends Activity {
 
                 formualrio = "{\"Form\":" + formualrio + "}";
                 Log.e("Nota", formualrio);
+
+                for (i=0; i< fotosg.size(); i++){
+                    fotosg.set(i, convertirimagen(fotosg.get(i).substring(10)));
+                }
+
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(con.getOutputStream());
                 outputStreamWriter.write(formualrio);
                 outputStreamWriter.flush();
@@ -939,6 +1471,7 @@ public class ServicioBCI extends Activity {
                         public void onClick(DialogInterface dialog, int which) {
                             Intent detail = new Intent(mContext, Formatos.class);
                             startActivity(detail);
+                            db.execSQL("DELETE FROM BCISQL");
                         }
                     });
                     //Toast.makeText(getApplicationContext(), "Reporte enviado exitósamente..", Toast.LENGTH_SHORT).show();

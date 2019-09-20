@@ -39,8 +39,7 @@ public class MyOpenHelper extends SQLiteOpenHelper {
     private static final String BCI = "CREATE TABLE BCISQL( _id INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "Fechainicio TEXT, Horainicio TEXT, Fechafinal TEXT, Horafinal TEXT, Sitio TEXT, Sector TEXT, Proyecto TEXT, OT TEXT," +
             "Antecedentes TEXT, Aprieta STRING, Tanquedia TEXT, Tanqueprin TEXT, Refri TEXT, Aceite TEXT, Electrolito TEXT, Arrancar TEXT, Carga TEXT," +
-            "Revisar1 STRING, Verificacion STRING, Horometro TEXT, Prueba STRING," +
-            "Arranquepru TEXT, Observacionespru TEXT, " +
+            "Horometro TEXT, Arranquepru TEXT, Observacionespru TEXT, " +
             "Conclusiones TEXT, Recomendaciones TEXT, " +
             "Comentarios TEXT, Correo TEXT, Numnav TEXT," +
             "Imagenes TEXT,FirmaTec TEXT, Firmante TEXT, FirmaRes TEXT, Firmanres TEXT) ";
@@ -56,7 +55,7 @@ public class MyOpenHelper extends SQLiteOpenHelper {
 
 
     private static final String DB_INFO = "IFSQL.sqlite, AUSQL.sqlite, BCISQL.sqlite, PEMSQL.sqlite ";
-    private static final int DB_version = 18;
+    private static final int DB_version = 19;
 
     public MyOpenHelper(Context context) {
         super(context, DB_INFO, null, DB_version);
@@ -74,7 +73,7 @@ public class MyOpenHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         Log.d("x", "#"+oldVersion);
        Log.d("x", "#"+newVersion);
-        if (newVersion == 18) {
+        if (newVersion == 19) {
             db.execSQL("DROP TABLE IF EXISTS IFSQL");
             db.execSQL("DROP TABLE IF EXISTS AUSQL");
             db.execSQL("DROP TABLE IF EXISTS BCISQL");
