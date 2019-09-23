@@ -596,6 +596,7 @@ public class informe_tecnico extends Activity {
             private String respuesta = "{'d':''}";
             String url = URLGPS + "EnvioFormITAuditoria.aspx/GuardarFormIT";
             MyOpenHelper dbHelper = new MyOpenHelper(mContext);
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
             public taskFormularioITLibre(String formualrio) {
                 this.formualrio = formualrio;
             }
@@ -672,7 +673,7 @@ public class informe_tecnico extends Activity {
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent detail = new Intent(mContext, Formatos.class);
                                 startActivity(detail);
-                                dbHelper.delete();
+                                db.execSQL("DELETE FROM IFSQL");
                             }
                         });
 

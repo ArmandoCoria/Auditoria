@@ -144,7 +144,7 @@ public class Form_auditoria extends Activity {
     private CheckBox operando, presenta1; // bombas
     private CheckBox correcto3, orden2, fugas2; // torres
     private CheckBox herramienta, epi, sgi; // checklist
-    private CheckBox etm, elevadores, montacargas, bci, pem, subestacion, chillers, bombas, torres, umas, ups, ulas, minis, extractores, tableros, cocinas, sanitarios, check, Direccion, Jefe; // checklist
+    private CheckBox etm, elevadores, montacargas, bci, pem, subestacion, chillers, bombas, torres, umas, ups, ulas, minis, extractores, tableros, cocinas, sanitarios, check, Direccion, jefe; // checklist
 
     private AutoCompleteTextView autoCompleteTextView;
     private String[] sitios;
@@ -802,8 +802,8 @@ public class Form_auditoria extends Activity {
             }
         });
 
-        Jefe = (CheckBox) findViewById(R.id.button19);
-        Jefe.setOnClickListener(new View.OnClickListener() {
+        jefe = (CheckBox) findViewById(R.id.button19);
+        jefe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(zlvs.getVisibility() == View.VISIBLE) {
@@ -1834,7 +1834,7 @@ public class Form_auditoria extends Activity {
             public void onClick(View v) {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 1);
-                in.putExtra("numFoto", "Imagen83");
+                in.putExtra("numFoto", "Imagen82");
                 in.putExtra("flgZona", 17);
                 btncamara82.setEnabled(false);
                 startActivityForResult(in, 1);
@@ -2154,11 +2154,9 @@ public class Form_auditoria extends Activity {
         }
         else if(fEsc && peticiones.getText().length() == 0){
             Toast.makeText(this, "El campo de peticiones para la zona ETM - Escaleras no puede quedar vacía.", Toast.LENGTH_LONG).show();
-
         }
         else  if(fEsc && !ffEsc) {
             Toast.makeText(this, "Se requiere 1 foto obligatoria en la zona ETM - Escaleras", Toast.LENGTH_SHORT).show();
-
         }
         else if(fEle && detalles1.getText().length() == 0){
             Toast.makeText(this, "El campo de observaciones para la zona ETM - Elevadores no puede quedar vacía.", Toast.LENGTH_LONG).show();
@@ -2180,157 +2178,129 @@ public class Form_auditoria extends Activity {
         }
         else if(fMon && !ffMon) {
             Toast.makeText(this, "Se requiere 1 foto obligatoria en la zona ETM -Montacargas", Toast.LENGTH_SHORT).show();
-
         }
         else if(fBCI && detalles3.getText().length() == 0){
             Toast.makeText(this, "El campo de observaciones para la zona BCI no puede quedar vacía.", Toast.LENGTH_LONG).show();
         }
         else if(fBCI && peticiones3.getText().length() == 0){
             Toast.makeText(this, "El campo de peticiones para la zona BCI no puede quedar vacía.", Toast.LENGTH_LONG).show();
-
         }
         else if(fBCI && !ffBCI) {
             Toast.makeText(this, "Se requiere 1 foto obligatoria en la zona BCI", Toast.LENGTH_SHORT).show();
-
         }
         else if(fPEM && detalles4.getText().length() == 0){
             Toast.makeText(this, "El campo de observaciones para la zona PEM no puede quedar vacía.", Toast.LENGTH_LONG).show();
         }
         else if(fPEM && peticiones4.getText().length() == 0){
             Toast.makeText(this, "El campo de peticiones para la zona PEM no puede quedar vacía.", Toast.LENGTH_LONG).show();
-
         }
         else if(fPEM && !ffPEM) {
             Toast.makeText(this, "Se requiere 1 foto obligatoria en la zona PEM", Toast.LENGTH_SHORT).show();
-
         }
         else if(fSube && detalles5.getText().length() == 0){
             Toast.makeText(this, "El campo de observaciones para la zona Subestación no puede quedar vacía.", Toast.LENGTH_LONG).show();
         }
         else if(fSube && peticiones5.getText().length() == 0){
             Toast.makeText(this, "El campo de peticiones para la zona Subestación no puede quedar vacía.", Toast.LENGTH_LONG).show();
-
         }
         else if(fSube && !ffSube) {
             Toast.makeText(this, "Se requiere 1 foto obligatoria en la zona Subestación", Toast.LENGTH_SHORT).show();
-
         }
         else if(fChill && detalles6.getText().length() == 0){
             Toast.makeText(this, "El campo de observaciones para la zona Chillers no puede quedar vacía.", Toast.LENGTH_LONG).show();
         }
         else if(fChill && peticiones6.getText().length() == 0){
             Toast.makeText(this, "El campo de peticiones para la zona Chillers no puede quedar vacía.", Toast.LENGTH_LONG).show();
-
         }
         else if(fChill && !ffChill) {
             Toast.makeText(this, "Se requiere 1 foto obligatoria en la zona Chillers", Toast.LENGTH_SHORT).show();
         }
-
         else if(fBom && detalles7.getText().length() == 0){
             Toast.makeText(this, "El campo de observaciones para la zona Bombas de agua helada no puede quedar vacía.", Toast.LENGTH_LONG).show();
         }
         else if(fBom && peticiones7.getText().length() == 0){
             Toast.makeText(this, "El campo de peticiones para la zona Bombas de agua helada no puede quedar vacía.", Toast.LENGTH_LONG).show();
-
         }
         else if(fBom && !ffBom) {
             Toast.makeText(this, "Se requiere 1 foto obligatoria en la zona Bombas de agua helada", Toast.LENGTH_SHORT).show();
-
         }
         else if(fTorres && detalles8.getText().length() == 0){
             Toast.makeText(this, "El campo de observaciones para la zona Torres de enfriamento no puede quedar vacía.", Toast.LENGTH_LONG).show();
         }
         else if(fTorres && peticiones8.getText().length() == 0){
             Toast.makeText(this, "El campo de peticiones para la zona Torres de enfriamento no puede quedar vacía.", Toast.LENGTH_LONG).show();
-
         }
         else if(fTorres && !ffTorres) {
             Toast.makeText(this, "Se requiere 1 foto obligatoria en la zona Torres de enfriamento", Toast.LENGTH_SHORT).show();
-
         }
         else if(fUMAs && detalles9.getText().length() == 0){
             Toast.makeText(this, "El campo de observaciones para la zona UMAs no puede quedar vacía.", Toast.LENGTH_LONG).show();
         }
         else if(fUMAs && peticiones9.getText().length() == 0){
             Toast.makeText(this, "El campo de peticiones para la zona UMAs no puede quedar vacía.", Toast.LENGTH_LONG).show();
-
         }
         else if(fUMAs && !ffUMAs) {
             Toast.makeText(this, "Se requiere 1 foto obligatoria en la zona UMAs", Toast.LENGTH_SHORT).show();
-
         }
         else if(fUPs && detalles10.getText().length() == 0){
             Toast.makeText(this, "El campo de observaciones para la zona UPs no puede quedar vacía.", Toast.LENGTH_LONG).show();
         }
         else if(fUPs && peticiones10.getText().length() == 0){
             Toast.makeText(this, "El campo de peticiones para la zona UPs no puede quedar vacía.", Toast.LENGTH_LONG).show();
-
         }
         else if(fUPs && !ffUPs) {
             Toast.makeText(this, "Se requiere 1 foto obligatoria en la zona UPs", Toast.LENGTH_SHORT).show();
-
         }
         else if(fULAs && detalles11.getText().length() == 0){
             Toast.makeText(this, "El campo de observaciones para la zona ULAs no puede quedar vacía.", Toast.LENGTH_LONG).show();
         }
         else if(fULAs && peticiones11.getText().length() == 0){
             Toast.makeText(this, "El campo de peticiones para la zona ULAs no puede quedar vacía.", Toast.LENGTH_LONG).show();
-
         }
         else if(fULAs && !ffULAs) {
             Toast.makeText(this, "Se requiere 1 foto obligatoria en la zona ULAs", Toast.LENGTH_SHORT).show();
-
         }
         else if(fMini && detalles12.getText().length() == 0){
             Toast.makeText(this, "El campo de observaciones para la zona Minisplit no puede quedar vacía.", Toast.LENGTH_LONG).show();
         }
         else if(fMini && peticiones12.getText().length() == 0){
             Toast.makeText(this, "El campo de peticiones para la zona Minisplit no puede quedar vacía.", Toast.LENGTH_LONG).show();
-
         }
         else if(fMini && !ffMini) {
             Toast.makeText(this, "Se requiere 1 foto obligatoria en la zona Minisplit", Toast.LENGTH_SHORT).show();
-
         }
         else if(fExtrac && detalles13.getText().length() == 0){
             Toast.makeText(this, "El campo de observaciones para la zona Extractores no puede quedar vacía.", Toast.LENGTH_LONG).show();
         }
         else if(fExtrac && peticiones13.getText().length() == 0){
             Toast.makeText(this, "El campo de peticiones para la zona Extractores  no puede quedar vacía.", Toast.LENGTH_LONG).show();
-
         }
         else if(fExtrac && !ffExtrac) {
             Toast.makeText(this, "Se requiere 1 foto obligatoria en la zona Extractores", Toast.LENGTH_SHORT).show();
-
         }
         else if(fTableros && detalles14.getText().length() == 0){
             Toast.makeText(this, "El campo de observaciones para la zona Tableros de control no puede quedar vacía.", Toast.LENGTH_LONG).show();
         }
         else if(fTableros && peticiones14.getText().length() == 0){
             Toast.makeText(this, "El campo de peticiones para la zona Tableros de control no puede quedar vacía.", Toast.LENGTH_LONG).show();
-
         }
         else if(fTableros && !ffTableros) {
             Toast.makeText(this, "Se requiere 1 foto obligatoria en la zona Tableros de control", Toast.LENGTH_SHORT).show();
-
         }
         else if(fCocinas && detalles15.getText().length() == 0){
             Toast.makeText(this, "El campo de observaciones para la zona Equipos de Cocina no puede quedar vacía.", Toast.LENGTH_LONG).show();
         }
         else if(fCocinas && peticiones15.getText().length() == 0){
             Toast.makeText(this, "El campo de peticiones para la zona Equipos de Cocina no puede quedar vacía.", Toast.LENGTH_LONG).show();
-
         }
         else if(fCocinas && !ffCocinas) {
             Toast.makeText(this, "Se requiere 1 foto obligatoria en la zona Equipos de Cocina", Toast.LENGTH_SHORT).show();
-
         }
         else if(fSanitarios && detalles16.getText().length() == 0){
             Toast.makeText(this, "El campo de observaciones para la zona Sanitarios no puede quedar vacía.", Toast.LENGTH_LONG).show();
         }
         else if(fSanitarios && peticiones16.getText().length() == 0){
             Toast.makeText(this, "El campo de peticiones para la zona Sanitarios no puede quedar vacía.", Toast.LENGTH_LONG).show();
-
         }
         else if(fSanitarios && !ffSanitarios) {
             Toast.makeText(this, "Se requiere 1 foto obligatoria en la zona Sanitarios", Toast.LENGTH_SHORT).show();
@@ -2359,8 +2329,8 @@ public class Form_auditoria extends Activity {
         }
         else if(fJefe && peticiones18.getText().length() == 0) {
             Toast.makeText(this, "El campo de peticiones para la zona Entrevista con Jefe de MTTO de Tienda no puede quedar vacía.", Toast.LENGTH_LONG).show();
-
-        }    else if(firmaTec == ""){
+        }
+        else if(firmaTec == ""){
             Toast.makeText(this, "Se requiere la firma del Coordinador", Toast.LENGTH_SHORT).show();
             //return false;
         }else if(firmaResp == ""){
@@ -2524,6 +2494,14 @@ public class Form_auditoria extends Activity {
             zonas += "CheckList, ";
             fchecklist = true;
         }
+        if (Direccion.isChecked()){
+            zonas += "Direccion, ";
+            fDireccion = true;
+        }
+        if (jefe.isChecked()){
+            zonas += "jefe, ";
+            fJefe = true;
+        }
 
         return zonas;
     }
@@ -2657,19 +2635,19 @@ public class Form_auditoria extends Activity {
         }
 
         if(check.isChecked()) {
-            zlvn.setVisibility(View.VISIBLE);
+            zlvxx.setVisibility(View.VISIBLE);
             texto = (TextView) findViewById(R.id.check);
             texto.setTextColor(Color.BLUE);
         }
 
         if(Direccion.isChecked()) {
-            zlvs.setVisibility(View.VISIBLE);
+            zlvn.setVisibility(View.VISIBLE);
             texto = (TextView) findViewById(R.id.direccion);
             texto.setTextColor(Color.BLUE);
         }
 
-        if(Jefe.isChecked()) {
-            zlvxx.setVisibility(View.VISIBLE);
+        if(jefe.isChecked()) {
+            zlvs.setVisibility(View.VISIBLE);
             texto = (TextView) findViewById(R.id.jefe);
             texto.setTextColor(Color.BLUE);
         }
@@ -2906,6 +2884,29 @@ public class Form_auditoria extends Activity {
         }
     }
 
+    public void  Ischeckchecklist(){
+
+        if(herramienta.isChecked()) {
+            herramienta.setVisibility(View.VISIBLE);
+            texto = (TextView) findViewById(R.id.herramienta);
+            texto.setTextColor(Color.BLACK);
+        }
+
+        if(epi.isChecked()) {
+            epi.setVisibility(View.VISIBLE);
+            texto = (TextView) findViewById(R.id.epi);
+            texto.setTextColor(Color.BLACK);
+        }
+
+        if(sgi.isChecked()) {
+            sgi.setVisibility(View.VISIBLE);
+            texto = (TextView) findViewById(R.id.sgi);
+            texto.setTextColor(Color.BLACK);
+        }
+
+
+    }
+
     //Metodo para enviar los checkBox al formulario
     public String addElevadoresButton(){
 
@@ -3094,7 +3095,7 @@ public class Form_auditoria extends Activity {
 
         cv.put("Zonas" , etm.isChecked() + "," + elevadores.isChecked() + "," + montacargas.isChecked() + "," + bci.isChecked() + "," +
                 pem.isChecked() + "," + subestacion.isChecked() + "," + chillers.isChecked() + "," +  bombas.isChecked() + "," + torres.isChecked() + "," + umas.isChecked() + "," + ups.isChecked() + "," + ulas.isChecked() + "," +
-                minis.isChecked() + "," + extractores.isChecked() + "," + tableros.isChecked() + "," + cocinas.isChecked() + "," + sanitarios.isChecked() + "," + check.isChecked());
+                minis.isChecked() + "," + extractores.isChecked() + "," + tableros.isChecked() + "," + cocinas.isChecked() + "," + sanitarios.isChecked() + "," + check.isChecked() + "," + Direccion.isChecked() + "," + jefe.isChecked());
 
         cv.put("Escalera",  peines.isChecked() + "," + demarcaciones.isChecked() + "," + fosas.isChecked() + "," + pasamanos.isChecked() + "," +
                 funcionamiento.isChecked());
@@ -3154,12 +3155,12 @@ public class Form_auditoria extends Activity {
         cv. put("Peticiones17", peticiones17.getText().toString());
         cv. put("Detalles17", detalles17.getText().toString());
 
-        cv. put("Peticiones18", peticiones16.getText().toString());
-        cv. put("Detalles18", detalles16.getText().toString());
+        cv. put("Peticiones18", peticiones18.getText().toString());
+        cv. put("Detalles18", detalles18.getText().toString());
         cv.put("Promesas", etPromesas.getText().toString());
 
-        cv. put("Peticiones19", peticiones16.getText().toString());
-        cv. put("Detalles19", detalles16.getText().toString());
+        cv. put("Peticiones19", peticiones19.getText().toString());
+        cv. put("Detalles19", detalles19.getText().toString());
         cv.put("Promesas1", etPromesas1.getText().toString());
 
         if (fotosg.size()!=0){
@@ -3222,6 +3223,8 @@ public class Form_auditoria extends Activity {
 
       //  Log.d("path", fotosg.get(0).substring(10));
        // int i = 0;
+
+        int i;
 
         try {
             MyOpenHelper dbHelper = new MyOpenHelper(this);
@@ -3318,11 +3321,12 @@ public class Form_auditoria extends Activity {
                     String Detalles17 = c.getString(c.getColumnIndex("Detalles17"));
                     String Peticiones17 = c.getString(c.getColumnIndex("Peticiones17"));
 
-
+                    //String DireccionEn = c.getString(c.getColumnIndex("DireccionEn"));
                     String Detalles18 = c.getString(c.getColumnIndex("Detalles18"));
                     String Peticiones18 = c.getString(c.getColumnIndex("Peticiones18"));
                     String Promesas = c.getString(c.getColumnIndex("Promesas"));
 
+                   // String JefeEn = c.getString(c.getColumnIndex("JefeEn"));
                     String Detalles19 = c.getString(c.getColumnIndex("Detalles19"));
                     String Peticiones19 = c.getString(c.getColumnIndex("Peticiones19"));
                     String Promesas1 = c.getString(c.getColumnIndex("Promesas1"));
@@ -3338,12 +3342,14 @@ public class Form_auditoria extends Activity {
                         }
                     }
   */
-                    String [] ima = Imau.split(",") ;
+
+                    String [] ima = Imau.split(", ") ;
 
                     for (int j = 0; j < ima.length; j++){
                         if(ima[j].contains("Imagen01")){
                             btncamara1.setEnabled(false);
                             fotosg.add(ima[j]);
+                            ffEsc = true;
                         }
                         if(ima[j].contains("Imagen02")){
                             btncamara2.setEnabled(false);
@@ -3351,267 +3357,372 @@ public class Form_auditoria extends Activity {
                         }
                         if(ima[j].contains("Imagen03")){
                             btncamara3.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen04")){
                             btncamara4.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen05")){
                             btncamara5.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen06")){
                             btncamara6.setEnabled(false);
+                            fotosg.add(ima[j]);
+                            ffEle = true;
                         }
                         if(ima[j].contains("Imagen07")){
                             btncamara7.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen08")){
                             btncamara8.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen09")){
                             btncamara9.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen10")){
                             btncamara10.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen11")){
                             btncamara11.setEnabled(false);
+                            fotosg.add(ima[j]);
+                            ffMon = true;
                         }
                         if(ima[j].contains("Imagen12")){
                             btncamara12.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen13")){
                             btncamara13.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen14")){
                             btncamara14.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen15")){
                             btncamara15.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen16")){
                             btncamara16.setEnabled(false);
+                            fotosg.add(ima[j]);
+                            ffBCI = true;
                         }
                         if(ima[j].contains("Imagen17")){
                             btncamara17.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen18")){
                             btncamara18.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen19")){
                             btncamara19.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen20")){
                             btncamara20.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen21")){
                             btncamara21.setEnabled(false);
+                            fotosg.add(ima[j]);
+                            ffPEM = true;
                         }
                         if(ima[j].contains("Imagen22")){
                             btncamara22.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen23")){
                             btncamara23.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen24")){
                             btncamara24.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen25")){
                             btncamara25.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen26")){
                             btncamara26.setEnabled(false);
+                            fotosg.add(ima[j]);
+                            ffSube = true;
                         }
                         if(ima[j].contains("Imagen27")){
                             btncamara27.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen28")){
                             btncamara28.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen29")){
                             btncamara29.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen30")){
                             btncamara30.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen31")){
                             btncamara31.setEnabled(false);
+                            fotosg.add(ima[j]);
+                            ffChill = true;
                         }
                         if(ima[j].contains("Imagen32")){
                             btncamara32.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen33")){
                             btncamara33.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen34")){
                             btncamara34.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen35")){
                             btncamara35.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen36")){
                             btncamara36.setEnabled(false);
+                            fotosg.add(ima[j]);
+                            ffBom = true;
                         }
                         if(ima[j].contains("Imagen37")){
                             btncamara37.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen38")){
                             btncamara38.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen39")){
                             btncamara39.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen40")){
                             btncamara40.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen41")){
                             btncamara41.setEnabled(false);
+                            fotosg.add(ima[j]);
+                            ffTorres = true;
                         }
                         if(ima[j].contains("Imagen42")){
                             btncamara42.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen43")){
                             btncamara43.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen44")){
                             btncamara44.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen45")){
                             btncamara45.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen46")){
                             btncamara46.setEnabled(false);
+                            fotosg.add(ima[j]);
+                            ffUMAs = true;
                         }
                         if(ima[j].contains("Imagen47")){
                             btncamara47.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen48")){
                             btncamara48.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen49")){
                             btncamara49.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen50")){
                             btncamara50.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen51")){
                             btncamara51.setEnabled(false);
+                            fotosg.add(ima[j]);
+                            ffUPs = true;
                         }
                         if(ima[j].contains("Imagen52")){
                             btncamara52.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen53")){
                             btncamara53.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen54")){
                             btncamara54.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen55")){
                             btncamara55.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen56")){
                             btncamara56.setEnabled(false);
+                            fotosg.add(ima[j]);
+                            ffULAs = true;
                         }
                         if(ima[j].contains("Imagen57")){
                             btncamara57.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen58")){
                             btncamara58.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen59")){
                             btncamara59.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen60")){
                             btncamara60.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen61")){
                             btncamara61.setEnabled(false);
+                            fotosg.add(ima[j]);
+                            ffMini = true;
                         }
                         if(ima[j].contains("Imagen62")){
                             btncamara62.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen63")){
                             btncamara63.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen64")){
                             btncamara64.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen65")){
                             btncamara65.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen66")){
                             btncamara66.setEnabled(false);
+                            fotosg.add(ima[j]);
+                            ffExtrac = true;
                         }
                         if(ima[j].contains("Imagen67")){
                             btncamara67.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen68")){
                             btncamara68.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen69")){
                             btncamara69.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen70")){
                             btncamara70.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen71")){
                             btncamara71.setEnabled(false);
+                            fotosg.add(ima[j]);
+                            ffTableros = true;
                         }
                         if(ima[j].contains("Imagen72")){
                             btncamara72.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen73")){
                             btncamara73.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen74")){
                             btncamara74.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen75")){
                             btncamara75.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen76")){
                             btncamara76.setEnabled(false);
+                            fotosg.add(ima[j]);
+                            ffCocinas = true;
                         }
                         if(ima[j].contains("Imagen77")){
                             btncamara77.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen78")){
                             btncamara78.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen79")){
                             btncamara79.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen80")){
                             btncamara80.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen81")){
                             btncamara81.setEnabled(false);
+                            fotosg.add(ima[j]);
+                            ffSanitarios = true;
                         }
                         if(ima[j].contains("Imagen82")){
                             btncamara82.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen83")){
                             btncamara83.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen84")){
                             btncamara84.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen85")){
                             btncamara85.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen86")){
                             btncamara86.setEnabled(false);
+                            fotosg.add(ima[j]);
+                            ffchecklist = true;
                         }
                         if(ima[j].contains("Imagen87")){
                             btncamara87.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen88")){
                             btncamara88.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen89")){
                             btncamara89.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                         if(ima[j].contains("Imagen90")){
                             btncamara90.setEnabled(false);
+                            fotosg.add(ima[j]);
                         }
                     }
 
@@ -3643,6 +3754,8 @@ public class Form_auditoria extends Activity {
                     cocinas.setChecked(Boolean.parseBoolean(Checks[15]));
                     sanitarios.setChecked(Boolean.parseBoolean(Checks[16]));
                     check.setChecked(Boolean.parseBoolean(Checks[17]));
+                    Direccion.setChecked(Boolean.parseBoolean(Checks[18]));
+                    jefe.setChecked(Boolean.parseBoolean(Checks[19]));
 
                     String[] ChecksEsc = Escalera.split(",");
 
@@ -3759,8 +3872,6 @@ public class Form_auditoria extends Activity {
                     detalles19.setText(Detalles19);
                     peticiones19.setText(Peticiones19);
                     etPromesas1.setText(Promesas1);
-
-
                     etObservaciones.setText(Coordinador);
                     etObservaciones1.setText(Jefe);
                     firmaTec = FirmaTec;
@@ -3778,6 +3889,19 @@ public class Form_auditoria extends Activity {
                     Ischeckchillers();
                     Ischeckbombas();
                     Ischecktorres();
+                    Ischeckchecklist();
+
+                    for (i=0; i< fotosg.size(); i++){
+                        String str = fotosg.get(i).substring(9);
+                        String idImg = "";
+
+                        if(i+1 < 10)
+                            idImg = "Imagen0"+(i+1) + ":";
+                        else
+                            idImg = "Imagen"+(i+1) + ":";
+
+                        fotos.add(idImg+convertirimagen(str));
+                    }
 
                     if (!firmaTec.equals("")) {
                         btnFirmaTec.setEnabled(false);
@@ -3799,7 +3923,6 @@ public class Form_auditoria extends Activity {
             }else {
                 Toast.makeText(this, "No hay datos para recuperar", Toast.LENGTH_SHORT).show();
             }
-
             c.close();
             db.close();
         } catch (Exception e) {
@@ -3966,6 +4089,7 @@ public class Form_auditoria extends Activity {
         private String formualrio;
         private String respuesta = "{'d':''}";
         MyOpenHelper dbHelper = new MyOpenHelper(mContext);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
         String url = URLGPS + "EnvioFormAuditoria.aspx/GuardarAuditoria";
         public taskZonaPuntosdeInicioOT2(String formualrio) {
             this.formualrio = formualrio;
@@ -3974,7 +4098,7 @@ public class Form_auditoria extends Activity {
         @Override
         protected Boolean doInBackground(Void... voids) {
             URL destinoURL = null;
-            int i;
+
             try {
                 destinoURL = new URL(url);
                 HttpURLConnection con = (HttpURLConnection) destinoURL.openConnection();
@@ -3989,13 +4113,11 @@ public class Form_auditoria extends Activity {
                 con.setReadTimeout(150000);
 
                 formualrio = "{\"formAudi\":" + formualrio + "}";
-                Log.e("Nota", formualrio);
+               // Log.e("Nota", formualrio);
 
                 //for
 
-                for (i=0; i< fotosg.size(); i++){
-                    fotosg.set(i, convertirimagen(fotosg.get(i).substring(10)));
-                }
+
 
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(con.getOutputStream());
                 outputStreamWriter.write(formualrio);
@@ -4063,7 +4185,7 @@ public class Form_auditoria extends Activity {
                         public void onClick(DialogInterface dialog, int which) {
                             Intent detail = new Intent(mContext, Formatos.class);
                             startActivity(detail);
-                            dbHelper.delete();
+                            db.execSQL("DELETE FROM AUSQL");
                         }
                     });
 
@@ -4097,7 +4219,6 @@ public class Form_auditoria extends Activity {
             }
         }
     }
-
 }
 
 
