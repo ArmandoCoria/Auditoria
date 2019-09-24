@@ -338,16 +338,7 @@ public class Form_Serv_Pem extends Activity {
         etTimeArr = findViewById(R.id.timeArr);
         etTimeArrCS = findViewById(R.id.timeArrCS);
         etTimeArrVacio = findViewById(R.id.timeArrVacio);
-        /*cbDejarFueraEquipo = (CheckBox) findViewById(R.id.dejarFueraEquipo);
-        cbLotto = (CheckBox) findViewById(R.id.lotto);
-        cbAceite = (CheckBox) findViewById(R.id.aceite);
-        cbFiltrosAceite = (CheckBox) findViewById(R.id.filtrosAceite);
-        cbBaterias = (CheckBox) findViewById(R.id.baterias);
-        cbTerminalesBaterias = (CheckBox) findViewById(R.id.terminalesBaterias);
-        cbRefrigerante = (CheckBox) findViewById(R.id.refrigerante);
-        cbFiltrosRefrigerante = (CheckBox) findViewById(R.id.filtrosRefrigerante);
-        cbFiltrosAire = (CheckBox) findViewById(R.id.filtrosAire);
-        cbManguerasPreca = (CheckBox) findViewById(R.id.manguerasPrecalentador);*/
+
         cbAprieteTerminalCtrl = findViewById(R.id.aprieteTerminalesControl);
         cbDesulfatar = findViewById(R.id.desulfatarterminalesBaterias);
         cbCalibracionSensor = findViewById(R.id.calibracionSensorVolt);
@@ -405,7 +396,6 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 2);
                 in.putExtra("numFoto", "Foto03");
-
                 startActivityForResult(in, 1);
             }
         });
@@ -416,7 +406,6 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 3);
                 in.putExtra("numFoto", "Foto04");
-
                 startActivityForResult(in, 1);
             }
         });
@@ -427,7 +416,6 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 4);
                 in.putExtra("numFoto", "Foto05");
-
                 startActivityForResult(in, 1);
             }
         });
@@ -438,7 +426,6 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 0);
                 in.putExtra("numFoto", "Foto06");
-
                 startActivityForResult(in, 1);
             }
         });
@@ -449,7 +436,6 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 1);
                 in.putExtra("numFoto", "Foto07");
-
                 startActivityForResult(in, 1);
             }
         });
@@ -460,7 +446,6 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 2);
                 in.putExtra("numFoto", "Foto08");
-
                 startActivityForResult(in, 1);
             }
         });
@@ -471,7 +456,6 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 3);
                 in.putExtra("numFoto", "Foto09");
-
                 startActivityForResult(in, 1);
             }
         });
@@ -482,7 +466,6 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 4);
                 in.putExtra("numFoto", "Foto10");
-
                 startActivityForResult(in, 1);
             }
         });
@@ -493,7 +476,6 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 0);
                 in.putExtra("numFoto", "Foto11");
-
                 startActivityForResult(in, 1);
             }
         });
@@ -504,7 +486,6 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 1);
                 in.putExtra("numFoto", "Foto12");
-
                 startActivityForResult(in, 1);
             }
         });
@@ -515,7 +496,6 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 2);
                 in.putExtra("numFoto", "Foto13");
-
                 startActivityForResult(in, 1);
             }
         });
@@ -526,7 +506,6 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 3);
                 in.putExtra("numFoto", "Foto14");
-
                 startActivityForResult(in, 1);
             }
         });
@@ -537,7 +516,6 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 4);
                 in.putExtra("numFoto", "Foto15");
-
                 startActivityForResult(in, 1);
             }
         });
@@ -548,7 +526,6 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 0);
                 in.putExtra("numFoto", "Foto16");
-
                 startActivityForResult(in, 1);
             }
         });
@@ -559,7 +536,6 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 1);
                 in.putExtra("numFoto", "Foto17");
-
                 startActivityForResult(in, 1);
             }
         });
@@ -570,7 +546,6 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 2);
                 in.putExtra("numFoto", "Foto18");
-
                 startActivityForResult(in, 1);
             }
         });
@@ -581,7 +556,6 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 3);
                 in.putExtra("numFoto", "Foto19");
-
                 startActivityForResult(in, 1);
             }
         });
@@ -592,7 +566,6 @@ public class Form_Serv_Pem extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 4);
                 in.putExtra("numFoto", "Foto20");
-
                 startActivityForResult(in, 1);
             }
         });
@@ -697,6 +670,7 @@ public class Form_Serv_Pem extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if (requestCode == 1 && resultCode == RESULT_OK) {
             if ("vacio".equals(data.getStringExtra("FirmaRESP"))) {
                 firmaJFSitio = data.getStringExtra("FirmaTEC");
@@ -714,21 +688,25 @@ public class Form_Serv_Pem extends Activity {
                 fotosg.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoUno"));
                 fotos.add(data.getStringExtra("numFoto") + ":" + imagenString);
                 DisabledButtonCam(data.getStringExtra("numFoto"));
+
             } else if ("vacio".equals(data.getStringExtra("FotoUno")) && "vacio".equals(data.getStringExtra("FotoTres")) && "vacio".equals(data.getStringExtra("FotoCuatro")) && "vacio".equals(data.getStringExtra("FotoCnco"))) {
                 imagenString = convertirimagen(data.getStringExtra("FotoDos"));
                 fotosg.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoDos"));
                 fotos.add(data.getStringExtra("numFoto") + ":" + imagenString);
                 DisabledButtonCam(data.getStringExtra("numFoto"));
+
             } else if ("vacio".equals(data.getStringExtra("FotoUno")) && "vacio".equals(data.getStringExtra("FotoDos")) && "vacio".equals(data.getStringExtra("FotoCuatro")) && "vacio".equals(data.getStringExtra("FotoCnco"))) {
                 imagenString = convertirimagen(data.getStringExtra("FotoTres"));
                 fotosg.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoTres"));
                 fotos.add(data.getStringExtra("numFoto") + ":" + imagenString);
                 DisabledButtonCam(data.getStringExtra("numFoto"));
+
             } else if ("vacio".equals(data.getStringExtra("FotoUno")) && "vacio".equals(data.getStringExtra("FotoDos")) && "vacio".equals(data.getStringExtra("FotoTres")) && "vacio".equals(data.getStringExtra("FotoCnco"))) {
                 imagenString = convertirimagen(data.getStringExtra("FotoCuatro"));
                 fotosg.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoCuatro"));
                 fotos.add(data.getStringExtra("numFoto") + ":" + imagenString);
                 DisabledButtonCam(data.getStringExtra("numFoto"));
+
             } else if ("vacio".equals(data.getStringExtra("FotoUno")) && "vacio".equals(data.getStringExtra("FotoDos")) && "vacio".equals(data.getStringExtra("FotoTres")) && "vacio".equals(data.getStringExtra("FotoCuatro"))) {
                 imagenString = convertirimagen(data.getStringExtra("FotoCnco"));
                 fotosg.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoCnco"));
@@ -959,11 +937,13 @@ public class Form_Serv_Pem extends Activity {
         }
         else if(!ContainsAny("Foto19", fotos) && !ContainsAny("Foto20", fotos)){
             Toast.makeText(this, "Se requieren fotos para la sección de 'MEDICIÓN Y REGISTRO'", Toast.LENGTH_SHORT).show();
-        }
-        else if(firmaJFSitio == ""){
+
+        } else if (firmaJFSitio.equals("") && firmaJFMtto.equals("")) {
+            Toast.makeText(this, "Se requieren las Firmas, el formulario no se envío ", Toast.LENGTH_SHORT).show();
+        } else if(firmaJFSitio.equals("")){
             Toast.makeText(this, "Se requiere la firma del Jefe de sitio", Toast.LENGTH_SHORT).show();
         }
-        else if(firmaJFMtto == ""){
+        else if(firmaJFMtto.equals("")){
             Toast.makeText(this, "Se requiere la firma del Jefe de Mantenimiento", Toast.LENGTH_SHORT).show();
         }
         else {

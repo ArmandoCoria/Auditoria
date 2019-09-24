@@ -55,7 +55,7 @@ public class MyOpenHelper extends SQLiteOpenHelper {
 
 
     private static final String DB_INFO = "IFSQL.sqlite, AUSQL.sqlite, BCISQL.sqlite, PEMSQL.sqlite ";
-    private static final int DB_version = 19;
+    private static final int DB_version = 21;
 
     public MyOpenHelper(Context context) {
         super(context, DB_INFO, null, DB_version);
@@ -73,7 +73,7 @@ public class MyOpenHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         Log.d("x", "#"+oldVersion);
        Log.d("x", "#"+newVersion);
-        if (newVersion == 19) {
+        if (newVersion == 21) {
             db.execSQL("DROP TABLE IF EXISTS IFSQL");
             db.execSQL("DROP TABLE IF EXISTS AUSQL");
             db.execSQL("DROP TABLE IF EXISTS BCISQL");

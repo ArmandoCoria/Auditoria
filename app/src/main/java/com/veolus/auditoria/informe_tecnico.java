@@ -156,7 +156,6 @@ public class informe_tecnico extends Activity {
             @Override
             public void onClick(View v) {
 
-
                 enviarFormulario();
             }
         });
@@ -169,7 +168,7 @@ public class informe_tecnico extends Activity {
                 //0 para regresar firma del responsable de sitio y 1 para regresar firmadel tecnico
                 in.putExtra("FirmaDE", 0);
                 startActivityForResult(in, 1);
-                btnFirmaTec.setEnabled(false);
+               // btnFirmaTec.setEnabled(false);
             }
         });
 
@@ -180,7 +179,7 @@ public class informe_tecnico extends Activity {
                 Intent in = new Intent(getApplicationContext(), FirmaActivity.class);
                 in.putExtra("FirmaDE", 1);
                 startActivityForResult(in, 1);
-                btnFirmaResp.setEnabled(false);
+                //btnFirmaResp.setEnabled(false);
             }
         });
 
@@ -191,8 +190,6 @@ public class informe_tecnico extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 0);
                 startActivityForResult(in, 1);
-
-
             }
         });
 
@@ -203,7 +200,6 @@ public class informe_tecnico extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 1);
                 startActivityForResult(in, 1);
-
             }
         });
 
@@ -214,7 +210,6 @@ public class informe_tecnico extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 2);
                 startActivityForResult(in, 1);
-
             }
         });
 
@@ -225,7 +220,6 @@ public class informe_tecnico extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 3);
                 startActivityForResult(in, 1);
-
             }
         });
 
@@ -236,7 +230,6 @@ public class informe_tecnico extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 4);
                 startActivityForResult(in, 1);
-
             }
         });
 
@@ -247,8 +240,6 @@ public class informe_tecnico extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 5);
                 startActivityForResult(in, 1);
-
-
             }
         });
     }
@@ -291,9 +282,11 @@ public class informe_tecnico extends Activity {
             if ("vacio".equals(data.getStringExtra("FirmaRESP"))) {
                 firmaTec = data.getStringExtra("FirmaTEC");
                 firmanteTec = data.getStringExtra("NombreTec");
+                btnFirmaTec.setEnabled(false);
             } else if ("vacio".equals(data.getStringExtra("FirmaTEC"))) {
                 firmaResp = data.getStringExtra("FirmaRESP");
                 firmanteResp = data.getStringExtra("NombreResp");
+                btnFirmaResp.setEnabled(false);
             }
 
             if ("vacio".equals(data.getStringExtra("FotoDos")) && "vacio".equals(data.getStringExtra("FotoTres"))
@@ -359,7 +352,7 @@ public class informe_tecnico extends Activity {
                 bitmap.compress(Bitmap.CompressFormat.JPEG,  10, array);
                 byteArray = array.toByteArray();
                 imagenString = Base64.encodeToString(byteArray, Base64.DEFAULT);
-                fotocinco = imagenString;
+                fotoseis = imagenString;
                 btncamara6.setEnabled(false);
 
             }
@@ -371,10 +364,24 @@ public class informe_tecnico extends Activity {
         getRadios();
         if (equipo == -1) {
             Toast.makeText(this, "Hay campos sin llenar, el formulario no se envio", Toast.LENGTH_SHORT).show();
-        } else if (fotouno == "" && fotodos == "" && fototres == "" && fotocuatro == "" && fotocinco == "" && fotoseis == "") {
-            Toast.makeText(this, "Se requieren de las 6 Fotos de evidencia, obligatoria", Toast.LENGTH_SHORT).show();
-        } else if (firmaTec == "" && firmaTec == "") {
+        } else if (fotouno.equals("")) {
+            Toast.makeText(this, "Se requiere de la Foto Uno como evidencia, obligatoria", Toast.LENGTH_SHORT).show();
+        }else if (fotodos.equals("")) {
+            Toast.makeText(this, "Se requiere de la Foto Dos como evidencia, obligatoria", Toast.LENGTH_SHORT).show();
+        } else if (fototres.equals("")) {
+            Toast.makeText(this, "Se requiere de la Foto Tres como evidencia, obligatoria", Toast.LENGTH_SHORT).show();
+        }else if (fotocuatro.equals("")) {
+            Toast.makeText(this, "Se requiere de la Foto Cuatro como evidencia, obligatoria", Toast.LENGTH_SHORT).show();
+        }else if (fotocinco.equals("")) {
+            Toast.makeText(this, "Se requiere de la Foto Cinco como evidencia, obligatoria", Toast.LENGTH_SHORT).show();
+        }else if (fotoseis.equals("")) {
+            Toast.makeText(this, "Se requiere de la Foto Seis como evidencia, obligatoria", Toast.LENGTH_SHORT).show();
+        }else if (firmaTec.equals("") && firmaResp.equals("")) {
             Toast.makeText(this, "Se requieren las Firmas, el formulario no se envío ", Toast.LENGTH_SHORT).show();
+        }else if (firmaTec.equals("")) {
+            Toast.makeText(this, "Se requiere de la Firma Técnico como evidencia, obligatoria", Toast.LENGTH_SHORT).show();
+        }else if (firmaResp.equals("")) {
+            Toast.makeText(this, "Se requiere de la Firma Responsable como evidencia, obligatoria", Toast.LENGTH_SHORT).show();
         } else {
             btnEnviar.setEnabled(false);
             Bundle extras = getIntent().getExtras();
@@ -464,6 +471,14 @@ public class informe_tecnico extends Activity {
         }
     }
 
+    public void borrarif(View v) {
+
+        MyOpenHelper dbHelper = new MyOpenHelper(this);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.execSQL("DELETE FROM IFSQL");
+        Toast.makeText(this, "Los datos se han borrado", Toast.LENGTH_SHORT).show();
+    }
+
     public void grabar(View v) {
         getRadios();
         MyOpenHelper dbHelper = new MyOpenHelper(this);
@@ -540,43 +555,43 @@ public class informe_tecnico extends Activity {
                     firmaResp = FirmaRes;
                     firmanteResp = Firmanres;
 
-                    if (fotouno != "") {
+                    if (!fotouno.equals("")) {
                         btncamara1.setEnabled(false);
                     }
 
-                    if (fotodos != "") {
+                    if (!fotodos.equals("")) {
                         btncamara2.setEnabled(false);
                     }
 
-                    if (fototres != "") {
+                    if (!fototres.equals("")) {
                         btncamara3.setEnabled(false);
                     }
 
-                    if (fotocuatro != "") {
+                    if (!fotocuatro.equals("")) {
                         btncamara4.setEnabled(false);
                     }
 
-                    if (fotocinco != "") {
+                    if (!fotocinco.equals("")) {
                         btncamara5.setEnabled(false);
                     }
 
-                    if (fotoseis != "") {
+                    if (!fotoseis.equals("")) {
                         btncamara6.setEnabled(false);
                     }
 
-                    if (firmaTec != "") {
+                    if (!firmaTec.equals("")) {
                         btnFirmaTec.setEnabled(false);
                     }
 
-                    if (firmanteTec != "") {
+                    if (!firmanteTec.equals("")) {
 
                     }
 
-                    if (firmaTec != "") {
+                    if (!firmaResp.equals("")) {
                         btnFirmaResp.setEnabled(false);
                     }
 
-                    if (firmanteResp != "") {
+                    if (!firmanteResp.equals("")) {
 
                     }
 
@@ -591,7 +606,7 @@ public class informe_tecnico extends Activity {
         }
     }
 
-        public class taskFormularioITLibre extends AsyncTask<Void, Void, Boolean> {
+    public class taskFormularioITLibre extends AsyncTask<Void, Void, Boolean> {
             private String formualrio;
             private String respuesta = "{'d':''}";
             String url = URLGPS + "EnvioFormITAuditoria.aspx/GuardarFormIT";
@@ -680,7 +695,7 @@ public class informe_tecnico extends Activity {
                         //Toast.makeText(getApplicationContext(), "Reporte enviado exitósamente..", Toast.LENGTH_SHORT).show();
                     } else if (JSON.getString("d").equals("Error al guardar")) {
                         alertDialog.setTitle("Error");
-                        alertDialog.setMessage("El reporte no se.");
+                        alertDialog.setMessage("El reporte no se pudo enviar a los destinatarios.");
                         alertDialog.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

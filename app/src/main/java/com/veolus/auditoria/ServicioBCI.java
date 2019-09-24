@@ -352,7 +352,6 @@ public class ServicioBCI extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 0);
                 in.putExtra("numFoto", "Imagen01");
-                btncamara1.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -364,7 +363,6 @@ public class ServicioBCI extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 1);
                 in.putExtra("numFoto", "Imagen02");
-                btncamara2.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -376,7 +374,6 @@ public class ServicioBCI extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 2);
                 in.putExtra("numFoto", "Imagen03");
-                btncamara3.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -387,7 +384,6 @@ public class ServicioBCI extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 3);
                 in.putExtra("numFoto", "Imagen04");
-                btncamara4.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -398,7 +394,6 @@ public class ServicioBCI extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 4);
                 in.putExtra("numFoto", "Imagen05");
-                btncamara5.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -409,7 +404,6 @@ public class ServicioBCI extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 0);
                 in.putExtra("numFoto", "Imagen06");
-                btncamara6.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -420,7 +414,6 @@ public class ServicioBCI extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 1);
                 in.putExtra("numFoto", "Imagen07");
-                btncamara7.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -431,7 +424,6 @@ public class ServicioBCI extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 2);
                 in.putExtra("numFoto", "Imagen08");
-                btncamara8.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -442,7 +434,6 @@ public class ServicioBCI extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 3);
                 in.putExtra("numFoto", "Imagen09");
-                btncamara9.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -453,7 +444,6 @@ public class ServicioBCI extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 4);
                 in.putExtra("numFoto", "Imagen10");
-                btncamara10.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -464,7 +454,6 @@ public class ServicioBCI extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 0);
                 in.putExtra("numFoto", "Imagen11");
-                btncamara11.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -475,7 +464,6 @@ public class ServicioBCI extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 1);
                 in.putExtra("numFoto", "Imagen12");
-                btncamara12.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -486,7 +474,6 @@ public class ServicioBCI extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 2);
                 in.putExtra("numFoto", "Imagen13");
-                btncamara13.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -497,7 +484,6 @@ public class ServicioBCI extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 3);
                 in.putExtra("numFoto", "Imagen14");
-                btncamara14.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -508,7 +494,6 @@ public class ServicioBCI extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 4);
                 in.putExtra("numFoto", "Imagen15");
-                btncamara15.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -519,7 +504,6 @@ public class ServicioBCI extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 0);
                 in.putExtra("numFoto", "Imagen16");
-                btncamara16.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -530,7 +514,6 @@ public class ServicioBCI extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 1);
                 in.putExtra("numFoto", "Imagen17");
-                btncamara17.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -541,7 +524,6 @@ public class ServicioBCI extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 2);
                 in.putExtra("numFoto", "Imagen18");
-                btncamara18.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -552,7 +534,6 @@ public class ServicioBCI extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 3);
                 in.putExtra("numFoto", "Imagen19");
-                btncamara19.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -566,16 +547,12 @@ public class ServicioBCI extends Activity {
             if ("vacio".equals(data.getStringExtra("FirmaRESP"))) {
                 firmaTec = data.getStringExtra("FirmaTEC");
                 firmanteTec = data.getStringExtra("NombreTec");
-                if (firmaTec != "" && firmanteTec != "" ){
                     btnFirmaTec.setEnabled(false);
-                }
 
             } else if ("vacio".equals(data.getStringExtra("FirmaTEC"))) {
                 firmaResp = data.getStringExtra("FirmaRESP");
                 firmanteResp = data.getStringExtra("NombreResp");
-                if (firmaResp != "" && firmanteResp != ""){
                     btnFirmaResp.setEnabled(false);
-                }
             }
 
             if ("vacio".equals(data.getStringExtra("FotoDos")) && "vacio".equals(data.getStringExtra("FotoTres"))
@@ -584,6 +561,7 @@ public class ServicioBCI extends Activity {
                 imagenString = convertirimagen(data.getStringExtra("FotoUno"));
                 fotosg.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoUno"));
                 fotos.add(data.getStringExtra("numFoto") + ":" + imagenString);
+                DisabledButtonCam(data.getStringExtra("numFoto"));
 
             } else if ("vacio".equals(data.getStringExtra("FotoUno")) && "vacio".equals(data.getStringExtra("FotoTres"))
                     && "vacio".equals(data.getStringExtra("FotoCuatro")) && "vacio".equals(data.getStringExtra("FotoCnco"))) {
@@ -591,6 +569,7 @@ public class ServicioBCI extends Activity {
                 imagenString = convertirimagen(data.getStringExtra("FotoDos"));
                 fotosg.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoDos"));
                 fotos.add( data.getStringExtra("numFoto") + ":" + imagenString);
+                DisabledButtonCam(data.getStringExtra("numFoto"));
 
             } else if ("vacio".equals(data.getStringExtra("FotoUno")) && "vacio".equals(data.getStringExtra("FotoDos"))
                     && "vacio".equals(data.getStringExtra("FotoCuatro")) && "vacio".equals(data.getStringExtra("FotoCnco"))) {
@@ -598,6 +577,7 @@ public class ServicioBCI extends Activity {
                 imagenString = convertirimagen(data.getStringExtra("FotoTres"));
                 fotosg.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoTres"));
                 fotos.add( data.getStringExtra("numFoto") + ":" + imagenString);
+                DisabledButtonCam(data.getStringExtra("numFoto"));
 
             } else if ("vacio".equals(data.getStringExtra("FotoUno")) && "vacio".equals(data.getStringExtra("FotoDos"))
                     && "vacio".equals(data.getStringExtra("FotoTres")) && "vacio".equals(data.getStringExtra("FotoCnco"))) {
@@ -605,6 +585,7 @@ public class ServicioBCI extends Activity {
                 imagenString = convertirimagen(data.getStringExtra("FotoCuatro"));
                 fotosg.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoCuatro"));
                 fotos.add( data.getStringExtra("numFoto") + ":" + imagenString);
+                DisabledButtonCam(data.getStringExtra("numFoto"));
 
             } else if ("vacio".equals(data.getStringExtra("FotoUno")) && "vacio".equals(data.getStringExtra("FotoDos"))
                     && "vacio".equals(data.getStringExtra("FotoTres")) && "vacio".equals(data.getStringExtra("FotoCuatro"))) {
@@ -612,10 +593,70 @@ public class ServicioBCI extends Activity {
                 imagenString = convertirimagen(data.getStringExtra("FotoCnco"));
                 fotosg.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoCnco"));
                 fotos.add( data.getStringExtra("numFoto") + ":" + imagenString);
+                DisabledButtonCam(data.getStringExtra("numFoto"));
 
             }
         }
+    }
 
+    private  void DisabledButtonCam(String numFoto){
+        if(numFoto.equals("Imagen01")){
+            btncamara1.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen02")){
+            btncamara2.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen03")){
+            btncamara3.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen04")){
+            btncamara4.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen05")){
+            btncamara5.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen06")){
+            btncamara6.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen07")){
+            btncamara7.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen08")){
+            btncamara8.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen09")){
+            btncamara9.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen10")){
+            btncamara10.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen11")){
+            btncamara11.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen12")){
+            btncamara12.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen13")){
+            btncamara13.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen14")){
+            btncamara14.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen15")){
+            btncamara15.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen16")){
+            btncamara16.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen17")){
+            btncamara17.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen18")){
+            btncamara18.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen19")){
+            btncamara19.setEnabled(false);
+        }
     }
 
     private String convertirimagen(String path){
@@ -732,11 +773,13 @@ public class ServicioBCI extends Activity {
         }
         else if(!ContainsAny("Imagen19", fotos)){
             Toast.makeText(this, "Se requieren fotos para la sección de 'MEDICIÓN Y REGISTRO'", Toast.LENGTH_SHORT).show();
-        }
-       else if (firmaResp == "") {
+
+        } else if (firmaTec.equals("") && firmaResp.equals("")) {
+            Toast.makeText(this, "Se requieren las Firmas, el formulario no se envío ", Toast.LENGTH_SHORT).show();
+        } else if (firmaResp.equals("")) {
             Toast.makeText(this, "Se requiere la firma del Jefe de Mtto", Toast.LENGTH_SHORT).show();
             //return false;
-        } else if (firmaTec == "") {
+        } else if (firmaTec.equals("")) {
             Toast.makeText(this, "Se requiere la firma del Jefe del Sitio", Toast.LENGTH_SHORT).show();
 
         } else {
@@ -1365,7 +1408,7 @@ public class ServicioBCI extends Activity {
 
                     }
 
-                    if (!firmaTec.equals("")) {
+                    if (!firmaResp.equals("")) {
                         btnFirmaResp.setEnabled(false);
                     }
 

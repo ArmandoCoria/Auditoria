@@ -431,24 +431,6 @@ public class Form_auditoria extends Activity {
         etPromesas = (EditText) findViewById(R.id.promesas);
         etPromesas1 = (EditText) findViewById(R.id.promesas1);
 
-      /*  etm = (CheckBox) findViewById(R.id.button01);
-        elevadores = (CheckBox) findViewById(R.id.button02);
-        montacargas = (CheckBox) findViewById(R.id.button03);
-        bci = (CheckBox) findViewById(R.id.button04);
-        pem = (CheckBox) findViewById(R.id.button05);
-        subestacion = (CheckBox) findViewById(R.id.button06);
-        chillers = (CheckBox) findViewById(R.id.button07);
-        bombas = (CheckBox) findViewById(R.id.button08);
-        torres = (CheckBox) findViewById(R.id.button09);
-        umas = (CheckBox) findViewById(R.id.button10);
-        ups = (CheckBox) findViewById(R.id.button11);
-        ulas = (CheckBox) findViewById(R.id.button12);
-        minis = (CheckBox) findViewById(R.id.button13);
-        extractores = (CheckBox) findViewById(R.id.button14);
-        tableros = (CheckBox) findViewById(R.id.button15);
-        cocinas = (CheckBox) findViewById(R.id.button16);
-        sanitarios = (CheckBox) findViewById(R.id.button17);*/
-
         check = (CheckBox) findViewById(R.id.button1);
 
         peines = (CheckBox) findViewById(R.id.peines);
@@ -862,7 +844,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 0);
                 in.putExtra("numFoto", "Imagen01");
                 in.putExtra("flgZona", 1);
-                btncamara1.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -875,7 +856,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 1);
                 in.putExtra("numFoto", "Imagen02");
                 in.putExtra("flgZona", 1);
-                btncamara2.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -888,7 +868,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 2);
                 in.putExtra("numFoto", "Imagen03");
                 in.putExtra("flgZona", 1);
-                btncamara3.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -900,7 +879,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 3);
                 in.putExtra("numFoto", "Imagen04");
                 in.putExtra("flgZona", 1);
-                btncamara4.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -912,7 +890,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 4);
                 in.putExtra("numFoto", "Imagen05");
                 in.putExtra("flgZona", 1);
-                btncamara5.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -924,7 +901,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 0);
                 in.putExtra("numFoto", "Imagen06");
                 in.putExtra("flgZona", 2);
-                btncamara6.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -936,7 +912,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 1);
                 in.putExtra("numFoto", "Imagen07");
                 in.putExtra("flgZona", 2);
-                btncamara7.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -948,7 +923,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 2);
                 in.putExtra("numFoto", "Imagen08");
                 in.putExtra("flgZona", 2);
-                btncamara8.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -960,7 +934,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 3);
                 in.putExtra("numFoto", "Imagen09");
                 in.putExtra("flgZona", 2);
-                btncamara9.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -972,7 +945,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 4);
                 in.putExtra("numFoto", "Imagen10");
                 in.putExtra("flgZona", 2);
-                btncamara10.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -984,7 +956,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 0);
                 in.putExtra("numFoto", "Imagen11");
                 in.putExtra("flgZona", 3);
-                btncamara11.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -996,7 +967,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 1);
                 in.putExtra("numFoto", "Imagen12");
                 in.putExtra("flgZona", 3);
-                btncamara12.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1008,7 +978,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 2);
                 in.putExtra("numFoto", "Imagen13");
                 in.putExtra("flgZona", 3);
-                btncamara13.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1020,7 +989,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 3);
                 in.putExtra("numFoto", "Imagen14");
                 in.putExtra("flgZona", 3);
-                btncamara14.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1032,7 +1000,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 4);
                 in.putExtra("numFoto", "Imagen15");
                 in.putExtra("flgZona", 3);
-                btncamara15.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1044,7 +1011,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 0);
                 in.putExtra("numFoto", "Imagen16");
                 in.putExtra("flgZona", 4);
-                btncamara16.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1056,7 +1022,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 1);
                 in.putExtra("numFoto", "Imagen17");
                 in.putExtra("flgZona", 4);
-                btncamara17.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1068,7 +1033,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 2);
                 in.putExtra("numFoto", "Imagen18");
                 in.putExtra("flgZona", 4);
-                btncamara18.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1080,7 +1044,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 3);
                 in.putExtra("numFoto", "Imagen19");
                 in.putExtra("flgZona", 4);
-                btncamara19.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1092,7 +1055,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 4);
                 in.putExtra("numFoto", "Imagen20");
                 in.putExtra("flgZona", 4);
-                btncamara20.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1104,7 +1066,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 0);
                 in.putExtra("numFoto", "Imagen21");
                 in.putExtra("flgZona", 5);
-                btncamara21.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1116,7 +1077,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 1);
                 in.putExtra("numFoto", "Imagen22");
                 in.putExtra("flgZona", 5);
-                btncamara22.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1128,7 +1088,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 2);
                 in.putExtra("numFoto", "Imagen23");
                 in.putExtra("flgZona", 5);
-                btncamara23.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1140,7 +1099,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 3);
                 in.putExtra("numFoto", "Imagen24");
                 in.putExtra("flgZona", 5);
-                btncamara24.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1152,7 +1110,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 4);
                 in.putExtra("numFoto", "Imagen25");
                 in.putExtra("flgZona", 5);
-                btncamara25.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1164,7 +1121,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 0);
                 in.putExtra("numFoto", "Imagen26");
                 in.putExtra("flgZona", 6);
-                btncamara26.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1176,7 +1132,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 1);
                 in.putExtra("numFoto", "Imagen27");
                 in.putExtra("flgZona", 6);
-                btncamara27.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1188,7 +1143,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 2);
                 in.putExtra("numFoto", "Imagen28");
                 in.putExtra("flgZona", 6);
-                btncamara28.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1200,7 +1154,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 3);
                 in.putExtra("numFoto", "Imagen29");
                 in.putExtra("flgZona", 6);
-                btncamara29.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1212,7 +1165,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 4);
                 in.putExtra("numFoto", "Imagen30");
                 in.putExtra("flgZona", 6);
-                btncamara30.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1224,7 +1176,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 0);
                 in.putExtra("numFoto", "Imagen31");
                 in.putExtra("flgZona", 7);
-                btncamara31.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1236,7 +1187,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 1);
                 in.putExtra("numFoto", "Imagen32");
                 in.putExtra("flgZona", 7);
-                btncamara32.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1248,7 +1198,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 2);
                 in.putExtra("numFoto", "Imagen33");
                 in.putExtra("flgZona", 7);
-                btncamara33.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1260,7 +1209,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 3);
                 in.putExtra("numFoto", "Imagen34");
                 in.putExtra("flgZona", 7);
-                btncamara34.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1272,7 +1220,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 4);
                 in.putExtra("numFoto", "Imagen35");
                 in.putExtra("flgZona", 7);
-                btncamara35.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1284,7 +1231,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 0);
                 in.putExtra("numFoto", "Imagen36");
                 in.putExtra("flgZona", 8);
-                btncamara36.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1296,7 +1242,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 1);
                 in.putExtra("numFoto", "Imagen37");
                 in.putExtra("flgZona", 8);
-                btncamara37.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1308,7 +1253,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 2);
                 in.putExtra("numFoto", "Imagen38");
                 in.putExtra("flgZona", 8);
-                btncamara38.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1320,7 +1264,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 3);
                 in.putExtra("numFoto", "Imagen39");
                 in.putExtra("flgZona", 8);
-                btncamara39.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1332,7 +1275,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 4);
                 in.putExtra("numFoto", "Imagen40");
                 in.putExtra("flgZona", 8);
-                btncamara40.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1344,7 +1286,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 0);
                 in.putExtra("numFoto", "Imagen41");
                 in.putExtra("flgZona", 9);
-                btncamara41.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1356,7 +1297,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 1);
                 in.putExtra("numFoto", "Imagen42");
                 in.putExtra("flgZona", 9);
-                btncamara42.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1368,7 +1308,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 2);
                 in.putExtra("numFoto", "Imagen43");
                 in.putExtra("flgZona", 9);
-                btncamara43.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1380,7 +1319,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 3);
                 in.putExtra("numFoto", "Imagen44");
                 in.putExtra("flgZona", 9);
-                btncamara44.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1392,7 +1330,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 4);
                 in.putExtra("numFoto", "Imagen45");
                 in.putExtra("flgZona", 9);
-                btncamara45.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1404,7 +1341,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 0);
                 in.putExtra("numFoto", "Imagen46");
                 in.putExtra("flgZona", 10);
-                btncamara46.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1416,7 +1352,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 1);
                 in.putExtra("numFoto", "Imagen47");
                 in.putExtra("flgZona", 10);
-                btncamara47.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1428,7 +1363,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 2);
                 in.putExtra("numFoto", "Imagen48");
                 in.putExtra("flgZona", 10);
-                btncamara48.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1440,7 +1374,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 3);
                 in.putExtra("numFoto", "Imagen49");
                 in.putExtra("flgZona", 10);
-                btncamara49.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1452,7 +1385,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 4);
                 in.putExtra("numFoto", "Imagen50");
                 in.putExtra("flgZona", 10);
-                btncamara50.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1464,7 +1396,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 0);
                 in.putExtra("numFoto", "Imagen51");
                 in.putExtra("flgZona", 11);
-                btncamara51.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1476,7 +1407,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 1);
                 in.putExtra("numFoto", "Imagen52");
                 in.putExtra("flgZona", 11);
-                btncamara52.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1488,7 +1418,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 2);
                 in.putExtra("numFoto", "Imagen53");
                 in.putExtra("flgZona", 11);
-                btncamara52.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1500,7 +1429,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 3);
                 in.putExtra("numFoto", "Imagen54");
                 in.putExtra("flgZona", 11);
-                btncamara54.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1512,7 +1440,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 4);
                 in.putExtra("numFoto", "Imagen55");
                 in.putExtra("flgZona", 11);
-                btncamara55.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1524,7 +1451,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 0);
                 in.putExtra("numFoto", "Imagen56");
                 in.putExtra("flgZona", 12);
-                btncamara56.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1536,7 +1462,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 1);
                 in.putExtra("numFoto", "Imagen57");
                 in.putExtra("flgZona", 12);
-                btncamara57.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1548,7 +1473,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 2);
                 in.putExtra("numFoto", "Imagen58");
                 in.putExtra("flgZona", 12);
-                btncamara58.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1560,7 +1484,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 3);
                 in.putExtra("numFoto", "Imagen59");
                 in.putExtra("flgZona", 12);
-                btncamara59.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1572,7 +1495,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 4);
                 in.putExtra("numFoto", "Imagen60");
                 in.putExtra("flgZona", 12);
-                btncamara60.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1584,7 +1506,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 0);
                 in.putExtra("numFoto", "Imagen61");
                 in.putExtra("flgZona", 13);
-                btncamara61.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1596,7 +1517,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 1);
                 in.putExtra("numFoto", "Imagen62");
                 in.putExtra("flgZona", 13);
-                btncamara62.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1608,7 +1528,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 2);
                 in.putExtra("numFoto", "Imagen63");
                 in.putExtra("flgZona", 13);
-                btncamara63.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1620,7 +1539,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 3);
                 in.putExtra("numFoto", "Imagen64");
                 in.putExtra("flgZona", 13);
-                btncamara64.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1632,7 +1550,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 4);
                 in.putExtra("numFoto", "Imagen65");
                 in.putExtra("flgZona", 13);
-                btncamara65.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1644,7 +1561,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 0);
                 in.putExtra("numFoto", "Imagen66");
                 in.putExtra("flgZona", 14);
-                btncamara66.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1656,7 +1572,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 1);
                 in.putExtra("numFoto", "Imagen67");
                 in.putExtra("flgZona", 14);
-                btncamara67.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1668,7 +1583,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 2);
                 in.putExtra("numFoto", "Imagen68");
                 in.putExtra("flgZona", 14);
-                btncamara68.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1680,7 +1594,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 3);
                 in.putExtra("numFoto", "Imagen69");
                 in.putExtra("flgZona", 14);
-                btncamara69.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1692,7 +1605,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 4);
                 in.putExtra("numFoto", "Imagen70");
                 in.putExtra("flgZona", 14);
-                btncamara70.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1704,7 +1616,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 0);
                 in.putExtra("numFoto", "Imagen71");
                 in.putExtra("flgZona", 15);
-                btncamara71.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1716,7 +1627,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 1);
                 in.putExtra("numFoto", "Imagen72");
                 in.putExtra("flgZona", 15);
-                btncamara72.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1728,7 +1638,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 2);
                 in.putExtra("numFoto", "Imagen73");
                 in.putExtra("flgZona", 15);
-                btncamara73.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1740,7 +1649,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 3);
                 in.putExtra("numFoto", "Imagen74");
                 in.putExtra("flgZona", 15);
-                btncamara74.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1752,7 +1660,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 4);
                 in.putExtra("numFoto", "Imagen75");
                 in.putExtra("flgZona", 15);
-                btncamara75.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1764,7 +1671,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 0);
                 in.putExtra("numFoto", "Imagen76");
                 in.putExtra("flgZona", 16);
-                btncamara76.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1776,7 +1682,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 1);
                 in.putExtra("numFoto", "Imagen77");
                 in.putExtra("flgZona", 16);
-                btncamara77.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1788,7 +1693,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 2);
                 in.putExtra("numFoto", "Imagen78");
                 in.putExtra("flgZona", 16);
-                btncamara78.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1800,7 +1704,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 3);
                 in.putExtra("numFoto", "Imagen79");
                 in.putExtra("flgZona", 16);
-                btncamara79.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1812,7 +1715,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 4);
                 in.putExtra("numFoto", "Imagen80");
                 in.putExtra("flgZona", 16);
-                btncamara79.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1824,7 +1726,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 0);
                 in.putExtra("numFoto", "Imagen81");
                 in.putExtra("flgZona", 17);
-                btncamara81.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1836,7 +1737,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 1);
                 in.putExtra("numFoto", "Imagen82");
                 in.putExtra("flgZona", 17);
-                btncamara82.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1848,7 +1748,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 2);
                 in.putExtra("numFoto", "Imagen83");
                 in.putExtra("flgZona", 17);
-                btncamara83.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1860,7 +1759,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 3);
                 in.putExtra("numFoto", "Imagen84");
                 in.putExtra("flgZona", 17);
-                btncamara84.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1872,7 +1770,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 4);
                 in.putExtra("numFoto", "Imagen85");
                 in.putExtra("flgZona", 17);
-                btncamara85.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1884,7 +1781,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 0);
                 in.putExtra("numFoto", "Imagen86");
                 in.putExtra("flgZona", 18);
-                btncamara86.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1896,7 +1792,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 1);
                 in.putExtra("numFoto", "Imagen87");
                 in.putExtra("flgZona", 18);
-                btncamara87.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1908,7 +1803,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 2);
                 in.putExtra("numFoto", "Imagen88");
                 in.putExtra("flgZona", 18);
-                btncamara88.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1920,7 +1814,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 3);
                 in.putExtra("numFoto", "Imagen89");
                 in.putExtra("flgZona", 18);
-                btncamara89.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1932,7 +1825,6 @@ public class Form_auditoria extends Activity {
                 in.putExtra("Camera", 4);
                 in.putExtra("numFoto", "Imagen90");
                 in.putExtra("flgZona", 18);
-                btncamara90.setEnabled(false);
                 startActivityForResult(in, 1);
             }
         });
@@ -1987,12 +1879,14 @@ public class Form_auditoria extends Activity {
                     btnFirmaResp.setEnabled(false);
                 }
             }
+
             if ("vacio".equals(data.getStringExtra("FotoDos")) && "vacio".equals(data.getStringExtra("FotoTres"))
                     && "vacio".equals(data.getStringExtra("FotoCuatro")) && "vacio".equals(data.getStringExtra("FotoCnco")))
             {
                 imagenString = convertirimagen(data.getStringExtra("FotoUno"));
                 fotosg.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoUno"));
                 fotos.add(data.getStringExtra("numFoto") + ":" + imagenString);
+                DisabledButtonCam(data.getStringExtra("numFoto"));
 
             } else if ("vacio".equals(data.getStringExtra("FotoUno")) && "vacio".equals(data.getStringExtra("FotoTres"))
                     && "vacio".equals(data.getStringExtra("FotoCuatro")) && "vacio".equals(data.getStringExtra("FotoCnco")))
@@ -2000,6 +1894,7 @@ public class Form_auditoria extends Activity {
                 imagenString = convertirimagen(data.getStringExtra("FotoDos"));
                 fotosg.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoDos"));
                 fotos.add( data.getStringExtra("numFoto") + ":" + imagenString);
+                DisabledButtonCam(data.getStringExtra("numFoto"));
 
             } else if ("vacio".equals(data.getStringExtra("FotoUno")) && "vacio".equals(data.getStringExtra("FotoDos"))
                     && "vacio".equals(data.getStringExtra("FotoCuatro")) && "vacio".equals(data.getStringExtra("FotoCnco")))
@@ -2007,6 +1902,7 @@ public class Form_auditoria extends Activity {
                 imagenString = convertirimagen(data.getStringExtra("FotoTres"));
                 fotosg.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoTres"));
                 fotos.add( data.getStringExtra("numFoto") + ":" + imagenString);
+                DisabledButtonCam(data.getStringExtra("numFoto"));
 
             }else if ("vacio".equals(data.getStringExtra("FotoUno")) && "vacio".equals(data.getStringExtra("FotoDos"))
                     && "vacio".equals(data.getStringExtra("FotoTres")) && "vacio".equals(data.getStringExtra("FotoCnco")))
@@ -2014,6 +1910,7 @@ public class Form_auditoria extends Activity {
                 imagenString = convertirimagen(data.getStringExtra("FotoCuatro"));
                 fotosg.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoCuatro"));
                 fotos.add( data.getStringExtra("numFoto") + ":" + imagenString);
+                DisabledButtonCam(data.getStringExtra("numFoto"));
 
             }else if ("vacio".equals(data.getStringExtra("FotoUno")) && "vacio".equals(data.getStringExtra("FotoDos"))
                     &&"vacio".equals(data.getStringExtra("FotoTres")) && "vacio".equals(data.getStringExtra("FotoCuatro")))
@@ -2021,6 +1918,7 @@ public class Form_auditoria extends Activity {
                 imagenString = convertirimagen(data.getStringExtra("FotoCnco"));
                 fotosg.add(data.getStringExtra("numFoto") + ":" + data.getStringExtra("FotoCnco"));
                 fotos.add( data.getStringExtra("numFoto") + ":" + imagenString);
+                DisabledButtonCam(data.getStringExtra("numFoto"));
             }
 
             if(data.getIntExtra("flgZona", 0) == 1)
@@ -2095,6 +1993,279 @@ public class Form_auditoria extends Activity {
             {
                 ffchecklist = true;
             }
+        }
+    }
+
+    private  void DisabledButtonCam(String numFoto){
+        if(numFoto.equals("Imagen01")){
+            btncamara1.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen02")){
+            btncamara2.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen03")){
+            btncamara3.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen04")){
+            btncamara4.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen05")){
+            btncamara5.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen06")){
+            btncamara6.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen07")){
+            btncamara7.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen08")){
+            btncamara8.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen09")){
+            btncamara9.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen10")){
+            btncamara10.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen11")){
+            btncamara11.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen12")){
+            btncamara12.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen13")){
+            btncamara13.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen14")){
+            btncamara14.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen15")){
+            btncamara15.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen16")){
+            btncamara16.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen17")){
+            btncamara17.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen18")){
+            btncamara18.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen19")){
+            btncamara19.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen20")){
+            btncamara20.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen21")){
+            btncamara21.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen22")){
+            btncamara22.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen23")){
+            btncamara23.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen24")){
+            btncamara24.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen25")){
+            btncamara25.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen26")){
+            btncamara26.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen27")){
+            btncamara27.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen28")){
+            btncamara28.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen29")){
+            btncamara29.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen30")){
+            btncamara30.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen31")){
+            btncamara31.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen32")){
+            btncamara32.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen33")){
+            btncamara33.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen34")){
+            btncamara34.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen35")){
+            btncamara35.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen36")){
+            btncamara36.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen37")){
+            btncamara37.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen38")){
+            btncamara38.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen39")){
+            btncamara39.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen40")){
+            btncamara40.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen41")){
+            btncamara41.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen42")){
+            btncamara42.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen43")){
+            btncamara43.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen44")){
+            btncamara44.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen45")){
+            btncamara45.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen46")){
+            btncamara46.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen47")){
+            btncamara47.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen48")){
+            btncamara48.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen49")){
+            btncamara49.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen50")){
+            btncamara50.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen51")){
+            btncamara51.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen52")){
+            btncamara52.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen53")){
+            btncamara53.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen54")){
+            btncamara54.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen55")){
+            btncamara55.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen56")){
+            btncamara56.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen57")){
+            btncamara57.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen58")){
+            btncamara58.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen59")){
+            btncamara59.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen60")){
+            btncamara60.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen61")){
+            btncamara61.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen62")){
+            btncamara62.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen63")){
+            btncamara63.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen64")){
+            btncamara64.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen65")){
+            btncamara65.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen66")){
+            btncamara66.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen67")){
+            btncamara67.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen68")){
+            btncamara68.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen69")){
+            btncamara69.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen70")){
+            btncamara70.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen71")){
+            btncamara71.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen72")){
+            btncamara72.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen73")){
+            btncamara73.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen74")){
+            btncamara74.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen75")){
+            btncamara75.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen76")){
+            btncamara76.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen77")){
+            btncamara77.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen78")){
+            btncamara78.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen79")){
+            btncamara79.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen80")){
+            btncamara80.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen81")){
+            btncamara81.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen82")){
+            btncamara82.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen83")){
+            btncamara83.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen84")){
+            btncamara84.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen85")){
+            btncamara85.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen86")){
+            btncamara86.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen87")){
+            btncamara87.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen88")){
+            btncamara88.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen89")){
+            btncamara89.setEnabled(false);
+        }
+        else if(numFoto.equals("Imagen90")){
+            btncamara90.setEnabled(false);
         }
     }
 
@@ -2329,12 +2500,14 @@ public class Form_auditoria extends Activity {
         }
         else if(fJefe && peticiones18.getText().length() == 0) {
             Toast.makeText(this, "El campo de peticiones para la zona Entrevista con Jefe de MTTO de Tienda no puede quedar vacía.", Toast.LENGTH_LONG).show();
-        }
-        else if(firmaTec == ""){
-            Toast.makeText(this, "Se requiere la firma del Coordinador", Toast.LENGTH_SHORT).show();
+
+        }else if (firmaTec.equals("") && firmaResp.equals("")) {
+            Toast.makeText(this, "Se requieren las Firmas, el formulario no se envío ", Toast.LENGTH_SHORT).show();
+        } else if(firmaTec.equals("")){
+            Toast.makeText(this, "Se requiere la Firma del Coordinador", Toast.LENGTH_SHORT).show();
             //return false;
-        }else if(firmaResp == ""){
-                Toast.makeText(this, "Se requiere la firma del Jefe de Sitio", Toast.LENGTH_SHORT).show();
+        }else if(firmaResp.equals("")){
+                Toast.makeText(this, "Se requiere la Firma del Jefe de Sitio", Toast.LENGTH_SHORT).show();
         } else {
             partida_concepto.substring(0, partida_concepto.length()-1);
             zonas.substring(0, zonas.length()-2);
@@ -3221,9 +3394,6 @@ public class Form_auditoria extends Activity {
 
     public void recuperarau(View v) {
 
-      //  Log.d("path", fotosg.get(0).substring(10));
-       // int i = 0;
-
         int i;
 
         try {
@@ -3911,7 +4081,7 @@ public class Form_auditoria extends Activity {
 
                     }
 
-                    if (!firmaTec.equals("")) {
+                    if (!firmaResp.equals("")) {
                         btnFirmaResp.setEnabled(false);
                     }
 
