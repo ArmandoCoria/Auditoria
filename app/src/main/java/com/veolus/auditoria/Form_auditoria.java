@@ -324,9 +324,9 @@ public class Form_auditoria extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_libre_auditoria);
-        mContext = this;
 
-        //Fecha
+
+        mContext = this;
         Thread t = new Thread() {
             public void run() {
                 while (!isInterrupted()) {
@@ -340,20 +340,20 @@ public class Form_auditoria extends Activity {
                         @RequiresApi(api = Build.VERSION_CODES.N)
                         @Override
                         public void run() {
-                            TextView tdate = (TextView) findViewById(R.id.fecha);
+                           TextView tdate = findViewById(R.id.fecha);
                             long date = System.currentTimeMillis();
                             SimpleDateFormat adf = null;
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                adf = new SimpleDateFormat("MMM dd/yy");
+                                adf = new SimpleDateFormat("MMMM dd/yyyy");
                             }
-                          String dateString = adf.format(date);
-                    tdate.setText(dateString);
+                            String dateString = adf.format(date);
+                            tdate.setText(dateString);
                         }
                     });
                 }
             }
         };
-            t.start();
+        t.start();
 
         etDgc = (EditText) findViewById(R.id.dgc);
         etMotivo = (EditText) findViewById(R.id.motivo);

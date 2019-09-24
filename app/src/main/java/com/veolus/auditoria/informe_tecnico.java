@@ -105,9 +105,7 @@ public class informe_tecnico extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_informe_tecnico_auditoria);
-
-
-        //Fecha
+        mContext = this;
         Thread t = new Thread() {
             public void run() {
                 while (!isInterrupted()) {
@@ -125,7 +123,7 @@ public class informe_tecnico extends Activity {
                             long date = System.currentTimeMillis();
                             SimpleDateFormat adf = null;
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                adf = new SimpleDateFormat("MMM dd/yy");
+                                adf = new SimpleDateFormat("MMMM dd/yyyy");
                             }
                             String dateString = adf.format(date);
                             tdate.setText(dateString);

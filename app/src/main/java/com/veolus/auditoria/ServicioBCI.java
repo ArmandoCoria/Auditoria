@@ -183,7 +183,6 @@ public class ServicioBCI extends Activity {
         setContentView(R.layout.activity_servicio_bci);
 
         mContext = this;
-//Fecha
         Thread t = new Thread() {
             public void run() {
                 while (!isInterrupted()) {
@@ -210,9 +209,7 @@ public class ServicioBCI extends Activity {
                 }
             }
         };
-
         t.start();
-
 
         etFechaInicio = findViewById(R.id.fechainicio);
         etFechaInicio.setOnClickListener(new View.OnClickListener() {

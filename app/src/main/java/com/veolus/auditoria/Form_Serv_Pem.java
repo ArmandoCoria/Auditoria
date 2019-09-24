@@ -227,6 +227,7 @@ public class Form_Serv_Pem extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_pem);
+
         mContext = this;
         Thread t = new Thread() {
             public void run() {
