@@ -31,13 +31,14 @@
 
         <TextView
             android:id="@+id/fecha1"
-            android:layout_width="match_parent"
+            android:layout_width="332dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="15dp"
+            android:maxLength="20"
             android:maxLines="1"
-            android:maxLength="15"
-            android:singleLine="true"/>
+            android:singleLine="true"
+            android:layout_gravity="center"
+            android:textSize="15dp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 

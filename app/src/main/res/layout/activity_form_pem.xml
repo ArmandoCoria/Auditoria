@@ -33,10 +33,11 @@
                 android:id="@+id/fechaActual"
                 android:layout_width="332dp"
                 android:layout_height="wrap_content"
-                android:gravity="right"
+                android:gravity="center"
                 android:maxLength="20"
                 android:maxLines="1"
                 android:singleLine="true"
+                android:layout_gravity="center"
                 android:textSize="15dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
