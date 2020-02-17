@@ -2,6 +2,7 @@ package com.veolus.auditoria;
 
 import android.annotation.SuppressLint;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -10,6 +11,8 @@ import android.content.Intent;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import static com.veolus.auditoria.logeo.USER_CRED;
 
 public class Formatos extends AppCompatActivity {
 
@@ -26,7 +29,7 @@ public class Formatos extends AppCompatActivity {
         public void onEstatusClicked(View view) {
 
             Intent mio = null;
-
+            SharedPreferences userCred = getSharedPreferences(USER_CRED, 0);
             switch (view.getId()){
                 case R.id.formetm:
                     mio=new Intent(Formatos.this, Form_auditoria.class);
@@ -43,6 +46,9 @@ public class Formatos extends AppCompatActivity {
                     break;
                 case  R.id.cerrar:
                     mio=new Intent(Formatos.this, logeo.class);
+                    SharedPreferences.Editor editor = userCred.edit();
+                    editor.remove("IDUser");
+                    editor.commit();
                     break;
             }
             startActivity(mio);

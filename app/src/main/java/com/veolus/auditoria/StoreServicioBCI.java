@@ -4,6 +4,8 @@ import java.util.List;
 
 public class StoreServicioBCI {
 
+    private String idUser;
+    private String id;
     private String Fecha;
     private String FechaInicio;
     private String Fechafin;
@@ -74,6 +76,8 @@ public class StoreServicioBCI {
     private String TiempoArranque;
 
     public List<String> fotos ;
+    public void setIdUser(String user) {this.idUser = user; }
+    public void setId(String id) {this.id = id; }
     public void setFecha(String fecha ){ this.Fecha=fecha; }
     public void setFechaInicio(String fechaInicio ){ this.FechaInicio=fechaInicio; }
     public void setFechafin(String fechafin ){ this.Fechafin=fechafin; }

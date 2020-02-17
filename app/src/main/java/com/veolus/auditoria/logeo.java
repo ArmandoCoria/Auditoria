@@ -47,7 +47,7 @@ public class logeo extends AppCompatActivity {
 
     //AsyncTask
     private UserLoginTask mAuthTask = null;
-    private comprobarVersion cVersionTask= null;
+  //  private comprobarVersion cVersionTask= null;
 
     // UI references.
     private EditText mEmailView;
@@ -65,6 +65,7 @@ public class logeo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logeo2);
 
+        verificarSesion();
         int versionCode= getVersionCode();
         //Verifica que se tenga instalada la ultima versión
         //Actualizado: Continua con la revision de permisos y revisión del estado de sesión
@@ -108,14 +109,14 @@ public class logeo extends AppCompatActivity {
         return verSionCode;
     }
 
-
+/*
     private class comprobarVersion extends AsyncTask<Void, Void, String>
     {
 
         String respuesta;
 
 
-        @Override
+       @Override
         protected String doInBackground(Void... params) {
             try
             {
@@ -174,21 +175,19 @@ public class logeo extends AppCompatActivity {
             return null;
         }
 
+
+
         @Override
         protected void onPostExecute(String respuesta) {
             super.onPostExecute(respuesta);
             JSONObject obj;
-            Log.e("Nota","comprobarVersion()");
-
-                    verificarSesion();
+            verificarSesion();
         }
     }
-
+*/
     private void verificarSesion()
     {
         //Si existen credenciales de inicio de sesion entonces abrir la siguiente actividad
-        Log.e("Nota","verificaSesion()");
-
         SharedPreferences userCred = getSharedPreferences(USER_CRED, 0);
         if(userCred.getInt("IDUser",0)!=0)
         {

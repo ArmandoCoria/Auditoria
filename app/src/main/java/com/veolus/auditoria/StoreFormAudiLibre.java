@@ -4,6 +4,8 @@ import java.util.List;
 
 public class StoreFormAudiLibre {
 
+    private String idUser;
+    private String id;
     private String dgc;
     private String motivo;
     private String sitio;
@@ -73,6 +75,8 @@ public class StoreFormAudiLibre {
     private String comment40;
 
     private List<String> fotos ;
+    public void setIdUser(String user) {this.idUser = user; }
+    public void setId(String id) {this.id = id; }
     public void setDgc(String director ){ this.dgc=director; }
     public void setMotivo(String motivo ){ this.motivo=motivo; }
     public void setSitio(String sitio ){ this.sitio=sitio; }
