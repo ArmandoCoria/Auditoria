@@ -30,13 +30,14 @@
 
             <TextView
                 android:id="@+id/fecha"
-                android:layout_width="match_parent"
+                android:layout_width="332dp"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:textSize="15dp"
+                android:gravity="center"
+                android:maxLength="20"
                 android:maxLines="1"
-                android:maxLength="10"
-                android:singleLine="true"/>
+                android:singleLine="true"
+                android:layout_gravity="center"
+                android:textSize="15dp"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -180,10 +181,10 @@
                 android:id="@+id/etm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ETM - Escaleras"
                 android:gravity="left"
+                android:text="ETM - Escaleras"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -245,7 +246,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/detalles"/>
 
             <TextView
@@ -259,7 +260,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/peticiones"/>
 
             <TextView
@@ -415,7 +416,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/detalles1"/>
 
             <TextView
@@ -428,7 +429,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/peticiones1"/>
 
             <LinearLayout
@@ -578,7 +579,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/detalles2"/>
 
             <TextView
@@ -591,7 +592,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/peticiones2"/>
 
             <LinearLayout
@@ -757,7 +758,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/detalles3"/>
 
             <TextView
@@ -770,7 +771,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/peticiones3"/>
 
 
@@ -930,7 +931,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/detalles4"/>
 
             <TextView
@@ -943,7 +944,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/peticiones4"/>
 
             <LinearLayout
@@ -1099,7 +1100,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/detalles5"/>
 
             <TextView
@@ -1112,7 +1113,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/peticiones5"/>
 
             <LinearLayout
@@ -1268,7 +1269,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/detalles6"/>
 
             <TextView
@@ -1281,7 +1282,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/peticiones6"/>
 
             <LinearLayout
@@ -1424,7 +1425,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/detalles7"/>
 
             <TextView
@@ -1437,7 +1438,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/peticiones7"/>
 
             <LinearLayout
@@ -1588,7 +1589,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/detalles8"/>
 
             <TextView
@@ -1601,7 +1602,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/peticiones8"/>
 
             <LinearLayout
@@ -1724,7 +1725,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/detalles9"/>
 
             <TextView
@@ -1737,7 +1738,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/peticiones9"/>
 
             <LinearLayout
@@ -1861,7 +1862,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lines="4"
-            android:maxLength="300"
+            android:maxLength="1000"
             android:id="@+id/detalles10"/>
 
         <TextView
@@ -1874,7 +1875,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lines="4"
-            android:maxLength="300"
+            android:maxLength="1000"
             android:id="@+id/peticiones10"/>
 
         <LinearLayout
@@ -1996,7 +1997,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/detalles11"/>
 
             <TextView
@@ -2009,7 +2010,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/peticiones11"/>
 
             <LinearLayout
@@ -2132,7 +2133,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/detalles12"/>
 
             <TextView
@@ -2145,7 +2146,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/peticiones12"/>
 
             <LinearLayout
@@ -2268,7 +2269,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/detalles13"/>
 
             <TextView
@@ -2281,7 +2282,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/peticiones13"/>
 
             <LinearLayout
@@ -2403,7 +2404,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/detalles14"/>
 
             <TextView
@@ -2416,7 +2417,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/peticiones14"/>
 
             <LinearLayout
@@ -2539,7 +2540,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/detalles15"/>
 
             <TextView
@@ -2552,7 +2553,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/peticiones15"/>
 
             <LinearLayout
@@ -2675,7 +2676,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/detalles16"/>
 
             <TextView
@@ -2688,7 +2689,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/peticiones16"/>
 
             <LinearLayout
@@ -2838,7 +2839,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/detalles19"/>
 
             <TextView
@@ -2851,7 +2852,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/peticiones19"/>
 
             <LinearLayout
@@ -2929,9 +2930,6 @@
             </LinearLayout>
         </LinearLayout>
 
-
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -2976,7 +2974,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/detalles17"/>
 
             <TextView
@@ -2989,7 +2987,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/peticiones17"/>
 
             <TextView
@@ -3002,7 +3000,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/promesas"/>
 
 
@@ -3053,7 +3051,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/detalles18"/>
 
             <TextView
@@ -3066,7 +3064,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/peticiones18"/>
 
             <TextView
@@ -3079,7 +3077,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="4"
-                android:maxLength="300"
+                android:maxLength="1000"
                 android:id="@+id/promesas1"/>
 
 
@@ -3120,7 +3118,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="8"
-                android:maxLength="400"
+                android:maxLength="1000"
                 android:id="@+id/observaciones"/>
 
             <TextView
@@ -3132,7 +3130,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="8"
-                android:maxLength="400"
+                android:maxLength="1000"
                 android:id="@+id/observaciones1"/>
 
 

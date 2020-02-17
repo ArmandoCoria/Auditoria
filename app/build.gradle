@@ -7,7 +7,7 @@ android {
         applicationId 'com.veolus.auditoria'
         minSdkVersion 23
         targetSdkVersion 28
-        versionCode 12
+        versionCode 13
         versionName "2.1"
         testInstrumentationRunner 'android.support.test.runer.AndroidJUnitRunner'
 

@@ -2,6 +2,8 @@ package com.veolus.auditoria;
 
 public class StoreFormEscLibre {
 
+    private String idUser;
+    private String id;
     private int idUsuario;
     private String direccion;
     private String responsableDeSitio;
@@ -37,6 +39,9 @@ public class StoreFormEscLibre {
     private String comment9;
     private String comment10;
 
+
+    public void setIdUser(String user) {this.idUser = user; }
+    public void setId(String id) {this.id = id; }
     public void setIdUsuario(int idUsuario) {this.idUsuario=idUsuario;}
     public void setDireccion(String direccion ){ this.direccion=direccion; }
     public void setResponsableDeSitio(String responsableDeSitio ){ this.responsableDeSitio=responsableDeSitio; }

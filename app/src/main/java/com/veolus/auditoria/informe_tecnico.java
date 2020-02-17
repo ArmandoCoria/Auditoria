@@ -15,18 +15,24 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.icu.text.SimpleDateFormat;
+import android.icu.util.TimeZone;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 
+import android.text.format.DateFormat;
+import android.text.format.DateUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -36,12 +42,13 @@ import androidx.annotation.RequiresApi;
 
 import com.google.gson.Gson;
 
+import net.sourceforge.jtds.jdbc.DateTime;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -50,10 +57,17 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.util.Calendar;
+import java.util.Date;
 
 public class informe_tecnico extends Activity {
     public static final String USER_CRED = "UserCredencials";
-    private int idUSer;
+    public static String id = "";
+    private String idUSer;
+
 
     private EditText etDireccion_Sitio;
     private EditText etReparacion;
@@ -69,6 +83,9 @@ public class informe_tecnico extends Activity {
     private RadioButton elevador;
     private RadioButton rampa_acera;
     private RadioButton salvaescalera;
+    private RadioButton otros;
+    private EditText etOtros;
+    TextView texto;
 
     private Button btnEnviar;
     private Button btnFirmaTec;
@@ -89,6 +106,7 @@ public class informe_tecnico extends Activity {
     private static final String URLGPS = "http://www.veolus.com/gps/";
     OutputStreamWriter archivo = null;
     private int equipo = -1;
+
     private String firmaTec = "";
     private String firmaResp = "";
     private String firmanteTec = "";
@@ -100,14 +118,14 @@ public class informe_tecnico extends Activity {
     private String fotocinco = "";
     private String fotoseis = "";
     private Context mContext;
+    private LinearLayout oe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_informe_tecnico_auditoria);
+        mContext = this;
 
-
-        //Fecha
         Thread t = new Thread() {
             public void run() {
                 while (!isInterrupted()) {
@@ -125,7 +143,7 @@ public class informe_tecnico extends Activity {
                             long date = System.currentTimeMillis();
                             SimpleDateFormat adf = null;
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                adf = new SimpleDateFormat("MMM dd/yy");
+                                adf = new SimpleDateFormat("MMMM dd/yyyy");
                             }
                             String dateString = adf.format(date);
                             tdate.setText(dateString);
@@ -138,7 +156,8 @@ public class informe_tecnico extends Activity {
 
         mContext = this;
         SharedPreferences userCred = getSharedPreferences(USER_CRED, 0);
-        idUSer = userCred.getInt("IDUser", 0);
+        idUSer = String.valueOf(userCred.getInt("IDUser", 0));
+        oe = (LinearLayout) findViewById(R.id.OE);
         etDireccion_Sitio = (EditText) findViewById(R.id.direccionSitio);
         etReparacion = (EditText) findViewById(R.id.reparacion);
         etAntecedentes = (EditText) findViewById(R.id.antecedentes);
@@ -150,16 +169,33 @@ public class informe_tecnico extends Activity {
         elevador = (RadioButton) findViewById(R.id.elevador);
         rampa_acera = (RadioButton) findViewById(R.id.rampa_acera);
         salvaescalera = (RadioButton) findViewById(R.id.salvaescalera);
+        otros = (RadioButton) findViewById(R.id.otro);
+        etOtros = (EditText) findViewById(R.id.otroequipo);
 
         btnEnviar = (Button) findViewById(R.id.btnEnviar);
         btnEnviar.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
 
-
                 enviarFormulario();
+                btnEnviar.setEnabled(false);
             }
         });
+
+        otros = (RadioButton) findViewById(R.id.otro);
+        otros.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(oe.getVisibility() == View.VISIBLE) {
+                    oe.setVisibility(View.GONE);
+                   // texto.setTextColor(Color.GRAY);
+                }else{
+                    oe.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
 
         btnFirmaTec = (Button) findViewById(R.id.btnFirmaTec);
         btnFirmaTec.setOnClickListener(new View.OnClickListener() {
@@ -169,7 +205,7 @@ public class informe_tecnico extends Activity {
                 //0 para regresar firma del responsable de sitio y 1 para regresar firmadel tecnico
                 in.putExtra("FirmaDE", 0);
                 startActivityForResult(in, 1);
-                btnFirmaTec.setEnabled(false);
+               // btnFirmaTec.setEnabled(false);
             }
         });
 
@@ -180,7 +216,7 @@ public class informe_tecnico extends Activity {
                 Intent in = new Intent(getApplicationContext(), FirmaActivity.class);
                 in.putExtra("FirmaDE", 1);
                 startActivityForResult(in, 1);
-                btnFirmaResp.setEnabled(false);
+                //btnFirmaResp.setEnabled(false);
             }
         });
 
@@ -191,8 +227,6 @@ public class informe_tecnico extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 0);
                 startActivityForResult(in, 1);
-
-
             }
         });
 
@@ -203,7 +237,6 @@ public class informe_tecnico extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 1);
                 startActivityForResult(in, 1);
-
             }
         });
 
@@ -214,7 +247,6 @@ public class informe_tecnico extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 2);
                 startActivityForResult(in, 1);
-
             }
         });
 
@@ -225,7 +257,6 @@ public class informe_tecnico extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 3);
                 startActivityForResult(in, 1);
-
             }
         });
 
@@ -236,7 +267,6 @@ public class informe_tecnico extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 4);
                 startActivityForResult(in, 1);
-
             }
         });
 
@@ -247,10 +277,16 @@ public class informe_tecnico extends Activity {
                 Intent in = new Intent(getApplicationContext(), Fotos.class);
                 in.putExtra("Camera", 5);
                 startActivityForResult(in, 1);
-
-
             }
         });
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static String getCurrentTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        Date today = Calendar.getInstance().getTime();
+        return dateFormat.format(today);
     }
 
     private BroadcastReceiver networkStateReceiver = new BroadcastReceiver() {
@@ -262,15 +298,21 @@ public class informe_tecnico extends Activity {
         }
     };
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onResume() {
         super.onResume();
-        registerReceiver(networkStateReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            registerReceiver(networkStateReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+        }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onPause() {
-        unregisterReceiver(networkStateReceiver);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            unregisterReceiver(networkStateReceiver);
+        }
         super.onPause();
     }
 
@@ -284,6 +326,8 @@ public class informe_tecnico extends Activity {
         }
     }
 
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -291,9 +335,11 @@ public class informe_tecnico extends Activity {
             if ("vacio".equals(data.getStringExtra("FirmaRESP"))) {
                 firmaTec = data.getStringExtra("FirmaTEC");
                 firmanteTec = data.getStringExtra("NombreTec");
+                btnFirmaTec.setEnabled(false);
             } else if ("vacio".equals(data.getStringExtra("FirmaTEC"))) {
                 firmaResp = data.getStringExtra("FirmaRESP");
                 firmanteResp = data.getStringExtra("NombreResp");
+                btnFirmaResp.setEnabled(false);
             }
 
             if ("vacio".equals(data.getStringExtra("FotoDos")) && "vacio".equals(data.getStringExtra("FotoTres"))
@@ -359,28 +405,45 @@ public class informe_tecnico extends Activity {
                 bitmap.compress(Bitmap.CompressFormat.JPEG,  10, array);
                 byteArray = array.toByteArray();
                 imagenString = Base64.encodeToString(byteArray, Base64.DEFAULT);
-                fotocinco = imagenString;
+                fotoseis = imagenString;
                 btncamara6.setEnabled(false);
 
             }
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void enviarFormulario() {
         //Valida formulario, tomar en cuanta el tamaño maximo de los campos en la base de datos
         getRadios();
         if (equipo == -1) {
             Toast.makeText(this, "Hay campos sin llenar, el formulario no se envio", Toast.LENGTH_SHORT).show();
-        } else if (fotouno == "" && fotodos == "" && fototres == "" && fotocuatro == "" && fotocinco == "" && fotoseis == "") {
-            Toast.makeText(this, "Se requieren de las 6 Fotos de evidencia, obligatoria", Toast.LENGTH_SHORT).show();
-        } else if (firmaTec == "" && firmaTec == "") {
+        } else if (fotouno.equals("")) {
+            Toast.makeText(this, "Se requiere de la Foto Uno como evidencia, obligatoria", Toast.LENGTH_SHORT).show();
+        }else if (fotodos.equals("")) {
+            Toast.makeText(this, "Se requiere de la Foto Dos como evidencia, obligatoria", Toast.LENGTH_SHORT).show();
+        } else if (fototres.equals("")) {
+            Toast.makeText(this, "Se requiere de la Foto Tres como evidencia, obligatoria", Toast.LENGTH_SHORT).show();
+        }else if (fotocuatro.equals("")) {
+            Toast.makeText(this, "Se requiere de la Foto Cuatro como evidencia, obligatoria", Toast.LENGTH_SHORT).show();
+        }else if (fotocinco.equals("")) {
+            Toast.makeText(this, "Se requiere de la Foto Cinco como evidencia, obligatoria", Toast.LENGTH_SHORT).show();
+        }else if (fotoseis.equals("")) {
+            Toast.makeText(this, "Se requiere de la Foto Seis como evidencia, obligatoria", Toast.LENGTH_SHORT).show();
+        }else if (firmaTec.equals("") && firmaResp.equals("")) {
             Toast.makeText(this, "Se requieren las Firmas, el formulario no se envío ", Toast.LENGTH_SHORT).show();
+        }else if (firmaTec.equals("")) {
+            Toast.makeText(this, "Se requiere de la Firma Técnico como evidencia, obligatoria", Toast.LENGTH_SHORT).show();
+        }else if (firmaResp.equals("")) {
+            Toast.makeText(this, "Se requiere de la Firma Responsable como evidencia, obligatoria", Toast.LENGTH_SHORT).show();
         } else {
             btnEnviar.setEnabled(false);
             Bundle extras = getIntent().getExtras();
             Toast.makeText(this, "Enviando Formulario", Toast.LENGTH_SHORT).show();
             Gson gsonFrom = new Gson();
             StoreFormIT miForm = new StoreFormIT();
+            id = getCurrentTime();
+            miForm.setId(id);
             miForm.setIdUser(idUSer);
             miForm.setDireccion(etDireccion_Sitio.getText().toString());
             miForm.setAntecedentes(etAntecedentes.getText().toString());
@@ -389,6 +452,7 @@ public class informe_tecnico extends Activity {
             miForm.setRecomendaciones(etRecomendaciones.getText().toString());
             miForm.setConclusiones(etConclusiones.getText().toString());
             miForm.setEquipo(equipo);
+            miForm.setOtros(etOtros.getText().toString());
             miForm.setFirmaTec(firmaTec);
             miForm.setFirmaResp(firmaResp);
             miForm.setFirmanteTec(firmanteTec);
@@ -435,6 +499,9 @@ public class informe_tecnico extends Activity {
                 case "Salvaescalera":
                     equipo = 3;
                     break;
+                case "Otros":
+                    equipo = 4;
+                    break;
             }
 
             Log.e("IdEquipo", equipo + "");
@@ -458,10 +525,21 @@ public class informe_tecnico extends Activity {
                 case 3:
                     salvaescalera.setChecked(true);
                     break;
+                case 4:
+                    otros.setChecked(true);
+                    break;
             }
         } catch (NullPointerException e){
             e.printStackTrace();
         }
+    }
+
+    public void borrarif(View v) {
+
+        MyOpenHelper dbHelper = new MyOpenHelper(this);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.execSQL("DELETE FROM IFSQL");
+        Toast.makeText(this, "Los datos se han borrado", Toast.LENGTH_SHORT).show();
     }
 
     public void grabar(View v) {
@@ -477,6 +555,7 @@ public class informe_tecnico extends Activity {
             cv. put("Recomendaciones", etRecomendaciones.getText().toString());
             cv. put("Conclusiones", etConclusiones.getText().toString());
             cv.put("Radio",equipo);
+            cv. put("Otros", etOtros.getText().toString());
             cv.put("Imagen1", fotouno);
             cv.put("Imagen2", fotodos);
             cv.put("Imagen3", fototres);
@@ -500,7 +579,7 @@ public class informe_tecnico extends Activity {
             MyOpenHelper dbHelper = new MyOpenHelper(this);
             SQLiteDatabase db = dbHelper.getWritableDatabase();
             Cursor c = db.rawQuery("SELECT _id, Sitio, Reparacion, Antecedentes, Desarrollo,  Recomendaciones, " +
-                    "Conclusiones, Radio, Imagen1, Imagen2, Imagen3, Imagen4, Imagen5, Imagen6, FirmaTec, Firmante, FirmaRes, Firmanres FROM IFSQL", null);
+                    "Conclusiones, Radio, Otros, Imagen1, Imagen2, Imagen3, Imagen4, Imagen5, Imagen6, FirmaTec, Firmante, FirmaRes, Firmanres FROM IFSQL", null);
             if (c.getCount() != 0 ) {
                 c.moveToFirst();
                 do {
@@ -511,6 +590,7 @@ public class informe_tecnico extends Activity {
                     String Desarrollo = c.getString(c.getColumnIndex("Desarrollo"));
                     String Conclusiones = c.getString(c.getColumnIndex("Conclusiones"));
                     int Radio = c.getInt(c.getColumnIndex("Radio"));
+                    String Otros = c.getString(c.getColumnIndex("Otros"));
                     String Imagen1 = c.getString(c.getColumnIndex("Imagen1"));
                     String Imagen2 = c.getString(c.getColumnIndex("Imagen2"));
                     String Imagen3 = c.getString(c.getColumnIndex("Imagen3"));
@@ -529,6 +609,7 @@ public class informe_tecnico extends Activity {
                     etDesarrollo.setText(Desarrollo);
                     etConclusiones.setText(Conclusiones);
                     getEquipo(Radio);
+                    etOtros.setText(Otros);
                     fotouno = Imagen1;
                     fotodos = Imagen2;
                     fototres = Imagen3;
@@ -540,43 +621,43 @@ public class informe_tecnico extends Activity {
                     firmaResp = FirmaRes;
                     firmanteResp = Firmanres;
 
-                    if (fotouno != "") {
+                    if (!fotouno.equals("")) {
                         btncamara1.setEnabled(false);
                     }
 
-                    if (fotodos != "") {
+                    if (!fotodos.equals("")) {
                         btncamara2.setEnabled(false);
                     }
 
-                    if (fototres != "") {
+                    if (!fototres.equals("")) {
                         btncamara3.setEnabled(false);
                     }
 
-                    if (fotocuatro != "") {
+                    if (!fotocuatro.equals("")) {
                         btncamara4.setEnabled(false);
                     }
 
-                    if (fotocinco != "") {
+                    if (!fotocinco.equals("")) {
                         btncamara5.setEnabled(false);
                     }
 
-                    if (fotoseis != "") {
+                    if (!fotoseis.equals("")) {
                         btncamara6.setEnabled(false);
                     }
 
-                    if (firmaTec != "") {
+                    if (!firmaTec.equals("")) {
                         btnFirmaTec.setEnabled(false);
                     }
 
-                    if (firmanteTec != "") {
+                    if (!firmanteTec.equals("")) {
 
                     }
 
-                    if (firmaTec != "") {
+                    if (!firmaResp.equals("")) {
                         btnFirmaResp.setEnabled(false);
                     }
 
-                    if (firmanteResp != "") {
+                    if (!firmanteResp.equals("")) {
 
                     }
 
@@ -591,7 +672,7 @@ public class informe_tecnico extends Activity {
         }
     }
 
-        public class taskFormularioITLibre extends AsyncTask<Void, Void, Boolean> {
+    public class taskFormularioITLibre extends AsyncTask<Void, Void, Boolean> {
             private String formualrio;
             private String respuesta = "{'d':''}";
             String url = URLGPS + "EnvioFormITAuditoria.aspx/GuardarFormIT";
@@ -680,7 +761,7 @@ public class informe_tecnico extends Activity {
                         //Toast.makeText(getApplicationContext(), "Reporte enviado exitósamente..", Toast.LENGTH_SHORT).show();
                     } else if (JSON.getString("d").equals("Error al guardar")) {
                         alertDialog.setTitle("Error");
-                        alertDialog.setMessage("El reporte no se.");
+                        alertDialog.setMessage("El reporte no se pudo enviar a los destinatarios.");
                         alertDialog.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -690,7 +771,7 @@ public class informe_tecnico extends Activity {
                         //Toast.makeText(getApplicationContext(), "Reporte enviado exitósamente..", Toast.LENGTH_SHORT).show();
                     } else {
                         alertDialog.setTitle("Error");
-                        alertDialog.setMessage("El reporte no se pudo enviar. " + JSON.getString("d"));
+                        alertDialog.setMessage("El reporte no se pudo enviar por que no tiene conexión a internet. "+JSON.getString("d"));
                         alertDialog.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
