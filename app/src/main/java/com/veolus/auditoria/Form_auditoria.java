@@ -356,6 +356,7 @@ public class Form_auditoria extends Activity {
         t.start();
 
         etDgc = (EditText) findViewById(R.id.dgc);
+
         etMotivo = (EditText) findViewById(R.id.motivo);
         etSector = (EditText) findViewById(R.id.sector);
         etProyecto = (EditText) findViewById(R.id.proyecto);
@@ -806,7 +807,9 @@ public class Form_auditoria extends Activity {
             @Override
             public void onClick(View v) {
                 enviarFormulario();
+                btnEnviar.setEnabled(false);
             }
+
         });
 
         // Botones para realizar las firmas
@@ -2515,7 +2518,7 @@ public class Form_auditoria extends Activity {
             Toast.makeText(this, "Enviando Formulario", Toast.LENGTH_LONG).show();
             Gson gsonFrom = new Gson();
             StoreFormAudiLibre miForm = new StoreFormAudiLibre();
-            miForm.setFecha("");
+            miForm.setFecha(etFecha.getText().toString());
             miForm.setDgc(etDgc.getText().toString());
             miForm.setMotivo(etMotivo.getText().toString());
             miForm.setSitio(etSitio.getText().toString());

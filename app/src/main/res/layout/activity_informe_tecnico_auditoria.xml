@@ -122,7 +122,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:hint="Antecedentes"
-                android:maxLength="100"
+                android:maxLength="500"
                 android:maxLines="5"
                 android:singleLine="true"/>
 
@@ -139,7 +139,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:hint="Desarrollo"
-                android:maxLength="100"
+                android:maxLength="500"
                 android:maxLines="5"
                 android:singleLine="true"/>
 
@@ -156,7 +156,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:hint="Recomendaciones"
-                android:maxLength="100"
+                android:maxLength="500"
                 android:maxLines="5"
                 android:singleLine="true"/>
 
@@ -174,7 +174,7 @@
                 android:layout_height="100dp"
                 android:hint="Conclusiones"
                 android:maxLines="5"
-                android:maxLength="100"
+                android:maxLength="500"
                 android:singleLine="true"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -208,6 +208,35 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Salvaescalera"/>
+
+            <RadioButton android:id="@+id/otro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Otros"
+                />
+
+            <LinearLayout
+                android:id="@+id/OE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusableInTouchMode="true"
+                android:visibility="gone"
+                android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Menciona otros equipos:" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lines="4"
+                    android:hint="Otro equipo"
+                    android:maxLength="1000"
+                    android:id="@+id/otroequipo"/>
+
+            </LinearLayout>
 
         </RadioGroup>
 

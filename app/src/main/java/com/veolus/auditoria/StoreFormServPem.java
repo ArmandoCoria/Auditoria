@@ -5,6 +5,9 @@ package com.veolus.auditoria;
 import java.util.List;
 
 public class StoreFormServPem {
+
+    private String idUser;
+    private String id;
     private String FechaActual;
     private String FechaInicio;
     private String FechaFin;
@@ -88,7 +91,10 @@ public class StoreFormServPem {
     private String FirmaJFMtto;
     private String Conclusiones;
     private String Recomendaciones;
-    
+
+
+    public void setIdUser(String user) {this.idUser = user; }
+    public void setId(String id) {this.id = id; }
     public void setFechaActual(String fechaActual){this.FechaActual = fechaActual;}
     public void setFechaInicio(String fechaInicio) {this.FechaInicio = fechaInicio;}
     public void setFechaFin(String fechaFin) { this.FechaFin = fechaFin;}

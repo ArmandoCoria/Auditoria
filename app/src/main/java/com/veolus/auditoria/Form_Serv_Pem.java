@@ -598,6 +598,7 @@ public class Form_Serv_Pem extends Activity {
             @Override
             public void onClick(View v) {
                 enviarFormulario();
+                btnEnviaForm.setEnabled(false);
             }
         });
     }

@@ -2,7 +2,8 @@ package com.veolus.auditoria;
 
 public class StoreFormIT {
 
-    private int idUser;
+    private String idUser;
+    private String id;
     private String direccion;
     private String reparacion;
     private String antecedentes;
@@ -10,6 +11,7 @@ public class StoreFormIT {
     private String recomendaciones;
     private String conclusiones;
     private int equipo;
+    private String otros;
     private String firmanteTec;
     private String firmanteResp;
     private String firmaTec;
@@ -21,7 +23,8 @@ public class StoreFormIT {
     private String fotocnco;
     private String fotoseis;
 
-    public void setIdUser(int user) {this.idUser = user; }
+    public void setIdUser(String user) {this.idUser = user; }
+    public void setId(String id) {this.id = id; }
     public void setDireccion(String direccion ){ this.direccion=direccion; }
     public void setReparaciones(String reparacion ){ this.reparacion=reparacion; }
     public void setAntecedentes(String antecedentes ){ this.antecedentes=antecedentes; }
@@ -29,6 +32,7 @@ public class StoreFormIT {
     public void setRecomendaciones(String recomendaciones ){ this.recomendaciones=recomendaciones; }
     public void setConclusiones(String conclusiones ){ this.conclusiones=conclusiones; }
     public void setEquipo(int equipo ){ this.equipo=equipo; }
+    public void setOtros(String otros ){ this.otros=otros; }
     public void setFirmaTec(String firmaTec ){ this.firmaTec=firmaTec; }
     public void setFirmaResp(String firmaResp ){ this.firmaResp=firmaResp; }
     public void setFotouno(String fotouno) {this.fotouno=fotouno;}

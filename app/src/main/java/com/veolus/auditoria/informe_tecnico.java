@@ -15,18 +15,24 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.icu.text.SimpleDateFormat;
+import android.icu.util.TimeZone;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 
+import android.text.format.DateFormat;
+import android.text.format.DateUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -36,12 +42,13 @@ import androidx.annotation.RequiresApi;
 
 import com.google.gson.Gson;
 
+import net.sourceforge.jtds.jdbc.DateTime;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -50,10 +57,17 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.util.Calendar;
+import java.util.Date;
 
 public class informe_tecnico extends Activity {
     public static final String USER_CRED = "UserCredencials";
-    private int idUSer;
+    public static String id = "";
+    private String idUSer;
+
 
     private EditText etDireccion_Sitio;
     private EditText etReparacion;
@@ -69,6 +83,9 @@ public class informe_tecnico extends Activity {
     private RadioButton elevador;
     private RadioButton rampa_acera;
     private RadioButton salvaescalera;
+    private RadioButton otros;
+    private EditText etOtros;
+    TextView texto;
 
     private Button btnEnviar;
     private Button btnFirmaTec;
@@ -89,6 +106,7 @@ public class informe_tecnico extends Activity {
     private static final String URLGPS = "http://www.veolus.com/gps/";
     OutputStreamWriter archivo = null;
     private int equipo = -1;
+
     private String firmaTec = "";
     private String firmaResp = "";
     private String firmanteTec = "";
@@ -100,12 +118,14 @@ public class informe_tecnico extends Activity {
     private String fotocinco = "";
     private String fotoseis = "";
     private Context mContext;
+    private LinearLayout oe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_informe_tecnico_auditoria);
         mContext = this;
+
         Thread t = new Thread() {
             public void run() {
                 while (!isInterrupted()) {
@@ -136,7 +156,8 @@ public class informe_tecnico extends Activity {
 
         mContext = this;
         SharedPreferences userCred = getSharedPreferences(USER_CRED, 0);
-        idUSer = userCred.getInt("IDUser", 0);
+        idUSer = String.valueOf(userCred.getInt("IDUser", 0));
+        oe = (LinearLayout) findViewById(R.id.OE);
         etDireccion_Sitio = (EditText) findViewById(R.id.direccionSitio);
         etReparacion = (EditText) findViewById(R.id.reparacion);
         etAntecedentes = (EditText) findViewById(R.id.antecedentes);
@@ -148,15 +169,33 @@ public class informe_tecnico extends Activity {
         elevador = (RadioButton) findViewById(R.id.elevador);
         rampa_acera = (RadioButton) findViewById(R.id.rampa_acera);
         salvaescalera = (RadioButton) findViewById(R.id.salvaescalera);
+        otros = (RadioButton) findViewById(R.id.otro);
+        etOtros = (EditText) findViewById(R.id.otroequipo);
 
         btnEnviar = (Button) findViewById(R.id.btnEnviar);
         btnEnviar.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
 
                 enviarFormulario();
+                btnEnviar.setEnabled(false);
             }
         });
+
+        otros = (RadioButton) findViewById(R.id.otro);
+        otros.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(oe.getVisibility() == View.VISIBLE) {
+                    oe.setVisibility(View.GONE);
+                   // texto.setTextColor(Color.GRAY);
+                }else{
+                    oe.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
 
         btnFirmaTec = (Button) findViewById(R.id.btnFirmaTec);
         btnFirmaTec.setOnClickListener(new View.OnClickListener() {
@@ -242,6 +281,14 @@ public class informe_tecnico extends Activity {
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static String getCurrentTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        Date today = Calendar.getInstance().getTime();
+        return dateFormat.format(today);
+    }
+
     private BroadcastReceiver networkStateReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -251,15 +298,21 @@ public class informe_tecnico extends Activity {
         }
     };
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onResume() {
         super.onResume();
-        registerReceiver(networkStateReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            registerReceiver(networkStateReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+        }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onPause() {
-        unregisterReceiver(networkStateReceiver);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            unregisterReceiver(networkStateReceiver);
+        }
         super.onPause();
     }
 
@@ -272,6 +325,8 @@ public class informe_tecnico extends Activity {
             }
         }
     }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -357,6 +412,7 @@ public class informe_tecnico extends Activity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void enviarFormulario() {
         //Valida formulario, tomar en cuanta el tamaño maximo de los campos en la base de datos
         getRadios();
@@ -386,6 +442,8 @@ public class informe_tecnico extends Activity {
             Toast.makeText(this, "Enviando Formulario", Toast.LENGTH_SHORT).show();
             Gson gsonFrom = new Gson();
             StoreFormIT miForm = new StoreFormIT();
+            id = getCurrentTime();
+            miForm.setId(id);
             miForm.setIdUser(idUSer);
             miForm.setDireccion(etDireccion_Sitio.getText().toString());
             miForm.setAntecedentes(etAntecedentes.getText().toString());
@@ -394,6 +452,7 @@ public class informe_tecnico extends Activity {
             miForm.setRecomendaciones(etRecomendaciones.getText().toString());
             miForm.setConclusiones(etConclusiones.getText().toString());
             miForm.setEquipo(equipo);
+            miForm.setOtros(etOtros.getText().toString());
             miForm.setFirmaTec(firmaTec);
             miForm.setFirmaResp(firmaResp);
             miForm.setFirmanteTec(firmanteTec);
@@ -440,6 +499,9 @@ public class informe_tecnico extends Activity {
                 case "Salvaescalera":
                     equipo = 3;
                     break;
+                case "Otros":
+                    equipo = 4;
+                    break;
             }
 
             Log.e("IdEquipo", equipo + "");
@@ -462,6 +524,9 @@ public class informe_tecnico extends Activity {
                     break;
                 case 3:
                     salvaescalera.setChecked(true);
+                    break;
+                case 4:
+                    otros.setChecked(true);
                     break;
             }
         } catch (NullPointerException e){
@@ -490,6 +555,7 @@ public class informe_tecnico extends Activity {
             cv. put("Recomendaciones", etRecomendaciones.getText().toString());
             cv. put("Conclusiones", etConclusiones.getText().toString());
             cv.put("Radio",equipo);
+            cv. put("Otros", etOtros.getText().toString());
             cv.put("Imagen1", fotouno);
             cv.put("Imagen2", fotodos);
             cv.put("Imagen3", fototres);
@@ -513,7 +579,7 @@ public class informe_tecnico extends Activity {
             MyOpenHelper dbHelper = new MyOpenHelper(this);
             SQLiteDatabase db = dbHelper.getWritableDatabase();
             Cursor c = db.rawQuery("SELECT _id, Sitio, Reparacion, Antecedentes, Desarrollo,  Recomendaciones, " +
-                    "Conclusiones, Radio, Imagen1, Imagen2, Imagen3, Imagen4, Imagen5, Imagen6, FirmaTec, Firmante, FirmaRes, Firmanres FROM IFSQL", null);
+                    "Conclusiones, Radio, Otros, Imagen1, Imagen2, Imagen3, Imagen4, Imagen5, Imagen6, FirmaTec, Firmante, FirmaRes, Firmanres FROM IFSQL", null);
             if (c.getCount() != 0 ) {
                 c.moveToFirst();
                 do {
@@ -524,6 +590,7 @@ public class informe_tecnico extends Activity {
                     String Desarrollo = c.getString(c.getColumnIndex("Desarrollo"));
                     String Conclusiones = c.getString(c.getColumnIndex("Conclusiones"));
                     int Radio = c.getInt(c.getColumnIndex("Radio"));
+                    String Otros = c.getString(c.getColumnIndex("Otros"));
                     String Imagen1 = c.getString(c.getColumnIndex("Imagen1"));
                     String Imagen2 = c.getString(c.getColumnIndex("Imagen2"));
                     String Imagen3 = c.getString(c.getColumnIndex("Imagen3"));
@@ -542,6 +609,7 @@ public class informe_tecnico extends Activity {
                     etDesarrollo.setText(Desarrollo);
                     etConclusiones.setText(Conclusiones);
                     getEquipo(Radio);
+                    etOtros.setText(Otros);
                     fotouno = Imagen1;
                     fotodos = Imagen2;
                     fototres = Imagen3;
@@ -703,7 +771,7 @@ public class informe_tecnico extends Activity {
                         //Toast.makeText(getApplicationContext(), "Reporte enviado exitósamente..", Toast.LENGTH_SHORT).show();
                     } else {
                         alertDialog.setTitle("Error");
-                        alertDialog.setMessage("El reporte no se pudo enviar. " + JSON.getString("d"));
+                        alertDialog.setMessage("El reporte no se pudo enviar por que no tiene conexión a internet. "+JSON.getString("d"));
                         alertDialog.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

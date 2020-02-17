@@ -312,6 +312,7 @@ public class ServicioBCI extends Activity {
             public void onClick(View v) {
 
                 enviarFormulario();
+                btnEnviar.setEnabled(false);
             }
         });
 
