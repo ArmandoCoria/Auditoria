@@ -153,26 +153,24 @@ public class informe_tecnico extends Activity {
             }
         };
         t.start();
-
-        mContext = this;
         SharedPreferences userCred = getSharedPreferences(USER_CRED, 0);
         idUSer = String.valueOf(userCred.getInt("IDUser", 0));
-        oe = (LinearLayout) findViewById(R.id.OE);
-        etDireccion_Sitio = (EditText) findViewById(R.id.direccionSitio);
-        etReparacion = (EditText) findViewById(R.id.reparacion);
-        etAntecedentes = (EditText) findViewById(R.id.antecedentes);
-        etDesarrollo = (EditText) findViewById(R.id.desarrollo);
-        etRecomendaciones = (EditText) findViewById(R.id.recomendaciones);
-        etConclusiones = (EditText) findViewById(R.id.conclusiones);
+        oe = findViewById(R.id.OE);
+        etDireccion_Sitio = findViewById(R.id.direccionSitio);
+        etReparacion = findViewById(R.id.reparacion);
+        etAntecedentes = findViewById(R.id.antecedentes);
+        etDesarrollo = findViewById(R.id.desarrollo);
+        etRecomendaciones = findViewById(R.id.recomendaciones);
+        etConclusiones = findViewById(R.id.conclusiones);
 
-        escalera = (RadioButton) findViewById(R.id.escalera);
-        elevador = (RadioButton) findViewById(R.id.elevador);
-        rampa_acera = (RadioButton) findViewById(R.id.rampa_acera);
-        salvaescalera = (RadioButton) findViewById(R.id.salvaescalera);
-        otros = (RadioButton) findViewById(R.id.otro);
-        etOtros = (EditText) findViewById(R.id.otroequipo);
+        escalera = findViewById(R.id.escalera);
+        elevador = findViewById(R.id.elevador);
+        rampa_acera = findViewById(R.id.rampa_acera);
+        salvaescalera = findViewById(R.id.salvaescalera);
+        otros = findViewById(R.id.otro);
+        etOtros = findViewById(R.id.otroequipo);
 
-        btnEnviar = (Button) findViewById(R.id.btnEnviar);
+        btnEnviar = findViewById(R.id.btnEnviar);
         btnEnviar.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
@@ -183,7 +181,7 @@ public class informe_tecnico extends Activity {
             }
         });
 
-        otros = (RadioButton) findViewById(R.id.otro);
+        otros = findViewById(R.id.otro);
         otros.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -197,7 +195,7 @@ public class informe_tecnico extends Activity {
         });
 
 
-        btnFirmaTec = (Button) findViewById(R.id.btnFirmaTec);
+        btnFirmaTec = findViewById(R.id.btnFirmaTec);
         btnFirmaTec.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -209,7 +207,7 @@ public class informe_tecnico extends Activity {
             }
         });
 
-        btnFirmaResp = (Button) findViewById(R.id.btnFirmaResp);
+        btnFirmaResp = findViewById(R.id.btnFirmaResp);
         btnFirmaResp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -220,7 +218,7 @@ public class informe_tecnico extends Activity {
             }
         });
 
-        btncamara1 = (Button) findViewById(R.id.btnopencamara);
+        btncamara1 = findViewById(R.id.btnopencamara);
         btncamara1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -230,7 +228,7 @@ public class informe_tecnico extends Activity {
             }
         });
 
-        btncamara2 = (Button) findViewById(R.id.btnopencamara2);
+        btncamara2 = findViewById(R.id.btnopencamara2);
         btncamara2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -240,7 +238,7 @@ public class informe_tecnico extends Activity {
             }
         });
 
-        btncamara3 = (Button) findViewById(R.id.btnopencamara3);
+        btncamara3 = findViewById(R.id.btnopencamara3);
         btncamara3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -250,7 +248,7 @@ public class informe_tecnico extends Activity {
             }
         });
 
-        btncamara4 = (Button) findViewById(R.id.btnopencamara4);
+        btncamara4 = findViewById(R.id.btnopencamara4);
         btncamara4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -260,7 +258,7 @@ public class informe_tecnico extends Activity {
             }
         });
 
-        btncamara5 = (Button) findViewById(R.id.btnopencamara5);
+        btncamara5 = findViewById(R.id.btnopencamara5);
         btncamara5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -270,7 +268,7 @@ public class informe_tecnico extends Activity {
             }
         });
 
-        btncamara6 = (Button) findViewById(R.id.btnopencamara6);
+        btncamara6 = findViewById(R.id.btnopencamara6);
         btncamara6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -649,16 +647,8 @@ public class informe_tecnico extends Activity {
                         btnFirmaTec.setEnabled(false);
                     }
 
-                    if (!firmanteTec.equals("")) {
-
-                    }
-
                     if (!firmaResp.equals("")) {
                         btnFirmaResp.setEnabled(false);
-                    }
-
-                    if (!firmanteResp.equals("")) {
-
                     }
 
                 } while (c.moveToNext());
@@ -684,7 +674,7 @@ public class informe_tecnico extends Activity {
 
             @Override
             protected Boolean doInBackground(Void... voids) {
-                URL destinoURL = null;
+                URL destinoURL;
                 try {
                     destinoURL = new URL(url);
                     HttpURLConnection con = (HttpURLConnection) destinoURL.openConnection();
