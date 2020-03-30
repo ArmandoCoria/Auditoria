@@ -226,6 +226,10 @@ public class Fotos extends Activity {
                     resultIntent.putExtra("FotoCuatro", "vacio");
                     resultIntent.putExtra("FotoCnco", "vacio");
                     resultIntent.putExtra("FotoSeis", "vacio");
+                    resultIntent.putExtra("FotoSite", "vacio");
+                    resultIntent.putExtra("FotoOcho", "vacio" );
+                    resultIntent.putExtra("FotoNueve", "vacio" );
+                    resultIntent.putExtra("FotoDiez", "vacio");
                 } else if (camera == 1) {
                     resultIntent.putExtra("FotoUno", "vacio");
                     resultIntent.putExtra("FotoDos", path);
@@ -233,6 +237,10 @@ public class Fotos extends Activity {
                     resultIntent.putExtra("FotoCuatro", "vacio");
                     resultIntent.putExtra("FotoCnco", "vacio");
                     resultIntent.putExtra("FotoSeis", "vacio");
+                    resultIntent.putExtra("FotoSite", "vacio");
+                    resultIntent.putExtra("FotoOcho", "vacio" );
+                    resultIntent.putExtra("FotoNueve", "vacio" );
+                    resultIntent.putExtra("FotoDiez", "vacio");
                 } else if (camera == 2) {
                     resultIntent.putExtra("FotoUno", "vacio");
                     resultIntent.putExtra("FotoDos", "vacio");
@@ -240,6 +248,10 @@ public class Fotos extends Activity {
                     resultIntent.putExtra("FotoCuatro", "vacio");
                     resultIntent.putExtra("FotoCnco", "vacio");
                     resultIntent.putExtra("FotoSeis", "vacio");
+                    resultIntent.putExtra("FotoSite", "vacio" );
+                    resultIntent.putExtra("FotoOcho", "vacio" );
+                    resultIntent.putExtra("FotoNueve", "vacio" );
+                    resultIntent.putExtra("FotoDiez", "vacio");
                 } else if (camera == 3) {
                     resultIntent.putExtra("FotoUno", "vacio");
                     resultIntent.putExtra("FotoDos", "vacio");
@@ -247,6 +259,10 @@ public class Fotos extends Activity {
                     resultIntent.putExtra("FotoCuatro", path);
                     resultIntent.putExtra("FotoCnco", "vacio");
                     resultIntent.putExtra("FotoSeis", "vacio");
+                    resultIntent.putExtra("FotoSite", "vacio");
+                    resultIntent.putExtra("FotoOcho", "vacio" );
+                    resultIntent.putExtra("FotoNueve", "vacio" );
+                    resultIntent.putExtra("FotoDiez", "vacio");
                 } else if (camera == 4) {
                     resultIntent.putExtra("FotoUno", "vacio");
                     resultIntent.putExtra("FotoDos", "vacio");
@@ -254,6 +270,10 @@ public class Fotos extends Activity {
                     resultIntent.putExtra("FotoCuatro", "vacio");
                     resultIntent.putExtra("FotoCnco", path);
                     resultIntent.putExtra("FotoSeis", "vacio");
+                    resultIntent.putExtra("FotoSite", "vacio");
+                    resultIntent.putExtra("FotoOcho", "vacio" );
+                    resultIntent.putExtra("FotoNueve", "vacio" );
+                    resultIntent.putExtra("FotoDiez", "vacio");
                 } else if (camera == 5) {
                     resultIntent.putExtra("FotoUno", "vacio");
                     resultIntent.putExtra("FotoDos", "vacio");
@@ -261,7 +281,58 @@ public class Fotos extends Activity {
                     resultIntent.putExtra("FotoCuatro", "vacio");
                     resultIntent.putExtra("FotoCnco", "vacio");
                     resultIntent.putExtra("FotoSeis", path);
+                    resultIntent.putExtra("FotoSite", "vacio");
+                    resultIntent.putExtra("FotoOcho", "vacio" );
+                    resultIntent.putExtra("FotoNueve", "vacio" );
+                    resultIntent.putExtra("FotoDiez", "vacio");
+                } else if (camera == 6) {
+                    resultIntent.putExtra("FotoUno", "vacio");
+                    resultIntent.putExtra("FotoDos", "vacio");
+                    resultIntent.putExtra("FotoTres", "vacio");
+                    resultIntent.putExtra("FotoCuatro", "vacio");
+                    resultIntent.putExtra("FotoCnco", "vacio");
+                    resultIntent.putExtra("FotoSeis", "vacio" );
+                    resultIntent.putExtra("FotoSite", path );
+                    resultIntent.putExtra("FotoOcho", "vacio" );
+                    resultIntent.putExtra("FotoNueve", "vacio" );
+                    resultIntent.putExtra("FotoDiez", "vacio");
+                } else if (camera == 7) {
+                    resultIntent.putExtra("FotoUno", "vacio");
+                    resultIntent.putExtra("FotoDos", "vacio");
+                    resultIntent.putExtra("FotoTres", "vacio");
+                    resultIntent.putExtra("FotoCuatro", "vacio");
+                    resultIntent.putExtra("FotoCnco", "vacio");
+                    resultIntent.putExtra("FotoSeis", "vacio" );
+                    resultIntent.putExtra("FotoSite", "vacio");
+                    resultIntent.putExtra("FotoOcho", path );
+                    resultIntent.putExtra("FotoNueve", "vacio" );
+                    resultIntent.putExtra("FotoDiez", "vacio");
+                } else if (camera == 8) {
+                    resultIntent.putExtra("FotoUno", "vacio");
+                    resultIntent.putExtra("FotoDos", "vacio");
+                    resultIntent.putExtra("FotoTres", "vacio");
+                    resultIntent.putExtra("FotoCuatro", "vacio");
+                    resultIntent.putExtra("FotoCnco", "vacio");
+                    resultIntent.putExtra("FotoSeis", "vacio" );
+                    resultIntent.putExtra("FotoSite", "vacio");
+                    resultIntent.putExtra("FotoOcho", "vacio" );
+                    resultIntent.putExtra("FotoNueve", path );
+                    resultIntent.putExtra("FotoDiez", "vacio");
+                } else if (camera == 9) {
+                    resultIntent.putExtra("FotoUno", "vacio");
+                    resultIntent.putExtra("FotoDos", "vacio");
+                    resultIntent.putExtra("FotoTres", "vacio");
+                    resultIntent.putExtra("FotoCuatro", "vacio");
+                    resultIntent.putExtra("FotoCnco", "vacio");
+                    resultIntent.putExtra("FotoSeis", "vacio" );
+                    resultIntent.putExtra("FotoSite", "vacio");
+                    resultIntent.putExtra("FotoOcho", "vacio" );
+                    resultIntent.putExtra("FotoNueve", "vacio" );
+                    resultIntent.putExtra("FotoDiez", path);
                 }
+
+
+
                 setResult(RESULT_OK, resultIntent);
                 result = true;
                 finish();

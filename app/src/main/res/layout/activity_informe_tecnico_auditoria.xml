@@ -94,6 +94,81 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+>
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/revision"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:buttonTint="@color/colorPrimary"
+                android:text="Revisión" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/inspe"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:buttonTint="@color/colorPrimary"
+                android:text="Inspección" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/diagnostico"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:buttonTint="@color/colorPrimary"
+                android:text="Diagnóstico" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/mttmayor"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:buttonTint="@color/colorPrimary"
+                android:text="Mtto Mayor" />
+
+      </LinearLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimary"
+                android:text="Revisión, inspección y/o diagnostico a las: " />
+
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/fallas"
+                android:text="falla(s)"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/colorPrimary" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/repara"
+                android:text="reparación"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/colorPrimary" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimary"
+                android:text="presentadas y/o Mantenimiento mayor realizado al equipo que se describe a continuación: " />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -122,8 +197,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:hint="Antecedentes"
-                android:maxLength="500"
-                android:maxLines="5"
+                android:maxLength="800"
+                android:maxLines="15"
                 android:singleLine="true"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -139,7 +214,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:hint="Desarrollo"
-                android:maxLength="500"
+                android:maxLength="800"
                 android:maxLines="5"
                 android:singleLine="true"/>
 
@@ -156,8 +231,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:hint="Recomendaciones"
-                android:maxLength="500"
-                android:maxLines="5"
+                android:maxLength="800"
+                android:maxLines="15"
                 android:singleLine="true"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -173,8 +248,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:hint="Conclusiones"
-                android:maxLines="5"
-                android:maxLength="500"
+                android:maxLines="15"
+                android:maxLength="800"
                 android:singleLine="true"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -284,15 +359,7 @@
                     android:drawableLeft="@drawable/ic_camera_black_24dp"
                     />
 
-                <Button
-                    android:text="Imagen3"
-                    android:id="@+id/btnopencamara3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:textSize="11sp"
-                    android:drawableLeft="@drawable/ic_camera_black_24dp"
-                    />
+
 
             </LinearLayout>
 
@@ -307,6 +374,16 @@
                 android:focusableInTouchMode="true">
 
                 <Button
+                    android:text="Imagen3"
+                    android:id="@+id/btnopencamara3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:textSize="11sp"
+                    android:drawableLeft="@drawable/ic_camera_black_24dp"
+                    />
+
+                <Button
                     android:text="Imagen4"
                     android:id="@+id/btnopencamara4"
                     android:layout_width="wrap_content"
@@ -315,6 +392,21 @@
                     android:textSize="11sp"
                     android:drawableLeft="@drawable/ic_camera_black_24dp"
                     />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10px"
+                android:focusable="true"
+                android:gravity="center"
+                android:focusableInTouchMode="true">
+
+
 
                 <Button
                     android:text="Imagen5"
@@ -338,11 +430,76 @@
 
             </LinearLayout>
 
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10px"
+                android:focusable="true"
+                android:gravity="center"
+                android:focusableInTouchMode="true">
+
+                <Button
+                    android:text="Imagen7"
+                    android:id="@+id/btnopencamara7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:textSize="11sp"
+                    android:drawableLeft="@drawable/ic_camera_black_24dp"
+                    />
+
+                <Button
+                    android:text="Imagen8"
+                    android:id="@+id/btnopencamara8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:textSize="11sp"
+                    android:drawableLeft="@drawable/ic_camera_black_24dp"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10px"
+                android:focusable="true"
+                android:gravity="center"
+                android:focusableInTouchMode="true">
+
+                <Button
+                    android:text="Imagen9"
+                    android:id="@+id/btnopencamara9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:textSize="11sp"
+                    android:drawableLeft="@drawable/ic_camera_black_24dp"
+                    />
+
+                <Button
+                    android:text="Imagen10"
+                    android:id="@+id/btnopencamara10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:textSize="11sp"
+                    android:drawableLeft="@drawable/ic_camera_black_24dp"
+                    />
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <Button
                     android:id="@+id/btnFirmaTec"
                     android:textSize="12sp"
@@ -360,6 +517,7 @@
                     android:text="Firma Responsable"/>
 
             </LinearLayout>
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

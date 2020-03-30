@@ -122,6 +122,7 @@ public class Form_Serv_Pem extends Activity {
     Button grabar;
     Button recuperar;
     Button borrar;
+
     Button btnOpenCamara;
     Button btnOpenCamara1;
     Button btnOpenCamara2;
@@ -1058,6 +1059,7 @@ public class Form_Serv_Pem extends Activity {
         c.close();
         db.close();
     }
+
 
     public void recuperarau(View view) {
         dbHelper = new MyOpenHelper(this);

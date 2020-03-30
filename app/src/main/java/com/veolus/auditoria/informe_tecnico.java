@@ -152,10 +152,12 @@ public class informe_tecnico extends Activity {
                 }
             }
         };
+
         t.start();
         SharedPreferences userCred = getSharedPreferences(USER_CRED, 0);
         idUSer = String.valueOf(userCred.getInt("IDUser", 0));
         oe = findViewById(R.id.OE);
+
         etDireccion_Sitio = findViewById(R.id.direccionSitio);
         etReparacion = findViewById(R.id.reparacion);
         etAntecedentes = findViewById(R.id.antecedentes);

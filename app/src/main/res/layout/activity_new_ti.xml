@@ -1,0 +1,1606 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".New_ti">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="20dp"
+        android:focusable="true" android:focusableInTouchMode="true">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Informe Técnico"
+        android:gravity="center"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/whiteText"
+        android:textSize="20sp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
+
+        <TextView
+            android:id="@+id/fechain"
+            android:layout_width="332dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLength="20"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:layout_gravity="center"
+            android:textSize="15dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/grabrar"
+            android:layout_width="159dp"
+            android:layout_height="wrap_content"
+            android:onClick="grabar"
+            android:text="Grabar" />
+
+        <Button
+            android:layout_width="159dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/recuperar"
+            android:text="Recuperar"
+            android:onClick="recuperar"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <Button
+            android:layout_width="159dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/borrar"
+            android:text="Borrar"
+            android:onClick="borrarif"
+            />
+
+    </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <EditText
+                android:id="@+id/sitio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Sitio" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <EditText
+                android:id="@+id/sector"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Sector"
+                android:maxLength="20"
+                android:maxLines="1"
+                android:singleLine="true"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp">
+
+            <EditText
+                android:id="@+id/proyecto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Proyecto"
+                android:maxLength="20"
+                android:maxLines="1"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Asunto"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:textColor="@color/whiteText"
+            android:background="@color/colorPrimaryDark"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/revision"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:buttonTint="@color/colorPrimary"
+                android:text="Revisión" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/inspe"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:buttonTint="@color/colorPrimary"
+                android:text="Inspección" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/diagnostico"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:buttonTint="@color/colorPrimary"
+                android:text="Diagnóstico" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/mttmayor"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:buttonTint="@color/colorPrimary"
+                android:text="Mtto Mayor" />
+
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimary"
+                android:text="De la(s): " />
+
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/fallas"
+                android:text="falla(s)"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/colorPrimary" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/repara"
+                android:text="reparación"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/colorPrimary" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimary"
+                android:text="Al equipo que se describe a continuación: " />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <EditText
+                android:id="@+id/equipo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Equipo" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <EditText
+                android:id="@+id/marca"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:hint="Marca" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <EditText
+                android:id="@+id/modelo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:hint="Modelo" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <EditText
+                android:id="@+id/serie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="No serie" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <EditText
+                android:id="@+id/ubicacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Ubicación" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Objetivo"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:textColor="@color/whiteText"
+            android:background="@color/colorPrimaryDark"
+            />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:id="@+id/objetivo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/whiteText"
+                android:background="@color/colorGris"
+                android:gravity="left"
+                android:text="Informar el resultado obtenido del equipo antes mencionado para corregir las fallas y/u observaciones que se identifiquen y que se pueda tomar la mejor decisión, en beneficio del equipo y el confort y/o seguridad de los usuarios de mencionado equipo."
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:text="Antecedentes"
+                android:textColor="@color/whiteText"
+                android:textSize="18dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/botonMP"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:text="+" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:gravity="left"
+                android:text="MP (ultimos tres meses)"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/mp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MP (ultimos tres meses)"
+                android:textColor="@color/colorPrimary" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/fechamp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:hint="Fecha"
+                    android:inputType="date"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <EditText
+                    android:id="@+id/descripcionmp"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:hint="Breve descripción"
+                    android:maxLines="5"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/fechamp1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:hint="Fecha"
+                    android:inputType="date"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <EditText
+                    android:id="@+id/descripcionmp1"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:hint="Breve descripción"
+                    android:maxLines="5"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/fechamp2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:hint="Fecha"
+                    android:inputType="date"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <EditText
+                    android:id="@+id/descripcionmp2"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:hint="Breve descripción"
+                    android:maxLines="5"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="37dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/botonMM"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:text="+" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="Mtto. Mayor Realizado (MM)"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/mm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:text="Mtto. Mayor Realizado (MM)" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/fechamm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:focusable="false"
+                android:clickable="true"
+                android:maxLines="1"
+                android:hint="Fecha" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <EditText
+                android:id="@+id/descripcionmm"
+                android:layout_width="match_parent"
+                android:hint="Breve descripción"
+                android:layout_height="100dp"
+                android:maxLines="5"
+                android:layout_gravity="center"
+                android:singleLine="true"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/fechamm1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:focusable="false"
+                android:clickable="true"
+                android:maxLines="1"
+                android:hint="Fecha" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <EditText
+                android:id="@+id/descripcionmm1"
+                android:layout_width="match_parent"
+                android:hint="Breve descripción"
+                android:layout_height="100dp"
+                android:maxLines="5"
+                android:layout_gravity="center"
+                android:singleLine="true"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/fechamm2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:focusable="false"
+                android:clickable="true"
+                android:maxLines="1"
+                android:hint="Fecha" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <EditText
+                android:id="@+id/descripcionmm2"
+                android:layout_width="match_parent"
+                android:hint="Breve descripción"
+                android:layout_height="100dp"
+                android:maxLines="5"
+                android:layout_gravity="center"
+                android:singleLine="true"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/botonfallas"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:text="+" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:text="Fallas"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fallas de los ultimos 3 meses: "
+                android:textColor="@color/colorPrimary" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/os"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:hint="No. OS y/u OT"
+                    android:inputType="date"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/fechafa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:hint="Fecha"
+                    android:inputType="date"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <EditText
+                    android:id="@+id/descripcionfalla"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:hint="Breve descripción"
+                    android:maxLines="5"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/os1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:hint="No. OS y/u OT"
+                    android:inputType="date"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/fechafalla1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:hint="Fecha"
+                    android:inputType="date"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <EditText
+                    android:id="@+id/descripcionfalla1"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:hint="Breve descripción"
+                    android:maxLines="5"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/os2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:hint="No. OS y/u OT"
+                    android:inputType="date"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/fechafalla2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:hint="Fecha"
+                    android:inputType="date"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <EditText
+                    android:id="@+id/descripcionfalla2"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:hint="Breve descripción"
+                    android:maxLines="5"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/botonITE"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:text="+" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:text="ITE"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ITE "
+                android:textColor="@color/colorPrimary" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/osITE"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:hint="No. ITE"
+                    android:inputType="date"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/fechaITE"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:hint="Fecha"
+                    android:inputType="date"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <EditText
+                    android:id="@+id/descripcionITE"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:hint="Breve descripción"
+                    android:maxLines="5"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/osITE1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:hint="No. ITE"
+                    android:inputType="date"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/fechaITE1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:hint="Fecha"
+                    android:inputType="date"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <EditText
+                    android:id="@+id/descripcionITE1"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:hint="Breve descripción"
+                    android:maxLines="5"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/osite2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:hint="No. ITE"
+                    android:inputType="date"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/fechaITE2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:hint="Fecha"
+                    android:inputType="date"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <EditText
+                    android:id="@+id/descripcionITE2"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:hint="Breve descripción"
+                    android:maxLines="5"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Desarrollo"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:textColor="@color/whiteText"
+            android:background="@color/colorPrimaryDark"
+            />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <EditText
+                android:id="@+id/ejecuta"
+                android:layout_width="match_parent"
+                android:hint="Breve descripción de lo que se realiza o ejecuta"
+                android:layout_height="100dp"
+                android:maxLines="5"
+                android:textSize="16dp"
+                android:layout_gravity="center"
+                android:singleLine="true"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <EditText
+                android:id="@+id/hallazgo"
+                android:layout_width="match_parent"
+                android:hint="Observaciones o Hallazgos"
+                android:layout_height="100dp"
+                android:maxLines="5"
+                android:textSize="16dp"
+                android:layout_gravity="center"
+                android:singleLine="true"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <EditText
+                android:id="@+id/reparacion"
+                android:layout_width="match_parent"
+                android:hint="Reparación realizada"
+                android:layout_height="100dp"
+                android:maxLines="5"
+                android:textSize="16dp"
+                android:layout_gravity="center"
+                android:singleLine="true"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <EditText
+                android:id="@+id/deja"
+                android:layout_width="match_parent"
+                android:hint="Estado en que se deja el equipo"
+                android:layout_height="100dp"
+                android:maxLines="5"
+                android:textSize="16dp"
+                android:layout_gravity="center"
+                android:singleLine="true"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Listado de fallas y/o daños de materiales o refacciones identificados:"
+            android:textColor="@color/colorPrimary" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="2">
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="No."
+                android:paddingLeft="3dip"
+                />
+            <TextView
+                android:text="  Motor, refacción y/o material con falla o dañado"
+                android:paddingLeft="3dip"
+                />
+
+        </TableRow>
+
+        <TableRow>
+            <TextView
+            android:layout_column="1"
+                android:text="1."
+                android:padding="3dip"
+                />
+            <EditText
+                android:id="@+id/motor"
+                android:padding="3dip"
+                android:hint="Descripción"
+                android:textSize="12dp"
+                />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="2."
+                android:padding="3dip"
+                />
+            <EditText
+                android:id="@+id/motor1"
+                android:padding="3dip"
+                android:hint="Descripción"
+                android:textSize="12dp"
+                />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="3."
+                android:padding="3dip"
+                />
+            <EditText
+                android:id="@+id/motor2"
+                android:padding="3dip"
+                android:hint="Descripción"
+                android:textSize="12dp"
+                />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="4."
+                android:padding="3dip"
+                />
+            <EditText
+                android:id="@+id/motor3"
+                android:padding="3dip"
+                android:hint="Descripción"
+                android:textSize="12dp"
+                />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="5."
+                android:padding="3dip"
+                />
+            <EditText
+                android:id="@+id/motor4"
+                android:padding="3dip"
+                android:hint="Descripción"
+                android:textSize="12dp"
+                />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="6."
+                android:padding="3dip"
+                />
+            <EditText
+                android:id="@+id/motor5"
+                android:padding="3dip"
+                android:hint="Descripción"
+                android:textSize="12dp"
+                />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="7."
+                android:padding="3dip"
+                />
+            <EditText
+                android:id="@+id/motor6"
+                android:padding="3dip"
+                android:hint="Descripción"
+                android:textSize="12dp"
+                />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="8."
+                android:padding="3dip"
+                />
+            <EditText
+                android:id="@+id/motor7"
+                android:padding="3dip"
+                android:hint="Descripción"
+                android:textSize="12dp"
+                />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="9."
+                android:padding="3dip"
+                />
+            <EditText
+                android:id="@+id/motor8"
+                android:padding="3dip"
+                android:hint="Descripción"
+                android:textSize="12dp"
+                />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="10."
+                android:padding="3dip"
+                />
+            <EditText
+                android:id="@+id/motor9"
+                android:padding="3dip"
+                android:hint="Descripción"
+                android:textSize="12dp"
+                />
+        </TableRow>
+    </TableLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Imágenes"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:textColor="@color/whiteText"
+            android:background="@color/colorPrimaryDark"
+            />
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10px"
+            android:focusable="true"
+            android:gravity="center"
+            android:focusableInTouchMode="true">
+
+            <Button
+                android:text="Imagen1"
+                android:id="@+id/btnopencamara"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:textSize="11sp"
+                android:drawableLeft="@drawable/ic_camera_black_24dp"
+                />
+
+            <Button
+                android:text="Imagen2"
+                android:id="@+id/btnopencamara2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:textSize="11sp"
+                android:drawableLeft="@drawable/ic_camera_black_24dp"
+                />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10px"
+            android:focusable="true"
+            android:gravity="center"
+            android:focusableInTouchMode="true">
+
+            <Button
+                android:text="Imagen3"
+                android:id="@+id/btnopencamara3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:textSize="11sp"
+                android:drawableLeft="@drawable/ic_camera_black_24dp"
+                />
+
+            <Button
+                android:text="Imagen4"
+                android:id="@+id/btnopencamara4"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:textSize="11sp"
+                android:drawableLeft="@drawable/ic_camera_black_24dp"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10px"
+            android:focusable="true"
+            android:gravity="center"
+            android:focusableInTouchMode="true">
+
+
+
+            <Button
+                android:text="Imagen5"
+                android:id="@+id/btnopencamara5"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:textSize="11sp"
+                android:drawableLeft="@drawable/ic_camera_black_24dp"
+                />
+
+            <Button
+                android:text="Imagen6"
+                android:id="@+id/btnopencamara6"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:textSize="11sp"
+                android:drawableLeft="@drawable/ic_camera_black_24dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10px"
+            android:focusable="true"
+            android:gravity="center"
+            android:focusableInTouchMode="true">
+
+            <Button
+                android:text="Imagen7"
+                android:id="@+id/btnopencamara7"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:textSize="11sp"
+                android:drawableLeft="@drawable/ic_camera_black_24dp"
+                />
+
+            <Button
+                android:text="Imagen8"
+                android:id="@+id/btnopencamara8"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:textSize="11sp"
+                android:drawableLeft="@drawable/ic_camera_black_24dp"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10px"
+            android:focusable="true"
+            android:gravity="center"
+            android:focusableInTouchMode="true">
+
+            <Button
+                android:text="Imagen9"
+                android:id="@+id/btnopencamara9"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:textSize="11sp"
+                android:drawableLeft="@drawable/ic_camera_black_24dp"
+                />
+
+            <Button
+                android:text="Imagen10"
+                android:id="@+id/btnopencamara10"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:textSize="11sp"
+                android:drawableLeft="@drawable/ic_camera_black_24dp"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Conclusiones"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:textColor="@color/whiteText"
+            android:background="@color/colorPrimaryDark"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:text="En base a lo anterior determinamos que el equipo antes mencionado esta: " />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <EditText
+                android:id="@+id/conclusion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Realizar una breve conclusión del problema en base a lo anterior" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recomendaciones"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:textColor="@color/whiteText"
+            android:background="@color/colorPrimaryDark"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:text="A continución se hacen las siguientes recomendaciones al equipo para su mejor funcionamiento y confort y/o seguridad de los usuarios del mencionado equipo: " />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="2">
+
+            <TableRow>
+                <TextView
+                    android:layout_column="1"
+                    android:text="No."
+                    android:paddingLeft="3dip"
+                    />
+                <TextView
+                    android:text="  Recomendación:"
+                    android:paddingLeft="3dip"
+                    />
+
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_column="1"
+                    android:text="1."
+                    android:padding="3dip"
+                    />
+                <EditText
+                    android:id="@+id/reco"
+                    android:padding="3dip"
+                    android:hint="Recomendación"
+                    android:textSize="12dp"
+                    />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_column="1"
+                    android:text="2."
+                    android:padding="3dip"
+                    />
+                <EditText
+                    android:id="@+id/reco1"
+                    android:padding="3dip"
+                    android:hint="Recomendación"
+                    android:textSize="12dp"
+                    />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_column="1"
+                    android:text="3."
+                    android:padding="3dip"
+                    />
+                <EditText
+                    android:id="@+id/reco2"
+                    android:padding="3dip"
+                    android:hint="Recomendación"
+                    android:textSize="12dp"
+                    />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_column="1"
+                    android:text="4."
+                    android:padding="3dip"
+                    />
+                <EditText
+                    android:id="@+id/reco3"
+                    android:padding="3dip"
+                    android:hint="Recomendación"
+                    android:textSize="12dp"
+                    />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_column="1"
+                    android:text="5."
+                    android:padding="3dip"
+                    />
+                <EditText
+                    android:id="@+id/reco4"
+                    android:padding="3dip"
+                    android:hint="Recomendación"
+                    android:textSize="12dp"
+                    />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_column="1"
+                    android:text="6."
+                    android:padding="3dip"
+                    />
+                <EditText
+                    android:id="@+id/reco5"
+                    android:padding="3dip"
+                    android:hint="Recomendación"
+                    android:textSize="12dp"
+                    />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_column="1"
+                    android:text="7."
+                    android:padding="3dip"
+                    />
+                <EditText
+                    android:id="@+id/reco6"
+                    android:padding="3dip"
+                    android:hint="Recomendación"
+                    android:textSize="12dp"
+                    />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_column="1"
+                    android:text="8."
+                    android:padding="3dip"
+                    />
+                <EditText
+                    android:id="@+id/reco7"
+                    android:padding="3dip"
+                    android:hint="Recomendación"
+                    android:textSize="12dp"
+                    />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_column="1"
+                    android:text="9."
+                    android:padding="3dip"
+                    />
+                <EditText
+                    android:id="@+id/reco8"
+                    android:padding="3dip"
+                    android:hint="Recomendación"
+                    android:textSize="12dp"
+                    />
+            </TableRow>
+        </TableLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:text="En el caso que requiera cotización, estaremos enviando a la brevedad para su aprobación correspondiente y así hacer la programación del mismo." />
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnFirmaTec"
+                android:textSize="12sp"
+                android:layout_width="0dp"
+                android:layout_weight=".50"
+                android:layout_height="40dp"
+                android:text="Firma Técnico"/>
+
+            <Button
+                android:id="@+id/btnFirmaResp"
+                android:textSize="12sp"
+                android:layout_width="0dp"
+                android:layout_weight=".50"
+                android:layout_height="40dp"
+                android:text="Firma Responsable"/>
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnEnviar"
+            android:text="Enviar"/>
+
+
+    </LinearLayout>
+</ScrollView>
